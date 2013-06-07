@@ -4,11 +4,11 @@
 
 ###Download
 
-You can download the .jar package at [JCDP's official webpage](http://diogonunes.com/it/work/jcdp/#download). I have uploaded both a Windows/Linux version and a Linux-only version (the latter is lighter and has no dependencies over external libs).
+You can download the .jar package at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). I have uploaded both a Windows/Linux version and a Linux-only version (the latter is lighter and has no dependencies over external libs).
 
 ###How to use it
 
-The following code should produce [this result](http://www.diogonunes.com/it/work/jcdp/#example).
+The following code should produce [this result](http://www.diogonunes.com/work/jcdp/#example).
 
 ```java
 package print.test;
@@ -61,7 +61,7 @@ public class ExampleApp {
 
 ###Documentation
 
-For more information about how to use this library please check [JCDP's official webpage](http://diogonunes.com/it/work/jcdp/). If you want to read the *javadoc* you can check the `doc` folder or read it [online](http://diogonunes.com/it/work/jcdp/doc/index.html).
+For more information about how to use this library please check [JCDP's official webpage](http://diogonunes.com/work/jcdp/). If you want to read the *javadoc* you can check the `doc` folder or read it [online](http://diogonunes.com/work/jcdp/doc/index.html).
 
 ###Future Work
 

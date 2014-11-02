@@ -12,16 +12,16 @@ The following code should produce [this result](http://www.diogonunes.com/work/j
 
 ```java
 package print.test;
- 
+
 import print.Printer;
 import print.Printer.Types;
 import print.color.ColoredPrinter;
 import print.color.Ansi.*;
 import print.exception.InvalidArgumentsException;
- 
+
 public class ExampleApp {
     public static void main(String[] args) throws InvalidArgumentsException {
- 
+
         //example of a terminal Printer
         Printer p = new Printer.Builder(Types.TERM).build();
         p.println(p);
@@ -34,7 +34,7 @@ public class ExampleApp {
         p.debugPrintln("This isn't printed because its level is > 1", 2);
         p.setLevel(2);
         p.debugPrintln("Now this is printed because its level is <= 2", 2);
-         
+
         //example of a Colored terminal Printer (WINDOWS or UNIX)
         ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
                                 .foreground(FColor.WHITE).background(BColor.BLUE)   //setting format
@@ -53,8 +53,8 @@ public class ExampleApp {
         cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
         cp.print("IN PORTUGAL\t\n", Attribute.BOLD, FColor.YELLOW, BColor.RED);
         cp.println("I hope you find it useful ;)");
- 
-        cp.clear(); //don't forget to clear the terminal's format before exiting                      
+
+        cp.clear(); //don't forget to clear the terminal's format before exiting
     }
 }
 ```
@@ -62,6 +62,12 @@ public class ExampleApp {
 ###Documentation
 
 For more information about how to use this library please check [JCDP's official webpage](http://diogonunes.com/work/jcdp/). If you want to read the *javadoc* you can check the `doc` folder or read it [online](http://diogonunes.com/work/jcdp/doc/index.html).
+
+###License
+
+JPrinter  Copyright (C) 2011  Diogo Nunes
+This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY.
+For more details check LICENSE.
 
 ###Future Work
 

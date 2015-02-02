@@ -4,7 +4,7 @@
 
 ###Download
 
-You can download the .jar package at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). I have uploaded both a Windows/Linux version and a Linux-only version (the latter is lighter and has no dependencies over external libs).
+You can download the .jar packages at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). The Unix-only version is lighter and has no third-party dependencies. The Windows version requires including an additional library called [JAnsi](https://github.com/fusesource/jansi).
 
 ###How to use it
 

@@ -70,7 +70,7 @@ For more information about how to use this library please check [JCDP's official
 ###FAQ
 
 Q: **I'm running on Windows and there's no colored output, only some weird codes.**
-A: Make sure you included `JAnsi.jar` and that you created a ColoredPrinterWIN object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:
+A: Make sure you included `JAnsi.jar` and that you created a `ColoredPrinterWIN` object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:
 
 ```java
 private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {

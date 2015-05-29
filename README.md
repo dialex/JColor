@@ -6,6 +6,10 @@
 
 You can download the .jar packages at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). The Unix-only version is lighter and has no third-party dependencies. The Windows version requires including an additional library called [JAnsi](https://github.com/fusesource/jansi).
 
+###Screenshot
+
+![This is a screenshot of the example code below, running at Ubuntu.](http://www.diogonunes.com/work/jcdp/img/ScreenshotNIX.png)
+
 ###How to use it
 
 The following code should produce [this result](http://www.diogonunes.com/work/jcdp/#example).
@@ -68,7 +72,3 @@ For more information about how to use this library please check [JCDP's official
 JPrinter  Copyright (C) 2011  Diogo Nunes
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY.
 For more details check LICENSE.
-
-###Future Work
-
-- Create a FilePrinter, an implementation that prints to a file rather than a terminal.

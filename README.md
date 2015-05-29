@@ -2,15 +2,15 @@
 
 **Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
 
-###Download
-
-You can download the .jar packages at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). The Unix-only version is lighter and has no third-party dependencies. The Windows version requires including an additional library called [JAnsi](https://github.com/fusesource/jansi).
-
 ###Screenshot
 
 ![This is a screenshot of the example code below, running at Ubuntu.](http://www.diogonunes.com/work/jcdp/img/ScreenshotNIX.png)
 
-###How to use it
+###Download
+
+You can download the .jar packages at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). The Unix-only version is lighter and has no third-party dependencies. The Windows version requires including an additional library called [JAnsi](https://github.com/fusesource/jansi).
+
+###Example
 
 The following code should produce [this result](http://www.diogonunes.com/work/jcdp/#example).
 
@@ -67,12 +67,6 @@ public class ExampleApp {
 
 For more information about how to use this library please check [JCDP's official webpage](http://diogonunes.com/work/jcdp/). If you want to read the *javadoc* you can check the `doc` folder or read it [online](http://diogonunes.com/work/jcdp/doc/index.html).
 
-###License
-
-JPrinter  Copyright (C) 2011  Diogo Nunes
-This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY.
-For more details check LICENSE.
-
 ###FAQ
 
 Q: **I'm running on Windows and there's no colored output, only some weird codes.**
@@ -85,12 +79,18 @@ private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {
     //System.out.println("DETECTED OS: " + os);
 
     if (os.toLowerCase().startsWith("win")) {
-        return new ColoredPrinterWIN.Builder(1, false).
-            foreground(frontColor).background(backColor).build();
+        return new ColoredPrinterWIN.Builder(1, false)
+            .foreground(frontColor).background(backColor).build();
     } else {
-        return new ColoredPrinter.Builder(1, false).
-            foreground(frontColor).background(backColor).build();
+        return new ColoredPrinter.Builder(1, false)
+            .foreground(frontColor).background(backColor).build();
     }
     
 }
 ```
+
+###License
+
+JPrinter  Copyright (C) 2011  Diogo Nunes
+This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY.
+For more details check LICENSE.

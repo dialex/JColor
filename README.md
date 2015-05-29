@@ -72,3 +72,25 @@ For more information about how to use this library please check [JCDP's official
 JPrinter  Copyright (C) 2011  Diogo Nunes
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY.
 For more details check LICENSE.
+
+###FAQ
+
+Q: **I'm running on Windows and there's no colored output, only some weird codes.**
+A: Make sure you included `JAnsi.jar` and that you created a ColoredPrinterWIN object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:
+
+```java
+private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {
+
+    String os = System.getProperty("os.name");
+    //System.out.println("DETECTED OS: " + os);
+
+    if (os.toLowerCase().startsWith("win")) {
+        return new ColoredPrinterWIN.Builder(1, false).
+            foreground(frontColor).background(backColor).build();
+    } else {
+        return new ColoredPrinter.Builder(1, false).
+            foreground(frontColor).background(backColor).build();
+    }
+    
+}
+```

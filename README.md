@@ -1,18 +1,19 @@
 #JCDP
 
+<img src="https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-logo.png" width="150">
 **Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
 
-###Screenshot
+###Screenshots
 
-![This is a screenshot of the example code below, running at Ubuntu.](http://www.diogonunes.com/work/jcdp/img/ScreenshotNIX.png)
+![NIX screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotNIX.png)
+Running on Ubuntu
 
-###Download
-
-You can download the .jar packages at [JCDP's official webpage](http://diogonunes.com/work/jcdp/#download). The Unix-only version is lighter and has no third-party dependencies. The Windows version requires including an additional library called [JAnsi](https://github.com/fusesource/jansi).
+![WIN screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotWIN.png)
+Running on Windows
 
 ###Example
 
-The following code should produce [this result](http://www.diogonunes.com/work/jcdp/#example).
+The screenshots above were produced by running this example code:
 
 ```java
 package print.test;
@@ -63,11 +64,21 @@ public class ExampleApp {
 }
 ```
 
+###Downloads
+
+If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. Don't forget to choose the one right for your Operating System.
+
+- [Download NIX-only JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=8): the Unix `jar` is lighter and has no 3rd-party dependencies.
+- [Download WIN/NIX JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=9): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
+
+
 ###Documentation
 
-For more information about how to use this library please check [JCDP's official webpage](http://diogonunes.com/work/jcdp/). If you want to read the *javadoc* you can check the `doc` folder or read it [online](http://diogonunes.com/work/jcdp/doc/index.html).
+![UML diagram](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-UML.png)
 
-###FAQ
+**Javadoc** is available [here](http://dialex.github.io/JCDP/javadoc/).
+
+####FAQ
 
 Q: **I'm running on Windows and there's no colored output, only some weird codes.**
 A: Make sure you included `JAnsi.jar` and that you created a `ColoredPrinterWIN` object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:

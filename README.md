@@ -102,7 +102,7 @@ private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {
 
 ###License
 
-JPrinter  Copyright (C) 2011  Diogo Nunes
+JPrinter  Copyright (C) 2011  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
 If this software was useful to you, consider ♥ [making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=88NSA22HBX2PA).

@@ -83,36 +83,7 @@ public class ExampleApp {
 
 If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. Don't forget to choose the one right for your Operating System.
 
-- [Download NIX-only JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=8): the Unix `jar` is lighter and has no 3rd-party dependencies.
-- [Download WIN/NIX JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=9): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
-
-###Documentation
-
-![UML diagram](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-UML.png)
-
-[**Javadoc**](http://dialex.github.io/JCDP/javadoc/) is available, listing all methods, inputs and behaviors.
-
-####FAQ
-
-**Q**: I'm running on Windows and there's no colored output, only some weird codes.<br/>
-**A**: Make sure you included `JAnsi.jar` and that you created a `ColoredPrinterWIN` object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:
-
-```java
-private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {
-
-    String os = System.getProperty("os.name");
-    //System.out.println("DETECTED OS: " + os);
-
-    if (os.toLowerCase().startsWith("win")) {
-        return new ColoredPrinterWIN.Builder(1, false)
-            .foreground(frontColor).background(backColor).build();
-    } else {
-        return new ColoredPrinter.Builder(1, false)
-            .foreground(frontColor).background(backColor).build();
-    }
-    
-}
-```
+Something...
 
 ###License
 

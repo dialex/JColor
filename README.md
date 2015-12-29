@@ -97,7 +97,7 @@ Import the library into your own project with Maven (Nr. 1) oder Gradle (Nr. 2):
 </repositories>
 ```
 
-```json
+```javascript
 allprojects {
 	repositories {
 		maven { url "https://jitpack.io" }

@@ -6,11 +6,26 @@
 
 ###Screenshots
 
-![NIX screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotNIX.png)
-Running on Ubuntu
+![MacTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-terminal.png)
+Running on Mac OS X Yosemite (Terminal)
 
-![WIN screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotWIN.png)
-Running on Windows
+![MacIterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-iterm.png)
+Running on Mac OS X Yosemite (iTerm)
+
+![Win8cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win8-cmd.png)
+Running on Windows 8/8.1 (cmd)
+
+![Win7cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-cmd.png)
+Running on Windows 7 (cmd)
+
+![Win7bash screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-bash.png)
+Running on Windows 7 (bash)
+
+![MateTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-terminal.png)
+Running on Mate Linux 17.2 (Terminal)
+
+![MateXterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-xterm.png)
+Running on Mate Linux 17.2 (xterm)
 
 ###Example
 

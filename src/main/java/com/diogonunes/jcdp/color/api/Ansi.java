@@ -1,16 +1,16 @@
-package print.color;
+package com.diogonunes.jcdp.color.api;
 
 /**
  * This class stores enums used to generate a Ansi escape code. There is one
  * enum for each component of the print format: Attribute, Foreground Color,
  * Background Color. </br>
  * 
- * Ansi escape codes have the following syntax:
- * 		<ESC>[{attr1};...;{attrn}m </br>
+ * Ansi escape codes have the following syntax: <ESC>[{attr1};...;{attrn}m </br>
  * Ansi escape codes are modeled by this class using the following syntax:
- * 		PREFIX{attr1}SEPARATOR...SEPARATOR{attrn}POSTFIX </br>
+ * PREFIX{attr1}SEPARATOR...SEPARATOR{attrn}POSTFIX </br>
  * 
- * @see <a href="http://ascii-table.com/ansi-escape-sequences.php">Ansi escape codes</a>
+ * @see <a href="http://ascii-table.com/ansi-escape-sequences.php">Ansi escape
+ *      codes</a>
  * 
  * @version 1.2
  * @author Diogo Nunes
@@ -29,21 +29,15 @@ public class Ansi {
 	 */
 	public enum FColor {
 
-		BLACK	("30"),
-		RED		("31"),
-		GREEN	("32"),
-		YELLOW	("33"),
-		BLUE	("34"),
-		MAGENTA	("35"),
-		CYAN	("36"),
-		WHITE	("37"),
-		NONE	("");
+		BLACK("30"), RED("31"), GREEN("32"), YELLOW("33"), BLUE("34"), MAGENTA("35"), CYAN("36"), WHITE("37"), NONE("");
 
-		private final String _code;		//Ansi escape code
+		private final String _code; // Ansi escape code
 
 		/**
 		 * Enum's constructor. Associates a code to a Foreground Color.
-		 * @param code to associate 
+		 * 
+		 * @param code
+		 *            to associate
 		 */
 		FColor(String code) {
 			_code = code;
@@ -63,7 +57,6 @@ public class Ansi {
 		public String toString() {
 			return getCode();
 		}
-
 	}
 
 	/**
@@ -71,21 +64,15 @@ public class Ansi {
 	 */
 	public enum BColor {
 
-		BLACK	("40"),
-		RED		("41"),
-		GREEN	("42"),
-		YELLOW	("43"),
-		BLUE	("44"),
-		MAGENTA	("45"),
-		CYAN	("46"),
-		WHITE	("47"),
-		NONE	("");
+		BLACK("40"), RED("41"), GREEN("42"), YELLOW("43"), BLUE("44"), MAGENTA("45"), CYAN("46"), WHITE("47"), NONE("");
 
-		private final String _code;		//Ansi escape code
+		private final String _code; // Ansi escape code
 
 		/**
 		 * Enum's constructor. Associates a code to a Background Color.
-		 * @param code to associate 
+		 * 
+		 * @param code
+		 *            to associate
 		 */
 		BColor(String code) {
 			_code = code;
@@ -105,7 +92,6 @@ public class Ansi {
 		public String toString() {
 			return getCode();
 		}
-
 	}
 
 	/**
@@ -113,20 +99,15 @@ public class Ansi {
 	 */
 	public enum Attribute {
 
-		CLEAR		("0"),
-		BOLD		("1"),
-		LIGHT		("1"),
-		DARK		("2"),
-		UNDERLINE	("4"),
-		REVERSE		("7"),
-		HIDDEN		("8"),
-		NONE		("");
+		CLEAR("0"), BOLD("1"), LIGHT("1"), DARK("2"), UNDERLINE("4"), REVERSE("7"), HIDDEN("8"), NONE("");
 
-		private final String _code;		//Ansi escape code
+		private final String _code; // Ansi escape code
 
 		/**
 		 * Enum's constructor. Associates a code to a Attribute.
-		 * @param code to associate 
+		 * 
+		 * @param code
+		 *            to associate
 		 */
 		Attribute(String code) {
 			_code = code;
@@ -146,7 +127,5 @@ public class Ansi {
 		public String toString() {
 			return getCode();
 		}
-
 	}
-
 }

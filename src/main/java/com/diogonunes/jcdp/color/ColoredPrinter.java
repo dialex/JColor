@@ -1,51 +1,54 @@
-package print.color;
+package com.diogonunes.jcdp.color;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import print.color.Ansi.*;
-import print.exception.InvalidArgumentsException;
+import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
+import com.diogonunes.jcdp.color.api.Ansi.Attribute;
+import com.diogonunes.jcdp.color.api.Ansi.BColor;
+import com.diogonunes.jcdp.color.api.Ansi.FColor;
+import com.diogonunes.jcdp.color.api.IColoredPrinter;
+import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 
 /**
  * If you want to create a Colored Printer this is the only class you should
- * use. This is your Colored Printers Factory and it abstracts the creation of
- * a Colored Printer and its real implementation. It offers two types of
+ * use. This is your Colored Printers Factory and it abstracts the creation of a
+ * Colored Printer and its real implementation. It offers two types of
  * constructors, one for static and other for dynamic printers. If you use the
- * static constructor you will use one implementation offered by the library.
- * If you use the dynamic constructor you must pass as argument an instance of
- * any class that implements {@link print.color.ColoredPrinterI} interface.
+ * static constructor you will use one implementation offered by the library. If
+ * you use the dynamic constructor you must pass as argument an instance of any
+ * class that implements {@link print.color.ColoredPrinterI} interface.
  * 
  * @version 1.25 beta
  * @author Diogo Nunes
  */
-public class ColoredPrinter implements ColoredPrinterI {
+public class ColoredPrinter implements IColoredPrinter {
 
 	/* object with printer's implementation */
-	private ColoredPrinterTemplate _impl;
+	private AbstractColoredPrinter _impl;
 
 	// ===========================
-	//  CONSTRUCTORS and BUILDERS 
+	// CONSTRUCTORS and BUILDERS
 	// ===========================
 
 	/**
 	 * Constructor of dynamic printers.
-	 * @param implementation of {@link print.color.ColoredPrinterI}
+	 * 
+	 * @param implementation
+	 *            of {@link print.color.ColoredPrinterI}
 	 */
-	public ColoredPrinter(ColoredPrinterTemplate implementation) {
+	public ColoredPrinter(AbstractColoredPrinter implementation) {
 		setImpl(implementation);
 	}
 
 	/**
 	 * 
-	 * @throws InvalidArgumentsException if at least one argument is incorrect.
+	 * @throws InvalidArgumentsException
+	 *             if at least one argument is incorrect.
 	 */
 	public ColoredPrinter(Builder b) {
-		setImpl(new ColoredPrinterNIX.Builder(b._level, b._timestampFlag)
-					.withFormat(b._dateFormat)
-					.attribute(b._attribute)
-					.foreground(b._foregroundColor)
-					.background(b._backgroundColor)
-					.build());
+		setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
+				.attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
 	}
 
 	/**
@@ -53,21 +56,24 @@ public class ColoredPrinter implements ColoredPrinterI {
 	 * wants to change and keep the default values in the others.
 	 */
 	public static class Builder {
-		//required parameters
+		// required parameters
 		private int _level;
 		private boolean _timestampFlag;
-		//optional parameters - initialized to default values
+		// optional parameters - initialized to default values
 		private Attribute _attribute = Attribute.NONE;
 		private FColor _foregroundColor = FColor.NONE;
 		private BColor _backgroundColor = BColor.NONE;
-		private DateFormat _dateFormat = new SimpleDateFormat(
-											"dd/MM/yyyy HH:mm:ss");
+		private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		/**
 		 * The Colored Printer created, by default, has no format. It comes with
-		 * timestamping active and zero level of debug. 
-		 * @param level specifies the maximum level of debug this printer can print.
-		 * @param tsFlag true, if you want a timestamp before each message.
+		 * timestamping active and zero level of debug.
+		 * 
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
+		 * @param tsFlag
+		 *            true, if you want a timestamp before each message.
 		 */
 		public Builder(int level, boolean tsFlag) {
 			_level = level;
@@ -75,7 +81,9 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param level specifies the maximum level of debug this printer can print.
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
 		 * @return the builder.
 		 */
 		public Builder level(int level) {
@@ -84,7 +92,8 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param flag true, if you want a timestamp before each message.
+		 * @param flag
+		 *            true, if you want a timestamp before each message.
 		 * @return the builder.
 		 */
 		public Builder timestamping(boolean flag) {
@@ -93,7 +102,8 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param df the printing format of the timestamp.
+		 * @param df
+		 *            the printing format of the timestamp.
 		 * @return the builder.
 		 */
 		public Builder withFormat(DateFormat df) {
@@ -102,7 +112,8 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param attr specifies the attribute component of the printing format.
+		 * @param attr
+		 *            specifies the attribute component of the printing format.
 		 * @return the builder.
 		 */
 		public Builder attribute(Attribute attr) {
@@ -111,7 +122,8 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param fg specifies the foreground color of the printing format.
+		 * @param fg
+		 *            specifies the foreground color of the printing format.
 		 * @return the builder.
 		 */
 		public Builder foreground(FColor fg) {
@@ -120,7 +132,8 @@ public class ColoredPrinter implements ColoredPrinterI {
 		}
 
 		/**
-		 * @param bg specifies the background color of the printing format.
+		 * @param bg
+		 *            specifies the background color of the printing format.
 		 * @return the builder.
 		 */
 		public Builder background(BColor bg) {
@@ -137,22 +150,20 @@ public class ColoredPrinter implements ColoredPrinterI {
 
 	}
 
-
 	// =====================
-	//  GET and SET METHODS
+	// GET and SET METHODS
 	// =====================
 
-	private ColoredPrinterTemplate getImpl() {
+	private AbstractColoredPrinter getImpl() {
 		return _impl;
 	}
 
-	private void setImpl(ColoredPrinterTemplate impl) {
+	private void setImpl(AbstractColoredPrinter impl) {
 		_impl = impl;
 	}
 
-
 	// =======================================
-	//  INTERFACE METHODS call implementation
+	// INTERFACE METHODS call implementation
 	// =======================================
 
 	@Override
@@ -246,8 +257,7 @@ public class ColoredPrinter implements ColoredPrinterI {
 	}
 
 	@Override
-	public String generateCode(Attribute attr, FColor foreground,
-							   BColor background) {
+	public String generateCode(Attribute attr, FColor foreground, BColor background) {
 		return getImpl().generateCode(attr, foreground, background);
 	}
 
@@ -277,8 +287,7 @@ public class ColoredPrinter implements ColoredPrinterI {
 	}
 
 	@Override
-	public void debugPrint(Object msg, int level,
-						   Attribute attr, FColor fg, BColor bg) {
+	public void debugPrint(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
 		getImpl().debugPrint(msg, level, attr, fg, bg);
 	}
 
@@ -288,9 +297,7 @@ public class ColoredPrinter implements ColoredPrinterI {
 	}
 
 	@Override
-	public void debugPrintln(Object msg, int level,
-							 Attribute attr, FColor fg, BColor bg) {
-		getImpl().debugPrintln(msg, level, attr, fg, bg);	
+	public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
+		getImpl().debugPrintln(msg, level, attr, fg, bg);
 	}
-
 }

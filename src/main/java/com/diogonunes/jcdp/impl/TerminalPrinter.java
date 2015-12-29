@@ -1,7 +1,9 @@
-package print;
+package com.diogonunes.jcdp.impl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
+import com.diogonunes.jcdp.api.AbstractPrinter;
 
 /**
  * This class is a Terminal implementation of the Printer interface, hence all
@@ -11,7 +13,7 @@ import java.text.SimpleDateFormat;
  * @version 1.25 beta
  * @author Diogo Nunes
  */
-public class TerminalPrinter extends PrinterTemplate {
+public class TerminalPrinter extends AbstractPrinter {
 
 	/**
 	 * Constructor (using defaults): creates a Printer with zero level of debug,
@@ -31,7 +33,7 @@ public class TerminalPrinter extends PrinterTemplate {
 	}
 
 	// =========
-	//  BUILDER 
+	// BUILDER
 	// =========
 
 	/**
@@ -39,19 +41,25 @@ public class TerminalPrinter extends PrinterTemplate {
 	 * wants to change and keep the default values ​​in the others.
 	 */
 	public static class Builder {
-		//required parameters
+		// required parameters
 		private int _level;
 		private boolean _timestampFlag;
-		//optional parameters, initialized to default values
-		private DateFormat _dateFormat = new SimpleDateFormat(
-											"dd/MM/yyyy HH:mm:ss");
+		// optional parameters, initialized to default values
+		private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		/**
-		 * The Printer created uses, by default, timestamping format according to ISO 8601.
-		 * @param level specifies the maximum level of debug this printer can print.
-		 * @param tsFlag true, if you want a timestamp before each message.
+		 * The Printer created uses, by default, timestamping format according
+		 * to ISO 8601.
 		 * 
-		 * @see <a href="http://www.iso.org/iso/catalogue_detail.htm?csnumber=26780">ISO 8601</a>
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
+		 * @param tsFlag
+		 *            true, if you want a timestamp before each message.
+		 * 
+		 * @see <a href=
+		 *      "http://www.iso.org/iso/catalogue_detail.htm?csnumber=26780">ISO
+		 *      8601</a>
 		 */
 		public Builder(int level, boolean tsFlag) {
 			_level = level;
@@ -59,7 +67,9 @@ public class TerminalPrinter extends PrinterTemplate {
 		}
 
 		/**
-		 * @param level specifies the maximum level of debug this printer can print.
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
 		 * @return the builder.
 		 */
 		public Builder level(int level) {
@@ -68,7 +78,8 @@ public class TerminalPrinter extends PrinterTemplate {
 		}
 
 		/**
-		 * @param flag true, if you want a timestamp before each message.
+		 * @param flag
+		 *            true, if you want a timestamp before each message.
 		 * @return the builder.
 		 */
 		public Builder timestamping(boolean flag) {
@@ -77,7 +88,8 @@ public class TerminalPrinter extends PrinterTemplate {
 		}
 
 		/**
-		 * @param df the printing format of the timestamp.
+		 * @param df
+		 *            the printing format of the timestamp.
 		 * @return the builder.
 		 */
 		public Builder withFormat(DateFormat df) {
@@ -94,9 +106,8 @@ public class TerminalPrinter extends PrinterTemplate {
 
 	}
 
-
 	// =================================
-	//  OTHER METHODS (implementations)
+	// OTHER METHODS (implementations)
 	// =================================
 
 	/**
@@ -104,56 +115,66 @@ public class TerminalPrinter extends PrinterTemplate {
 	 */
 	@Override
 	public void printTimestamp() {
-		System.out.print(getDateTime() + " ");		/* time + whitespace */
+		System.out.print(getDateTime() + " "); /* time + whitespace */
 	}
 
 	/**
 	 * Prints a message to terminal.
-	 * @param msg The message to print.
+	 * 
+	 * @param msg
+	 *            The message to print.
 	 */
 	@Override
 	public void print(Object msg) {
-		if(isTimestamping())
+		if (isTimestamping())
 			printTimestamp();
 		System.out.print(msg);
 	}
 
 	/**
 	 * Prints a message to terminal with a new line at the end.
-	 * @param msg The message to print.
+	 * 
+	 * @param msg
+	 *            The message to print.
 	 */
 	@Override
 	public void println(Object msg) {
-		if(isTimestamping())
+		if (isTimestamping())
 			printTimestamp();
 		System.out.println(msg);
 	}
 
 	/**
 	 * Prints an error message to terminal.
-	 * @param msg The error message to print.
+	 * 
+	 * @param msg
+	 *            The error message to print.
 	 */
 	@Override
 	public void errorPrint(Object msg) {
-		if(isTimestamping())
+		if (isTimestamping())
 			printTimestamp();
 		System.err.print(msg);
 	}
 
 	/**
 	 * Prints an error message to terminal with a new line at the end.
-	 * @param msg The error message to print.
+	 * 
+	 * @param msg
+	 *            The error message to print.
 	 */
 	@Override
 	public void errorPrintln(Object msg) {
-		if(isTimestamping())
+		if (isTimestamping())
 			printTimestamp();
 		System.err.println(msg);
 	}
 
 	/**
 	 * Prints a debug message to terminal.
-	 * @param msg Debug message to print
+	 * 
+	 * @param msg
+	 *            Debug message to print
 	 */
 	@Override
 	public void debugPrint(Object msg) {
@@ -163,18 +184,23 @@ public class TerminalPrinter extends PrinterTemplate {
 	/**
 	 * Prints a debug message to terminal if the printer has enough level of
 	 * debug to print that message.
-	 * @param msg Debug message to print
-	 * @param level Level of debug needed to print msg
+	 * 
+	 * @param msg
+	 *            Debug message to print
+	 * @param level
+	 *            Level of debug needed to print msg
 	 */
 	@Override
 	public void debugPrint(Object msg, int level) {
-		if(canPrint(level))
+		if (canPrint(level))
 			print(msg);
 	}
 
 	/**
 	 * Prints a debug message (with a newline at the end) to terminal.
-	 * @param msg Debug message to print
+	 * 
+	 * @param msg
+	 *            Debug message to print
 	 */
 	@Override
 	public void debugPrintln(Object msg) {
@@ -182,14 +208,17 @@ public class TerminalPrinter extends PrinterTemplate {
 	}
 
 	/**
-	 * Prints a debug message (with a newline at the end) to terminal if
-	 * the printer has enough level of debug to print that message.
-	 * @param msg Debug message to print
-	 * @param level Level of debug needed to print msg
+	 * Prints a debug message (with a newline at the end) to terminal if the
+	 * printer has enough level of debug to print that message.
+	 * 
+	 * @param msg
+	 *            Debug message to print
+	 * @param level
+	 *            Level of debug needed to print msg
 	 */
 	@Override
 	public void debugPrintln(Object msg, int level) {
-		if(canPrint(level))
+		if (canPrint(level))
 			println(msg);
 	}
 
@@ -198,11 +227,8 @@ public class TerminalPrinter extends PrinterTemplate {
 	 */
 	@Override
 	public String toString() {
-		String desc = "TerminalPrinter" + " | level: " + getLevel()
-					  + " | timestamping: " + (isTimestamping()
-					  	? "active"
-					  	: "inactive");
+		String desc = "TerminalPrinter" + " | level: " + getLevel() + " | timestamping: "
+				+ (isTimestamping() ? "active" : "inactive");
 		return desc;
 	}
-
 }

@@ -17,13 +17,12 @@ Running on Windows
 The screenshots above were produced by running this example code:
 
 ```java
-package print.test;
+package com.diogonunes.jcdp.main;
 
-import print.Printer;
-import print.Printer.Types;
-import print.color.ColoredPrinter;
-import print.color.Ansi.*;
-import print.exception.InvalidArgumentsException;
+import com.diogonunes.jcdp.*;
+import com.diogonunes.jcdp.Printer.*;
+import com.diogonunes.jcdp.color.*;
+import com.diogonunes.jcdp.color.api.Ansi.*;
 
 public class ExampleApp {
     public static void main(String[] args) throws InvalidArgumentsException {

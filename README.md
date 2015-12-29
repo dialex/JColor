@@ -79,11 +79,41 @@ public class ExampleApp {
 }
 ```
 
+###Build tools
+
+Import the library into your own project with Maven (Nr. 1) oder Gradle (Nr. 2):
+ 
+```xml
+<dependency>
+	<groupId>com.github.xafero</groupId>
+	<artifactId>JCDP</artifactId>
+	<version>v1.26</version>
+</dependency>
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+```json
+allprojects {
+	repositories {
+		maven { url "https://jitpack.io" }
+	}
+}
+dependencies {
+	compile 'com.github.xafero:JCDP:v1.26'
+}
+```
+
 ###Downloads
 
-If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. Don't forget to choose the one right for your Operating System.
+If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. You should choose the first complete release which targets Windows and Unix, too.
 
-Something...
+- [Download WIN/NIX JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26.jar): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
+- [Download UNIX-only JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26-min.jar): the Unix `jar` is lighter and has no 3rd-party dependencies.
 
 ###License
 

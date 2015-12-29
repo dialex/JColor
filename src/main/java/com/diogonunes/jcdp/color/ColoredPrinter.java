@@ -9,6 +9,7 @@ import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.api.IColoredPrinter;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
 
 /**
  * If you want to create a Colored Printer this is the only class you should
@@ -47,8 +48,12 @@ public class ColoredPrinter implements IColoredPrinter {
 	 *             if at least one argument is incorrect.
 	 */
 	public ColoredPrinter(Builder b) {
-		setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
-				.attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
+		if (System.getProperty("os.name").toLowerCase().startsWith("win"))
+			setImpl(new WindowsColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
+					.attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
+		else
+			setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
+					.attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
 	}
 
 	/**

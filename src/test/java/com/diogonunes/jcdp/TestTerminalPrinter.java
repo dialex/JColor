@@ -1,13 +1,12 @@
 package com.diogonunes.jcdp;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import com.diogonunes.jcdp.impl.TerminalPrinter;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -15,8 +14,8 @@ import static org.junit.Assert.assertThat;
 /**
  * Tests for TerminalPrinter class.
  *
- * @version 2.0
  * @author Diogo Nunes
+ * @version 2.0
  */
 public class TestTerminalPrinter {
 

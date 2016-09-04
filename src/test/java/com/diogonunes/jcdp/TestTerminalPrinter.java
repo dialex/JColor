@@ -30,7 +30,7 @@ public class TestTerminalPrinter {
      * Redirects standard outputs to PrintStream objects so the output can be
      * tested/compared later.
      *
-     * @throws Exception
+     * @throws Exception Some unexpected error.
      */
     @Before
     public void setUp() throws Exception {
@@ -39,7 +39,7 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * @throws Exception
+     * @throws Exception Some unexpected error.
      */
     @After
     public void tearDown() throws Exception {

@@ -321,10 +321,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public String toString() {
-        String desc = "ColoredPrinterWIN" + " | level: " + getLevel() + " | timestamping: "
+        return "ColoredPrinterWIN" + " | level: " + getLevel() + " | timestamping: "
                 + (isTimestamping() ? "active" : "inactive") + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
-        return desc;
     }
 }

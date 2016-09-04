@@ -318,10 +318,9 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public String toString() {
-        String desc = "ColoredPrinterNIX" + " | level: " + getLevel() + " | timestamping: "
+        return "ColoredPrinterNIX" + " | level: " + getLevel() + " | timestamping: "
                 + (isTimestamping() ? "active" : "inactive") + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
-        return desc;
     }
 }

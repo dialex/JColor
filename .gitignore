@@ -28,6 +28,7 @@ dependency-reduced-pom.xml
 
 .idea/
 out/
+*.iml
 
 ## File-based project format:
 *.iws

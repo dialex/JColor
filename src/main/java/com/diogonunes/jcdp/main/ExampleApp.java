@@ -31,7 +31,7 @@ public class ExampleApp {
         cp.println(cp);
         cp.setAttribute(Attribute.REVERSE);
         cp.println("This is a normal message (with format reversed).");
-            //reseting the terminal to its default colors
+            //resetting the terminal to its default colors
         cp.clear();
         cp.print(cp.getDateTime(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
         cp.debugPrintln(" This debug message is always printed.");

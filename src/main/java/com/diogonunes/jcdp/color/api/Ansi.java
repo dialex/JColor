@@ -5,9 +5,9 @@ package com.diogonunes.jcdp.color.api;
  * enum for each component of the print format: Attribute, Foreground Color,
  * Background Color. </br>
  * 
- * Ansi escape codes have the following syntax: <ESC>[{attr1};...;{attrn}m </br>
+ * Ansi escape codes have the following syntax: <ESC>[{attr-1};...;{attr-n}m </br>
  * Ansi escape codes are modeled by this class using the following syntax:
- * PREFIX{attr1}SEPARATOR...SEPARATOR{attrn}POSTFIX </br>
+ * PREFIX{attr-1}SEPARATOR...SEPARATOR{attr-n}POSTFIX </br>
  * 
  * @see <a href="http://ascii-table.com/ansi-escape-sequences.php">Ansi escape
  *      codes</a>

@@ -33,8 +33,8 @@ public abstract class AbstractPrinter implements IPrinter {
 
 	@Override
 	public String getDateTime() {
-		Date timedate = new Date();
-		return _dateFormat.format(timedate);
+		Date datetime = new Date();
+		return _dateFormat.format(datetime);
 	}
 
 	/**

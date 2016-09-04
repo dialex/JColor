@@ -25,7 +25,7 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
 	// =====================
 
 	/**
-	 * @return the current attribute; every message will be printed formated
+	 * @return the current attribute; every message will be printed formatted
 	 *         with this attribute.
 	 */
 	protected Attribute getAttribute() {

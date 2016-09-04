@@ -27,7 +27,7 @@ The screenshots above were produced by running this example code:
 package com.diogonunes.jcdp.main;
 
 import com.diogonunes.jcdp.*;
-import com.diogonunes.jcdp.Printer.*;
+import com.diogonunes.jcdp.bw.api.Printer.*;
 import com.diogonunes.jcdp.color.*;
 import com.diogonunes.jcdp.color.api.Ansi.*;
 
@@ -81,7 +81,7 @@ You can import this library into your own project using...
 <dependency>
 	<groupId>com.github.dialex</groupId>
 	<artifactId>JCDP</artifactId>
-	<version>v2.0</version>
+	<version>2.0</version>
 </dependency>
 <repositories>
 	<repository>

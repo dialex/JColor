@@ -1,6 +1,6 @@
 package com.diogonunes.jcdp.color.api;
 
-import com.diogonunes.jcdp.api.AbstractPrinter;
+import com.diogonunes.jcdp.bw.api.AbstractPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;

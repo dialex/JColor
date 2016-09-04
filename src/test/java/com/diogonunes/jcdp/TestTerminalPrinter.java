@@ -1,6 +1,6 @@
 package com.diogonunes.jcdp;
 
-import com.diogonunes.jcdp.impl.TerminalPrinter;
+import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,9 +50,9 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#print(Object)}.
+     * Test method for {@link TerminalPrinter#print(Object)}.
      * Test method for
-     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#errorPrint(Object)}.
+     * {@link TerminalPrinter#errorPrint(Object)}.
      */
     @Test
     public void testPrint() {
@@ -71,7 +71,7 @@ public class TestTerminalPrinter {
 
     /**
      * Test method for
-     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#debugPrint(Object, int)}.
+     * {@link TerminalPrinter#debugPrint(Object, int)}.
      */
     @Test
     public void testDebugPrintWithLevels() {
@@ -90,8 +90,8 @@ public class TestTerminalPrinter {
 
     /**
      * Test method for
-     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#debugPrint(Object, int)}. Test
-     * method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setLevel(int)}.
+     * {@link TerminalPrinter#debugPrint(Object, int)}. Test
+     * method for {@link TerminalPrinter#setLevel(int)}.
      */
     @Test
     public void testDebugPrintChangingLevel() {
@@ -113,8 +113,8 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setDebugging(boolean)}. Test
-     * method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#canPrint(int)}.
+     * Test method for {@link TerminalPrinter#setDebugging(boolean)}. Test
+     * method for {@link TerminalPrinter#canPrint(int)}.
      */
     @Test
     public void testDebugPrintOnOff() {
@@ -137,8 +137,8 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setTimestamping(boolean)}.
-     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#print(Object)}.
+     * Test method for {@link TerminalPrinter#setTimestamping(boolean)}.
+     * Test method for {@link TerminalPrinter#print(Object)}.
      */
     @Test
     public void testTimestamping() {

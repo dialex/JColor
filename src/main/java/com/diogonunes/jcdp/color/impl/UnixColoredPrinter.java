@@ -1,5 +1,7 @@
 package com.diogonunes.jcdp.color.impl;
 
+import com.diogonunes.jcdp.bw.api.AbstractPrinter;
+import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
@@ -11,7 +13,7 @@ import java.text.SimpleDateFormat;
 /**
  * This class is an implementation of the Colored Printer interface. It works
  * only on UNIX terminals. All output is sent to standard output (terminal).
- * It implements all abstract methods inherited from the {@link com.diogonunes.jcdp.api.AbstractPrinter} class.
+ * It implements all abstract methods inherited from the {@link AbstractPrinter} class.
  *
  * @author Diogo Nunes
  * @version 2.0
@@ -58,7 +60,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
         /**
          * The Colored Printer created, by default, has no format. So it's just
-         * like a usual Printer {@link com.diogonunes.jcdp.api.IPrinter}.
+         * like a usual Printer {@link IPrinter}.
          *
          * @param level  specifies the maximum level of debug this printer can
          *               print.

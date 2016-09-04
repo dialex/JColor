@@ -26,7 +26,7 @@ public interface IPrinter {
      * Changes the level of debug. This level represents the maximum level of
      * the debug messages displayed by the printer.
      *
-     * @param level The new level of debug (should be >= 0).
+     * @param level The new level of debug (should be 0 or greater).
      */
     void setLevel(int level);
 

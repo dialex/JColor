@@ -3,10 +3,7 @@ package com.diogonunes.jcdp.color.api;
 /**
  * This class stores enums used to generate a Ansi escape code. There is one
  * enum for each component of the print format: Attribute, Foreground Color,
- * Background Color. </br>
- * Ansi escape codes have the following syntax: <ESC>[{attr-1};...;{attr-n}m </br>
- * Ansi escape codes are modeled by this class using the following syntax:
- * PREFIX{attr-1}SEPARATOR...SEPARATOR{attr-n}POSTFIX </br>
+ * Background Color.
  *
  * @author Diogo Nunes
  * @version 1.2

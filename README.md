@@ -106,8 +106,6 @@ dependencies {
 
 ###Documentation
 
-![UML diagram](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-UML.png)
-
 [**Javadoc**](http://dialex.github.io/JCDP/javadoc/) is available, listing all methods, inputs and behaviors.
 
 ###License
@@ -115,4 +113,4 @@ dependencies {
 JPrinter  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
-If this software was useful to you, consider ♥ [making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=88NSA22HBX2PA).
+A special thanks to all contributors, specially [@xafero](https://github.com/xafero) who _maven-ized_ this whole project.

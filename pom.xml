@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.diogonunes</groupId>
-	<artifactId>JCDP</artifactId>
-	<version>2.0</version>
-	<packaging>jar</packaging>
-	<name>JCDP</name>
-	<description>Library for printing colored or debug messages on a terminal.</description>
+    <groupId>com.diogonunes</groupId>
+    <artifactId>JCDP</artifactId>
+    <version>2.0</version>
+    <packaging>jar</packaging>
+    <name>JCDP</name>
+    <description>Library for printing colored or debug messages on a terminal.</description>
     <url>https://github.com/dialex/JCDP</url>
 
     <properties>

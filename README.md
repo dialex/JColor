@@ -1,34 +1,23 @@
-#JCDP
-
 <img src="https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-logo.png" width="150">
 
 **Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
 
 ###Screenshots
 
-![NIX screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotNIX.png)
-Running on Ubuntu
-
-![MacTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-terminal.png)
-*Running on Mac OS X Yosemite (Terminal)*
+![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ubuntu-console.png)
+*Running on Ubuntu*
 
 ![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-iterm.png)
 *Running on Mac OS X Yosemite (iTerm)*
 
-![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win8-cmd.png)
-*Running on Windows 8/8.1 (cmd)*
+![MacTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-terminal.png)
+*Running on Mac OS X Yosemite (Terminal)*
 
-![Win7cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win7-cmd.png)
-*Running on Windows 7 (cmd)*
+![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win8-cmd.png)
+*Running on Windows 8.1 (cmd)*
 
 ![Win7bash screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win7-bash.png)
 *Running on Windows 7 (bash)*
-
-![MateTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mate-terminal.png)
-*Running on Mate Linux 17.2 (Terminal)*
-
-![MateXterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mate-xterm.png)
-*Running on Mate Linux 17.2 (xterm)*
 
 ###Example
 
@@ -84,7 +73,7 @@ public class ExampleApp {
 
 ###Build tools
 
-You can import the library into your own project using...
+You can import this library into your own project using...
 
 #### Maven
  
@@ -115,12 +104,11 @@ dependencies {
 }
 ```
 
-###Downloads
+###Documentation
 
-If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. You should choose the first complete release which targets Windows and Unix, too.
+![UML diagram](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-UML.png)
 
-- [Download WIN/NIX JAR](https://github.com/dialex/JCDP/releases/download/v2.0/JCDP-2.0.jar): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
-- [Download UNIX-only JAR](https://github.com/dialex/JCDP/releases/download/v2.0/JCDP-2.0-min.jar): the Unix `jar` is lighter and has no 3rd-party dependencies.
+[**Javadoc**](http://dialex.github.io/JCDP/javadoc/) is available, listing all methods, inputs and behaviors.
 
 ###License
 

@@ -6,7 +6,7 @@
     <artifactId>JCDP</artifactId>
     <version>2.0</version>
     <packaging>jar</packaging>
-    <name>JCDP</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>Library for printing colored or debug messages on a terminal.</description>
     <url>https://github.com/dialex/JCDP</url>
 
@@ -18,7 +18,7 @@
 
     <licenses>
         <license>
-            <name>The MIT License, Version 2.0</name>
+            <name>MIT License</name>
             <url>https://opensource.org/licenses/MIT</url>
             <distribution>repo</distribution>
         </license>
@@ -31,6 +31,12 @@
             <url>http://www.diogonunes.com</url>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/dialex/jcdp.git</connection>
+        <developerConnection>scm:git:ssh://github.com:dialex/jcdp.git</developerConnection>
+        <url>http://github.com/dialex/jcdp/tree/master</url>
+    </scm>
 
     <dependencies>
         <dependency>

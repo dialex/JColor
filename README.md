@@ -5,19 +5,16 @@
 ###Screenshots
 
 ![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ubuntu-console.png)
+
 *Running on Ubuntu*
 
 ![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-iterm.png)
-*Running on Mac OS X Yosemite (iTerm)*
 
-![MacTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-terminal.png)
-*Running on Mac OS X Yosemite (Terminal)*
+*Running on MacOS X Yosemite (iTerm)*
 
 ![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win8-cmd.png)
-*Running on Windows 8.1 (cmd)*
 
-![Win7bash screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win7-bash.png)
-*Running on Windows 7 (bash)*
+*Running on Windows 8.1 (cmd)*
 
 ###Example
 

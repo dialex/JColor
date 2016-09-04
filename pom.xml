@@ -6,15 +6,31 @@
 	<artifactId>JCDP</artifactId>
 	<version>2.0</version>
 	<packaging>jar</packaging>
-
-	<name>Java Colored Debug Printer (JCDP)</name>
-	<description>Library for printing colored or debug messages on a terminal</description>
+	<name>JCDP</name>
+	<description>Library for printing colored or debug messages on a terminal.</description>
+    <url>https://github.com/dialex/JCDP</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
+
+    <licenses>
+        <license>
+            <name>The MIT License, Version 2.0</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Diogo Nunes</name>
+            <email>email@diogonunes.com</email>
+            <url>http://www.diogonunes.com</url>
+        </developer>
+    </developers>
 
 	<dependencies>
 		<dependency>

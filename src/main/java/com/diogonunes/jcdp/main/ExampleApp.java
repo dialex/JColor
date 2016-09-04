@@ -1,7 +1,7 @@
 package com.diogonunes.jcdp.main;
 
-import com.diogonunes.jcdp.Printer;
-import com.diogonunes.jcdp.Printer.Types;
+import com.diogonunes.jcdp.bw.Printer;
+import com.diogonunes.jcdp.bw.Printer.Types;
 import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
@@ -36,7 +36,7 @@ public class ExampleApp {
         cp.print(cp.getDateTime(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
         cp.debugPrintln(" This debug message is always printed.");
         cp.clear();
-        cp.print("This example used JCDP 1.25   ");
+        cp.print("This example used JCDP 2.0   ");
         //temporarily overriding that format
         cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
         cp.print("IN PORTUGAL\t\n", Attribute.BOLD, FColor.YELLOW, BColor.RED);

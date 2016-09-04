@@ -51,14 +51,12 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link print.TerminalPrinter#print(java.lang.String)}.
+     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#print(Object)}.
      * Test method for
-     * {@link print.TerminalPrinter#errorPrint(java.lang.String)}.
-     *
-     * @throws IllegalArgumentException
+     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#errorPrint(Object)}.
      */
     @Test
-    public void testPrint() throws IllegalArgumentException {
+    public void testPrint() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(0, false).build();
         String msg = "Normal/Error ";
@@ -74,12 +72,10 @@ public class TestTerminalPrinter {
 
     /**
      * Test method for
-     * {@link print.TerminalPrinter#debugPrint(java.lang.String, int)}.
-     *
-     * @throws IllegalArgumentException
+     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#debugPrint(Object, int)}.
      */
     @Test
-    public void testDebugPrintWithLevels() throws IllegalArgumentException {
+    public void testDebugPrintWithLevels() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(2, false).build();
         String msg = "Debug ";
@@ -95,13 +91,11 @@ public class TestTerminalPrinter {
 
     /**
      * Test method for
-     * {@link print.TerminalPrinter#debugPrint(java.lang.String, int)}. Test
-     * method for {@link print.TerminalPrinter#setLevel(int)}.
-     *
-     * @throws IllegalArgumentException
+     * {@link com.diogonunes.jcdp.impl.TerminalPrinter#debugPrint(Object, int)}. Test
+     * method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setLevel(int)}.
      */
     @Test
-    public void testDebugPrintChangingLevel() throws IllegalArgumentException {
+    public void testDebugPrintChangingLevel() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(1, false).build();
         String msg = "Debug ";
@@ -120,13 +114,11 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link print.TerminalPrinter#setDebugging(boolean)}. Test
-     * method for {@link print.TerminalPrinter#canPrint(int)}.
-     *
-     * @throws IllegalArgumentException
+     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setDebugging(boolean)}. Test
+     * method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#canPrint(int)}.
      */
     @Test
-    public void testDebugPrintOnOff() throws IllegalArgumentException {
+    public void testDebugPrintOnOff() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(0, false).build();
         String msg = "Debug ";
@@ -146,13 +138,11 @@ public class TestTerminalPrinter {
     }
 
     /**
-     * Test method for {@link print.TerminalPrinter#setTimestamping(boolean)}.
-     * Test method for {@link print.TerminalPrinter#print(java.lang.String)}.
-     *
-     * @throws IllegalArgumentException
+     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#setTimestamping(boolean)}.
+     * Test method for {@link com.diogonunes.jcdp.impl.TerminalPrinter#print(Object)}.
      */
     @Test
-    public void testTimestamping() throws IllegalArgumentException {
+    public void testTimestamping() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(1, false).build();
         String msg = "Message";

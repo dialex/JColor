@@ -10,10 +10,8 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
 
 /**
  * This class is an implementation of the Colored Printer interface. It works
- * correctly on UNIX terminals and should not be used on WINDOWS command line;
- * if that is the case use {@link print.ColoredPrinterWIN} instead. All output
- * is sent to standard output (terminal). It implements all abstract methods
- * inherited from the {@link print.PrinterTemplate} class.
+ * only on UNIX terminals. All output is sent to standard output (terminal).
+ * It implements all abstract methods inherited from the {@link com.diogonunes.jcdp.api.AbstractPrinter} class.
  *
  * @version 2.0
  * @author Diogo Nunes
@@ -60,7 +58,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
 		/**
 		 * The Colored Printer created, by default, has no format. So it's just
-		 * like a usual Printer {@link print.PrinterI}.
+		 * like a usual Printer {@link com.diogonunes.jcdp.api.IPrinter}.
 		 * 
 		 * @param level
 		 *            specifies the maximum level of debug this printer can

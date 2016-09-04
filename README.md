@@ -32,7 +32,7 @@ import com.diogonunes.jcdp.color.*;
 import com.diogonunes.jcdp.color.api.Ansi.*;
 
 public class ExampleApp {
-    public static void main(String[] args) throws InvalidArgumentsException {
+    public static void main(String[] args) throws IllegalArgumentException {
 
         //example of a terminal Printer
         Printer p = new Printer.Builder(Types.TERM).build();

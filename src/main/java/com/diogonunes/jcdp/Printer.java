@@ -12,9 +12,9 @@ import com.diogonunes.jcdp.impl.TerminalPrinter;
  * is your Printers Factory and it abstracts the creation of a Printer and its
  * real implementation. It offers two types of constructors, one for static and
  * other for dynamic printers. If you use the static constructor you must choose
- * an implementation {@link print.Printer.Types} offered by the library. If you
+ * an implementation {@link com.diogonunes.jcdp.Printer.Types} offered by the library. If you
  * use the dynamic constructor you must pass as argument an instance of any
- * class that implements {@link print.PrinterI} interface.
+ * class that implements {@link com.diogonunes.jcdp.api.IPrinter} interface.
  * 
  * @version 2.0
  * @author Diogo Nunes
@@ -43,7 +43,7 @@ public class Printer implements IPrinter {
 	 * Constructor of dynamic printers.
 	 * 
 	 * @param implementation
-	 *            of {@link print.PrinterI}
+	 *            of {@link com.diogonunes.jcdp.api.IPrinter}
 	 */
 	public Printer(AbstractPrinter implementation) {
 		setImpl(implementation);
@@ -51,7 +51,7 @@ public class Printer implements IPrinter {
 
 	/**
 	 * 
-	 * @throws InvalidArgumentsException
+	 * @throws IllegalArgumentException
 	 *             if at least one argument is incorrect.
 	 */
 	public Printer(Builder b) throws IllegalArgumentException {
@@ -113,7 +113,7 @@ public class Printer implements IPrinter {
 
 		/**
 		 * @return a new instance of a Printer.
-		 * @throws InvalidArgumentsException
+		 * @throws IllegalArgumentException
 		 *             if at least one argument is incorrect.
 		 */
 		public Printer build() throws IllegalArgumentException {

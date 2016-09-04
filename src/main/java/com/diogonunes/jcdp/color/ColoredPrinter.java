@@ -18,7 +18,7 @@ import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
  * constructors, one for static and other for dynamic printers. If you use the
  * static constructor you will use one implementation offered by the library. If
  * you use the dynamic constructor you must pass as argument an instance of any
- * class that implements {@link print.color.ColoredPrinterI} interface.
+ * class that implements {@link IColoredPrinter} interface.
  * 
  * @version 2.0
  * @author Diogo Nunes
@@ -36,7 +36,7 @@ public class ColoredPrinter implements IColoredPrinter {
 	 * Constructor of dynamic printers.
 	 * 
 	 * @param implementation
-	 *            of {@link print.color.ColoredPrinterI}
+	 *            of {@link IColoredPrinter}
 	 */
 	public ColoredPrinter(AbstractColoredPrinter implementation) {
 		setImpl(implementation);
@@ -44,7 +44,7 @@ public class ColoredPrinter implements IColoredPrinter {
 
 	/**
 	 * 
-	 * @throws InvalidArgumentsException
+	 * @throws IllegalArgumentException
 	 *             if at least one argument is incorrect.
 	 */
 	public ColoredPrinter(Builder b) {

@@ -10,7 +10,7 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * Colored Printer is an extension of a Printer hence, plus everything a Printer
  * can do, this Colored Printer must offer a set of methods to print in a
  * terminal with format. This format is specified by three components (check
- * {@link print.color.Ansi}):Attribute, Foreground Color, Background Color.
+ * {@link Ansi}):Attribute, Foreground Color, Background Color.
  * Every Colored Printer must store internally a current format. Every print
  * must reflect this format. It must also offer ways to print a message with a
  * format that momentously overrides the current format.
@@ -119,8 +119,9 @@ public interface IColoredPrinter extends IPrinter {
 
 	/**
 	 * Prints a debug message to terminal overriding current format.
-	 * 
+	 *
 	 * @param msg
+	 *            Debug message to print
 	 * @param attr
 	 *            specifies the overriding attribute
 	 * @param fg

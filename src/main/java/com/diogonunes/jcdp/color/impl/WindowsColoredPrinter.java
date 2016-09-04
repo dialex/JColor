@@ -1,34 +1,39 @@
-package print.color;
+package com.diogonunes.jcdp.color.impl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import print.color.Ansi.*;
+import org.fusesource.jansi.AnsiConsole;
+
+import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
+import com.diogonunes.jcdp.color.api.Ansi.Attribute;
+import com.diogonunes.jcdp.color.api.Ansi.BColor;
+import com.diogonunes.jcdp.color.api.Ansi.FColor;
 
 /**
  * This class is an implementation of the Colored Printer interface. It works
- * correctly on UNIX terminals and should not be used on WINDOWS command line;
- * if that is the case use {@link print.ColoredPrinterWIN} instead. All output
- * is sent to standard output (terminal). It implements all abstract methods
- * inherited from the {@link print.PrinterTemplate} class.
- *
+ * correctly on both UNIX terminal and WINDOWS command console. It implements
+ * all abstract methods inherited from the {@link print.PrinterTemplate} class.
+ * All output is sent to terminal using the PrintStream provided by
+ * {@link AnsiConsole}.out.
+ * 
  * @version 1.25 beta
  * @author Diogo Nunes
  */
-public class ColoredPrinterNIX extends ColoredPrinterTemplate {
+public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
 	/**
 	 * Constructor (using defaults): creates a Colored Printer with no format,
 	 * zero level of debug and timestamping active according to ISO 8601.
 	 */
-	public ColoredPrinterNIX() {
+	public WindowsColoredPrinter() {
 		this(new Builder(0, true));
 	}
 
 	/**
 	 * Constructor using builder.
 	 */
-	public ColoredPrinterNIX(Builder builder) {
+	public WindowsColoredPrinter(Builder builder) {
 		setLevel(builder._level);
 		setTimestamping(builder._timestampFlag);
 		setDateFormat(builder._dateFormat);
@@ -37,31 +42,33 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		setBackgroundColor(builder._backgroundColor);
 	}
 
+	// =========
+	// BUILDER
+	// =========
 
-	// =========
-	//  BUILDER
-	// =========
-	
 	/**
 	 * Builder pattern: allows the caller to specify the attributes that it
 	 * wants to change and keep the default values in the others.
 	 */
 	public static class Builder {
-		//required parameters
+		// required parameters
 		private int _level;
 		private boolean _timestampFlag;
-		//optional parameters - initialized to default values
+		// optional parameters - initialized to default values
 		private Attribute _attribute = Attribute.NONE;
 		private FColor _foregroundColor = FColor.NONE;
 		private BColor _backgroundColor = BColor.NONE;
-		private DateFormat _dateFormat = new SimpleDateFormat(
-											"dd/MM/yyyy HH:mm:ss");
+		private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		/**
 		 * The Colored Printer created, by default, has no format. So it's just
 		 * like a usual Printer {@link print.PrinterI}.
-		 * @param level specifies the maximum level of debug this printer can print.
-		 * @param tsFlag true, if you want a timestamp before each message.
+		 * 
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
+		 * @param tsFlag
+		 *            true, if you want a timestamp before each message.
 		 */
 		public Builder(int level, boolean tsFlag) {
 			_level = level;
@@ -69,7 +76,9 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param level specifies the maximum level of debug this printer can print.
+		 * @param level
+		 *            specifies the maximum level of debug this printer can
+		 *            print.
 		 * @return the builder.
 		 */
 		public Builder level(int level) {
@@ -78,7 +87,8 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param flag true, if you want a timestamp before each message.
+		 * @param flag
+		 *            true, if you want a timestamp before each message.
 		 * @return the builder.
 		 */
 		public Builder timestamping(boolean flag) {
@@ -87,7 +97,8 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param df the printing format of the timestamp.
+		 * @param df
+		 *            the printing format of the timestamp.
 		 * @return the builder.
 		 */
 		public Builder withFormat(DateFormat df) {
@@ -96,7 +107,8 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param attr specifies the attribute component of the printing format.
+		 * @param attr
+		 *            specifies the attribute component of the printing format.
 		 * @return the builder.
 		 */
 		public Builder attribute(Attribute attr) {
@@ -105,7 +117,8 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param fg specifies the foreground color of the printing format.
+		 * @param fg
+		 *            specifies the foreground color of the printing format.
 		 * @return the builder.
 		 */
 		public Builder foreground(FColor fg) {
@@ -114,7 +127,8 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		}
 
 		/**
-		 * @param bg specifies the background color of the printing format.
+		 * @param bg
+		 *            specifies the background color of the printing format.
 		 * @return the builder.
 		 */
 		public Builder background(BColor bg) {
@@ -125,15 +139,14 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 		/**
 		 * @return a new instance of ColoredPrinterNIX.
 		 */
-		public ColoredPrinterNIX build() {
-			return new ColoredPrinterNIX(this);
+		public WindowsColoredPrinter build() {
+			return new WindowsColoredPrinter(this);
 		}
 
 	}
 
-
 	// =================================
-	//  OTHER METHODS (implementations)
+	// OTHER METHODS (implementations)
 	// =================================
 
 	/**
@@ -141,108 +154,118 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 	 */
 	@Override
 	public void printTimestamp() {
-		System.out.print(generateCode() + getDateTime() + " ");
+		AnsiConsole.out.print(generateCode() + getDateTime() + " ");
 	}
 
 	/**
 	 * Prints a message to terminal.
-	 * @param msg The message to print.
+	 * 
+	 * @param msg
+	 *            The message to print.
 	 */
 	@Override
-	public void print(Object msg) {		
-		if(isTimestamping()) {
+	public void print(Object msg) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode());
+			AnsiConsole.out.print(generateCode());
 		}
-		System.out.print(msg);
+		AnsiConsole.out.print(msg);
 	}
 
 	@Override
 	public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode(attr, fg, bg));
+			AnsiConsole.out.print(generateCode(attr, fg, bg));
 		}
-		System.out.print(msg);
+		AnsiConsole.out.print(msg);
 	}
 
 	/**
 	 * Prints a message to terminal with a new line at the end.
-	 * @param msg The message to print.
+	 * 
+	 * @param msg
+	 *            The message to print.
 	 */
 	@Override
 	public void println(Object msg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode());
+			AnsiConsole.out.print(generateCode());
 		}
-		System.out.println(msg);
+		AnsiConsole.out.println(msg);
 	}
 
 	@Override
 	public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode(attr, fg, bg));
+			AnsiConsole.out.print(generateCode(attr, fg, bg));
 		}
-		System.out.println(msg);
+		AnsiConsole.out.println(msg);
 	}
 
 	/**
 	 * Prints an error message to terminal.
-	 * @param msg The error message to print.
+	 * 
+	 * @param msg
+	 *            The error message to print.
 	 */
 	@Override
 	public void errorPrint(Object msg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode());
+			AnsiConsole.out.print(generateCode());
 		}
-		System.err.print(msg);
+		AnsiConsole.err.print(msg);
 	}
 
 	@Override
 	public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode(attr, fg, bg));
+			AnsiConsole.out.print(generateCode(attr, fg, bg));
 		}
-		System.err.print(msg);
+		AnsiConsole.err.print(msg);
 	}
 
 	/**
 	 * Prints an error message to terminal with a new line at the end.
-	 * @param msg The error message to print.
+	 * 
+	 * @param msg
+	 *            The error message to print.
 	 */
 	@Override
 	public void errorPrintln(Object msg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode());
+			AnsiConsole.out.print(generateCode());
 		}
-		System.err.println(msg);
+		AnsiConsole.err.println(msg);
 	}
 
 	@Override
 	public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-		if(isTimestamping()) {
+		if (isTimestamping()) {
 			printTimestamp();
 		} else {
-			System.out.print(generateCode(attr, fg, bg));
+			AnsiConsole.out.print(generateCode(attr, fg, bg));
 		}
-		System.err.println(msg);
+		AnsiConsole.err.println(msg);
 	}
 
 	/**
 	 * Prints a debug message to terminal.
-	 * @param msg Debug message to print
+	 * 
+	 * @param msg
+	 *            Debug message to print
 	 */
 	@Override
 	public void debugPrint(Object msg) {
@@ -257,25 +280,29 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 	/**
 	 * Prints a debug message to terminal if the printer has enough level of
 	 * debug to print that message.
-	 * @param msg Debug message to print
-	 * @param level Level of debug needed to print msg
+	 * 
+	 * @param msg
+	 *            Debug message to print
+	 * @param level
+	 *            Level of debug needed to print msg
 	 */
 	@Override
 	public void debugPrint(Object msg, int level) {
-		if(canPrint(level))
+		if (canPrint(level))
 			print(msg);
 	}
 
 	@Override
-	public void debugPrint(Object msg, int level,
-						   Attribute attr, FColor fg, BColor bg) {
-		if(canPrint(level))
+	public void debugPrint(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
+		if (canPrint(level))
 			print(msg, attr, fg, bg);
 	}
 
 	/**
 	 * Prints a debug message (with a newline at the end) to terminal.
-	 * @param msg Debug message to print
+	 * 
+	 * @param msg
+	 *            Debug message to print
 	 */
 	@Override
 	public void debugPrintln(Object msg) {
@@ -288,21 +315,23 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 	}
 
 	/**
-	 * Prints a debug message (with a newline at the end) to terminal if
-	 * the printer has enough level of debug to print that message.
-	 * @param msg Debug message to print
-	 * @param level Level of debug needed to print msg
+	 * Prints a debug message (with a newline at the end) to terminal if the
+	 * printer has enough level of debug to print that message.
+	 * 
+	 * @param msg
+	 *            Debug message to print
+	 * @param level
+	 *            Level of debug needed to print msg
 	 */
 	@Override
 	public void debugPrintln(Object msg, int level) {
-		if(canPrint(level))
+		if (canPrint(level))
 			println(msg);
 	}
 
 	@Override
-	public void debugPrintln(Object msg, int level,
-							 Attribute attr, FColor fg, BColor bg) {
-		if(canPrint(level))
+	public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
+		if (canPrint(level))
 			println(msg, attr, fg, bg);
 	}
 
@@ -311,14 +340,10 @@ public class ColoredPrinterNIX extends ColoredPrinterTemplate {
 	 */
 	@Override
 	public String toString() {
-		String desc = "ColoredPrinterNIX" + " | level: " + getLevel()
-						+ " | timestamping: " + (isTimestamping()
-						  ? "active"
-						  : "inactive")
-						+ " | Attribute: " + getAttribute().name()
-						+ " | Foreground color: " + getForegroundColor().name()
-						+ " | Background color: " + getBackgroundColor().name();
+		String desc = "ColoredPrinterWIN" + " | level: " + getLevel() + " | timestamping: "
+				+ (isTimestamping() ? "active" : "inactive") + " | Attribute: " + getAttribute().name()
+				+ " | Foreground color: " + getForegroundColor().name() + " | Background color: "
+				+ getBackgroundColor().name();
 		return desc;
 	}
-
 }

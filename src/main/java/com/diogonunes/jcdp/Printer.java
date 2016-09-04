@@ -1,9 +1,11 @@
-package print;
+package com.diogonunes.jcdp;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import print.exception.InvalidArgumentsException;
+import com.diogonunes.jcdp.api.AbstractPrinter;
+import com.diogonunes.jcdp.api.IPrinter;
+import com.diogonunes.jcdp.impl.TerminalPrinter;
 
 /**
  * If you want to create a Printer this is the only class you should use. This
@@ -17,7 +19,7 @@ import print.exception.InvalidArgumentsException;
  * @version 1.25 beta
  * @author Diogo Nunes
  */
-public class Printer implements PrinterI {
+public class Printer implements IPrinter {
 
 	/**
 	 * Types of Printer's implementations offered:
@@ -26,42 +28,41 @@ public class Printer implements PrinterI {
 	 * <li>FILE for a File Printer;</li>
 	 * </ul>
 	 */
-	public enum Types { TERM, FILE }
+	public enum Types {
+		TERM, FILE
+	}
 
 	/* object with printer's implementation */
-	private PrinterTemplate _impl;
-
+	private AbstractPrinter _impl;
 
 	// ===========================
-	//  CONSTRUCTORS and BUILDERS 
+	// CONSTRUCTORS and BUILDERS
 	// ===========================
 
 	/**
 	 * Constructor of dynamic printers.
-	 * @param implementation of {@link print.PrinterI}
+	 * 
+	 * @param implementation
+	 *            of {@link print.PrinterI}
 	 */
-	public Printer(PrinterTemplate implementation) {
+	public Printer(AbstractPrinter implementation) {
 		setImpl(implementation);
 	}
 
 	/**
 	 * 
-	 * @throws InvalidArgumentsException if at least one argument is incorrect.
+	 * @throws InvalidArgumentsException
+	 *             if at least one argument is incorrect.
 	 */
-	public Printer(Builder b)
-		throws InvalidArgumentsException
-	{
-		switch(b._type) {
-			case TERM:
-				setImpl(new TerminalPrinter.Builder(b._level, b._tsFlag)
-						.withFormat(b._dateFormat)
-						.build());
-				break;
-			case FILE:
-				System.err.println("This type of printer isn't supported... yet!");
-				throw new InvalidArgumentsException();
-			default:
-				throw new InvalidArgumentsException();
+	public Printer(Builder b) throws IllegalArgumentException {
+		switch (b._type) {
+		case TERM:
+			setImpl(new TerminalPrinter.Builder(b._level, b._tsFlag).withFormat(b._dateFormat).build());
+			break;
+		case FILE:
+			throw new IllegalArgumentException("This type of printer isn't supported... yet!");
+		default:
+			throw new IllegalArgumentException("Unknown type!");
 		}
 	}
 
@@ -70,20 +71,21 @@ public class Printer implements PrinterI {
 	 * wants to change and keep the default values in the others.
 	 */
 	public static class Builder {
-		//required parameters
+		// required parameters
 		private Types _type;
-		//optional parameters, initialized to default values
+		// optional parameters, initialized to default values
 		private int _level = 0;
 		private boolean _tsFlag = true;
-		private DateFormat _dateFormat = new SimpleDateFormat(
-											"dd/MM/yyyy HH:mm:ss");
+		private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
 		/**
 		 * Constructor of static printers. The printer returned is one of the
 		 * implementations offered by the library. By default the Printer
 		 * created has zero level of debug, timestamping is active with format
 		 * according to ISO 8601.
-		 * @param type of implementation wanted, use one of {@link Types}
+		 * 
+		 * @param type
+		 *            of implementation wanted, use one of {@link Types}
 		 */
 		public Builder(Types type) {
 			_type = type;
@@ -111,32 +113,29 @@ public class Printer implements PrinterI {
 
 		/**
 		 * @return a new instance of a Printer.
-		 * @throws InvalidArgumentsException if at least one argument is incorrect. 
+		 * @throws InvalidArgumentsException
+		 *             if at least one argument is incorrect.
 		 */
-		public Printer build()
-			throws InvalidArgumentsException
-		{
+		public Printer build() throws IllegalArgumentException {
 			return new Printer(this);
 		}
 
 	}
 
-
 	// =====================
-	//  GET and SET METHODS
+	// GET and SET METHODS
 	// =====================
 
-	private PrinterTemplate getImpl() {
+	private AbstractPrinter getImpl() {
 		return _impl;
 	}
 
-	private void setImpl(PrinterTemplate impl) {
+	private void setImpl(AbstractPrinter impl) {
 		_impl = impl;
 	}
 
-
 	// =======================================
-	//  INTERFACE METHODS call implementation
+	// INTERFACE METHODS call implementation
 	// =======================================
 
 	@Override
@@ -203,5 +202,4 @@ public class Printer implements PrinterI {
 	public String toString() {
 		return getImpl().toString();
 	}
-
 }

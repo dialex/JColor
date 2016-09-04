@@ -15,18 +15,24 @@
 hs_err_pid*
 
 ## ============================================================================
-## gitignore for JetBrains IDEs: IntelliJ, Android Studio, ...
+## gitignore for MAVEN
 
-# User-specific stuff:
+target/
+.classpath
+.project
+.settings
+dependency-reduced-pom.xml
+
+## ============================================================================
+## gitignore for JetBrains: IntelliJ, Android Studio, ...
+
 .idea/
+out/
 
 ## File-based project format:
 *.iws
 
 ## Plugin-specific files:
-
-# IntelliJ
-/out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

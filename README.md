@@ -6,24 +6,38 @@
 
 ###Screenshots
 
-![NIX screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotNIX.png)
-Running on Ubuntu
+![MacTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-terminal.png)
+*Running on Mac OS X Yosemite (Terminal)*
 
-![WIN screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotWIN.png)
-Running on Windows
+![MacIterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-iterm.png)
+*Running on Mac OS X Yosemite (iTerm)*
+
+![Win8cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win8-cmd.png)
+*Running on Windows 8/8.1 (cmd)*
+
+![Win7cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-cmd.png)
+*Running on Windows 7 (cmd)*
+
+![Win7bash screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-bash.png)
+*Running on Windows 7 (bash)*
+
+![MateTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-terminal.png)
+*Running on Mate Linux 17.2 (Terminal)*
+
+![MateXterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-xterm.png)
+*Running on Mate Linux 17.2 (xterm)*
 
 ###Example
 
 The screenshots above were produced by running this example code:
 
 ```java
-package print.test;
+package com.diogonunes.jcdp.main;
 
-import print.Printer;
-import print.Printer.Types;
-import print.color.ColoredPrinter;
-import print.color.Ansi.*;
-import print.exception.InvalidArgumentsException;
+import com.diogonunes.jcdp.*;
+import com.diogonunes.jcdp.Printer.*;
+import com.diogonunes.jcdp.color.*;
+import com.diogonunes.jcdp.color.api.Ansi.*;
 
 public class ExampleApp {
     public static void main(String[] args) throws InvalidArgumentsException {
@@ -65,40 +79,41 @@ public class ExampleApp {
 }
 ```
 
-###Downloads
+###Build tools
 
-If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. Don't forget to choose the one right for your Operating System.
+Import the library into your own project with Maven (Nr. 1) oder Gradle (Nr. 2):
+ 
+```xml
+<dependency>
+	<groupId>com.github.xafero</groupId>
+	<artifactId>JCDP</artifactId>
+	<version>v1.26</version>
+</dependency>
+<repositories>
+	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
-- [Download NIX-only JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=8): the Unix `jar` is lighter and has no 3rd-party dependencies.
-- [Download WIN/NIX JAR](http://www.diogonunes.com/assets/downloadmanager/click.php?id=9): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
-
-###Documentation
-
-![UML diagram](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-UML.png)
-
-[**Javadoc**](http://dialex.github.io/JCDP/javadoc/) is available, listing all methods, inputs and behaviors.
-
-####FAQ
-
-**Q**: I'm running on Windows and there's no colored output, only some weird codes.<br/>
-**A**: Make sure you included `JAnsi.jar` and that you created a `ColoredPrinterWIN` object. If you want to solve this problem during runtime, you might create a method that checks which OS you're running on, like so:
-
-```java
-private ColoredPrinter getPrinter(FColor frontColor, BColor backColor) {
-
-    String os = System.getProperty("os.name");
-    //System.out.println("DETECTED OS: " + os);
-
-    if (os.toLowerCase().startsWith("win")) {
-        return new ColoredPrinterWIN.Builder(1, false)
-            .foreground(frontColor).background(backColor).build();
-    } else {
-        return new ColoredPrinter.Builder(1, false)
-            .foreground(frontColor).background(backColor).build();
-    }
-    
+```javascript
+allprojects {
+	repositories {
+		maven { url "https://jitpack.io" }
+	}
+}
+dependencies {
+	compile 'com.github.xafero:JCDP:v1.26'
 }
 ```
+
+###Downloads
+
+If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. You should choose the first complete release which targets Windows and Unix, too.
+
+- [Download WIN/NIX JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26.jar): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
+- [Download UNIX-only JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26-min.jar): the Unix `jar` is lighter and has no 3rd-party dependencies.
 
 ###License
 

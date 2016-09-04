@@ -17,7 +17,7 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * All output is sent to terminal using the PrintStream provided by
  * {@link AnsiConsole}.out.
  * 
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class WindowsColoredPrinter extends AbstractColoredPrinter {

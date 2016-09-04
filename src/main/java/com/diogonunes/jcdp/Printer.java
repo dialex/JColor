@@ -16,7 +16,7 @@ import com.diogonunes.jcdp.impl.TerminalPrinter;
  * use the dynamic constructor you must pass as argument an instance of any
  * class that implements {@link print.PrinterI} interface.
  * 
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class Printer implements IPrinter {

@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 /**
  * Tests for TerminalPrinter class.
  * 
- * @version 1.25
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class TestTerminalPrinter extends TestCase {

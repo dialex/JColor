@@ -12,7 +12,7 @@ package com.diogonunes.jcdp.api;
  * of the message. By convention, if the Printer has a level of debug of zero
  * than all debug messages should be printed.
  * 
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public interface IPrinter {

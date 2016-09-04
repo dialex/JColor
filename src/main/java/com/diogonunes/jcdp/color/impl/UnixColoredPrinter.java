@@ -15,7 +15,7 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * is sent to standard output (terminal). It implements all abstract methods
  * inherited from the {@link print.PrinterTemplate} class.
  *
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class UnixColoredPrinter extends AbstractColoredPrinter {

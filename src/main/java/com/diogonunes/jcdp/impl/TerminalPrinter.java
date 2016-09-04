@@ -10,7 +10,7 @@ import com.diogonunes.jcdp.api.AbstractPrinter;
  * output is sent to standard output. It implements all abstract methods
  * inherited from the {@link print.PrinterTemplate} class.
  * 
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class TerminalPrinter extends AbstractPrinter {

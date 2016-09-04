@@ -20,7 +20,7 @@ import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
  * you use the dynamic constructor you must pass as argument an instance of any
  * class that implements {@link print.color.ColoredPrinterI} interface.
  * 
- * @version 1.25 beta
+ * @version 2.0
  * @author Diogo Nunes
  */
 public class ColoredPrinter implements IColoredPrinter {

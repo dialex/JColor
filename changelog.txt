@@ -1,5 +1,8 @@
 Release ChangeLog:
 
+2.0:
+- Support for Maven and Gradle
+
 1.25:
 - Created a ColoredPrinter for Windows
 - Refactored the interaction between user and the library

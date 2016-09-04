@@ -6,25 +6,28 @@
 
 ###Screenshots
 
-![MacTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-terminal.png)
+![NIX screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ScreenshotNIX.png)
+Running on Ubuntu
+
+![MacTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-terminal.png)
 *Running on Mac OS X Yosemite (Terminal)*
 
-![MacIterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mac-iterm.png)
+![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-iterm.png)
 *Running on Mac OS X Yosemite (iTerm)*
 
-![Win8cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win8-cmd.png)
+![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win8-cmd.png)
 *Running on Windows 8/8.1 (cmd)*
 
-![Win7cmd screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-cmd.png)
+![Win7cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win7-cmd.png)
 *Running on Windows 7 (cmd)*
 
-![Win7bash screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/win7-bash.png)
+![Win7bash screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win7-bash.png)
 *Running on Windows 7 (bash)*
 
-![MateTerminal screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-terminal.png)
+![MateTerminal screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mate-terminal.png)
 *Running on Mate Linux 17.2 (Terminal)*
 
-![MateXterm screenshot](https://raw.githubusercontent.com/xafero/JCDP/master/doc/img/mate-xterm.png)
+![MateXterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mate-xterm.png)
 *Running on Mate Linux 17.2 (xterm)*
 
 ###Example
@@ -63,7 +66,7 @@ public class ExampleApp {
         cp.println(cp);
         cp.setAttribute(Attribute.REVERSE);
         cp.println("This is a normal message (with format reversed).");
-            //reseting the terminal to its default colors
+            //resetting the terminal to its default colors
         cp.clear();
         cp.print(cp.getDateTime(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
         cp.debugPrintln(" This debug message is always printed.");
@@ -81,13 +84,15 @@ public class ExampleApp {
 
 ###Build tools
 
-Import the library into your own project with Maven (Nr. 1) oder Gradle (Nr. 2):
+You can import the library into your own project using...
+
+#### Maven
  
 ```xml
 <dependency>
-	<groupId>com.github.xafero</groupId>
+	<groupId>com.github.dialex</groupId>
 	<artifactId>JCDP</artifactId>
-	<version>v1.26</version>
+	<version>v2.0</version>
 </dependency>
 <repositories>
 	<repository>
@@ -97,6 +102,8 @@ Import the library into your own project with Maven (Nr. 1) oder Gradle (Nr. 2):
 </repositories>
 ```
 
+#### Gradle
+
 ```javascript
 allprojects {
 	repositories {
@@ -104,7 +111,7 @@ allprojects {
 	}
 }
 dependencies {
-	compile 'com.github.xafero:JCDP:v1.26'
+	compile 'com.github.dialex:JCDP:v2.0'
 }
 ```
 
@@ -112,12 +119,12 @@ dependencies {
 
 If you don't want to compile the source you can just download the `jar` files below. They're are ready to be imported to your project. You should choose the first complete release which targets Windows and Unix, too.
 
-- [Download WIN/NIX JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26.jar): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
-- [Download UNIX-only JAR](https://github.com/xafero/JCDP/releases/download/v1.26/JCDP-1.26-min.jar): the Unix `jar` is lighter and has no 3rd-party dependencies.
+- [Download WIN/NIX JAR](https://github.com/dialex/JCDP/releases/download/v2.0/JCDP-2.0.jar): the Windows `jar` includes an additional library called [JAnsi](https://github.com/fusesource/jansi).
+- [Download UNIX-only JAR](https://github.com/dialex/JCDP/releases/download/v2.0/JCDP-2.0-min.jar): the Unix `jar` is lighter and has no 3rd-party dependencies.
 
 ###License
 
-JPrinter  Copyright (C) 2011  [Diogo Nunes](http://www.diogonunes.com/)
+JPrinter  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
 If this software was useful to you, consider ♥ [making a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=88NSA22HBX2PA).

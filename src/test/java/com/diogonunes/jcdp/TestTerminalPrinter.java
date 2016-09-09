@@ -1,16 +1,13 @@
 package com.diogonunes.jcdp;
 
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 
 /**
  * Tests for TerminalPrinter class.
@@ -22,7 +19,7 @@ public class TestTerminalPrinter {
 
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private TerminalPrinter printer = null; // instance of printer to test
+    private TerminalPrinter printer; // Printer under test
 
     @BeforeClass
     public static void init() {
@@ -38,14 +35,19 @@ public class TestTerminalPrinter {
         System.setErr(null);
     }
 
+    @Before
+    public void setUp() {
+        printer = null;
+    }
+
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         outContent.reset();
         errContent.reset();
     }
 
     @Test
-    public void Print_NormalMessage_DisplaysOnSysOut() {
+    public void Print_Message_DisplaysOnSysOut() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(0, false).build();
         String msg = "Normal";
@@ -70,91 +72,116 @@ public class TestTerminalPrinter {
         assertThat(errContent.toString(), equalTo(msg));
     }
 
-//    /**
-//     * Test method for
-//     * {@link TerminalPrinter#debugPrint(Object, int)}.
-//     */
-//    @Test
-//    public void testDebugPrintWithLevels() {
-//        // ARRANGE
-//        printer = new TerminalPrinter.Builder(2, false).build();
-//        String msg = "Debug ";
-//
-//        // ACT
-//        printer.debugPrint(msg, 2);
-//        printer.debugPrint(msg, 3); /* not printed */
-//
-//        // ASSERT
-//        assertThat(outContent.toString().equals(msg), is(true));
-//        assertThat(outContent.toString().equals(msg + msg), is(false));
-//    }
-//
-//    /**
-//     * Test method for
-//     * {@link TerminalPrinter#debugPrint(Object, int)}. Test
-//     * method for {@link TerminalPrinter#setLevel(int)}.
-//     */
-//    @Test
-//    public void testDebugPrintChangingLevel() {
-//        // ARRANGE
-//        printer = new TerminalPrinter.Builder(1, false).build();
-//        String msg = "Debug ";
-//
-//        // ACT
-//        printer.debugPrint(msg, 2); /* not printed */
-//        printer.setLevel(3);
-//        printer.debugPrint(msg, 2);
-//        printer.setLevel(1);
-//        printer.debugPrint(msg, 3); /* not printed */
-//
-//        // ASSERT
-//        assertThat(outContent.toString().equals(msg), is(true));
-//        assertThat(outContent.toString().equals(msg + msg), is(false));
-//        assertThat(outContent.toString().equals(msg + msg + msg), is(false));
-//    }
-//
-//    /**
-//     * Test method for {@link TerminalPrinter#setDebugging(boolean)}. Test
-//     * method for {@link TerminalPrinter#canPrint(int)}.
-//     */
-//    @Test
-//    public void testDebugPrintOnOff() {
-//        // ARRANGE
-//        printer = new TerminalPrinter.Builder(0, false).build();
-//        String msg = "Debug ";
-//
-//        // ACT
-//        printer.debugPrint(msg, 0);
-//        printer.debugPrint(msg, 2);
-//        printer.setDebugging(false);
-//        printer.debugPrint(msg, 0); /* not printed */
-//        printer.debugPrint(msg, 2); /* not printed */
-//        printer.setLevel(1);
-//        printer.debugPrint(msg, 1);
-//        printer.debugPrint(msg, 2); /* not printed */
-//
-//        // ASSERT
-//        assertThat(outContent.toString().equals(msg + msg + msg), is(true));
-//    }
-//
-//    /**
-//     * Test method for {@link TerminalPrinter#setTimestamping(boolean)}.
-//     * Test method for {@link TerminalPrinter#print(Object)}.
-//     */
-//    @Test
-//    public void testTimestamping() {
-//        // ARRANGE
-//        printer = new TerminalPrinter.Builder(1, false).build();
-//        String msg = "Message";
-//        String timestampedMsg = printer.getDateTime() + " " + msg;
-//
-//        // ACT
-//        printer.errorPrint(msg); /* without timestamp */
-//        printer.setTimestamping(true);
-//        printer.print(msg); /* with timestamp */
-//
-//        // ASSERT
-//        assertThat(errContent.toString().equals(msg), is(true));
-//        assertThat(outContent.toString().equals(timestampedMsg), is(true));
-//    }
+    @Test
+    public void Print_DebugMessage_DisplaysOnSysOut() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(0, false).build();
+        String msg = "Debug";
+
+        // ACT
+        printer.debugPrint(msg);
+
+        // ASSERT
+        assertThat(outContent.toString(), equalTo(msg));
+    }
+
+    @Test
+    public void Print_DebugMessage_DisplayIfEnoughLevel() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, false).build();
+        String msgNoLevel = "Debug0";
+        String msgLevelOne = "Debug1";
+        String msgLevelTwo = "Debug2";
+
+        // ACT
+        printer.debugPrint(msgNoLevel, 0);
+        printer.debugPrint(msgLevelOne, 1);
+        printer.debugPrint(msgLevelTwo, 2);
+
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msgNoLevel));
+        assertThat(outContent.toString(), containsString(msgLevelOne));
+        assertThat(outContent.toString(), containsString(msgLevelTwo));
+    }
+
+    @Test
+    public void Print_DebugMessage_IgnoreIfLevelAbove() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, false).build();
+        String msgLevelTwo = "Debug2";
+        String msgLevelThree = "Debug3";
+
+        // ACT
+        printer.debugPrint(msgLevelTwo, 2);
+        printer.debugPrint(msgLevelThree, 3);
+
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msgLevelTwo));
+        assertThat("Ignores messages above current level", outContent.toString(), not(containsString(msgLevelThree)));
+    }
+
+    @Test
+    public void Print_DebugMessage_DisplayAfterChangingLevel() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, false).build();
+        String msg = "Debug3";
+
+        // ACT
+        printer.debugPrint(msg, 3);
+        printer.setLevel(3);
+        printer.debugPrint(msg, 3);
+
+        // ASSERT
+        assertThat("After changing level message is printed", outContent.toString(), equalTo(msg));
+    }
+
+    @Test
+    public void Print_DebugMessage_DisplayAfterEnablingDebug() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, false).build();
+        String msg = "Debug";
+
+        // ACT
+        printer.setDebugging(false);
+        printer.debugPrint(msg, 2);
+        printer.setDebugging(true);
+        printer.debugPrint(msg, 2);
+
+        // ASSERT
+        assertThat("Disabling debug mutes that message type", outContent.toString(), equalTo(msg));
+    }
+
+    @Test
+    public void Print_Message_DisplayTimestamp() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, true).build();
+        String msg = "Normal";
+        String timestamp = printer.getDateTime();//TODO ignore seconds
+
+        // ACT
+        printer.print(msg);
+
+        // ASSERT
+        assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message includes timestamp", outContent.toString(), containsString(timestamp));
+    }
+
+    @Test
+    public void Print_Message_DisplayTimestampAfterEnablingIt() {
+        // ARRANGE
+        printer = new TerminalPrinter.Builder(2, false).build();
+        String msg = "Message";
+        String timestamp = printer.getDateTime();//TODO ignore seconds
+
+        // ACT
+        printer.print(msg);
+        printer.setTimestamping(true);
+        printer.errorPrint(msg);
+
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat(outContent.toString(), not(containsString(timestamp)));
+        assertThat(errContent.toString(), containsString(msg));
+        assertThat("After enabling timestamping, message includes it", errContent.toString(), containsString(timestamp));
+    }
 }

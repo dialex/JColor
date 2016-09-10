@@ -5,6 +5,9 @@ import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -184,5 +187,21 @@ public class TestTerminalPrinter {
         assertThat(outContent.toString(), not(containsString(timestamp)));
         assertThat(errContent.toString(), containsString(msg));
         assertThat("After enabling timestamping, message includes it", errContent.toString(), containsString(timestamp));
+    }
+
+    @Test
+    public void Print_Message_DisplayTimestampWithCustomDateFormat() {
+        // ARRANGE
+        DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
+        printer = new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
+        String msg = "Message";
+        String timestamp = timestampFormat.format(new Date());
+
+        // ACT
+        printer.print(msg);
+
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat("Timestamp uses custom format", outContent.toString(), containsString(timestamp));
     }
 }

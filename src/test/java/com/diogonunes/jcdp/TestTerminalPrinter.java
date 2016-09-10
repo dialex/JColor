@@ -171,7 +171,8 @@ public class TestTerminalPrinter {
         // ARRANGE
         printer = new TerminalPrinter.Builder(2, false).build();
         String msg = "Message";
-        String timestamp = printer.getDateTime();//TODO ignore seconds
+        String timestamp = printer.getDateTime();
+        timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
         // ACT
         printer.print(msg);

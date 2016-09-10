@@ -1,4 +1,4 @@
-# Release ChangeLog
+# Release Changelog
 
 ## 2.0
 

@@ -54,7 +54,7 @@ public class ExampleApp {
         cp.println("This is a normal message (with format reversed).");
             //resetting the terminal to its default colors
         cp.clear();
-        cp.print(cp.getDateTime(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
+        cp.print(cp.getDateFormatted(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
         cp.debugPrintln(" This debug message is always printed.");
         cp.clear();
         cp.print("This example used JCDP 1.25   ");
@@ -103,7 +103,9 @@ dependencies {
 
 ###Documentation
 
-[**Javadoc**](http://dialex.github.io/JCDP/javadoc/) is available, listing all methods, inputs and behaviors.
+[Javadoc](http://dialex.github.io/JCDP/javadoc/)
+
+[Changelog](changelog.md)
 
 ###License
 

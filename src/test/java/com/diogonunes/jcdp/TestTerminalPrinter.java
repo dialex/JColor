@@ -22,7 +22,7 @@ public class TestTerminalPrinter {
 
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private TerminalPrinter printer; // Printer under test
+    private TerminalPrinter printer; // System Under Test (SUT)
 
     @BeforeClass
     public static void init() {
@@ -170,7 +170,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Print_Message_DisplayTimestampAfterEnablingIt() {
+    public void Print_ErrorMessage_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
         printer = new TerminalPrinter.Builder(2, false).build();
         String msg = "Message";

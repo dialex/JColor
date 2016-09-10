@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -47,9 +48,41 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Print_Message_DisplaysOnSysOut() {
+    public void Class_ToString_DisplayName() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
+
+        // ACT
+        String description = printer.toString();
+
+        // ASSERT
+        assertThat(description, containsString(TerminalPrinter.class.getSimpleName()));
+    }
+
+    @Test
+    public void Class_ToString_DisplayProperties() {
+        // ARRANGE
+        boolean flag = true;
+        int number = 1;
+        TerminalPrinter printer = new TerminalPrinter.Builder(number, flag).build();
+        String separator = " | ";
+
+        // ACT
+        String description = printer.toString();
+        String[] descTokens = description.split(Pattern.quote(separator));
+
+        // ASSERT
+        assertThat(String.format("Properties are separated by '%1$s'", separator), descTokens.length, greaterThan(0));
+        assertThat("Level property is displayed", descTokens[1], containsString("level"));
+        assertThat("Level property value is displayed", descTokens[1], containsString(String.valueOf(number)));
+        assertThat("Timestamp property is displayed", descTokens[2], containsString("timestamping"));
+        assertThat("Timestamp property value is displayed", descTokens[2], containsString(String.valueOf(flag)));
+    }
+
+    @Test
+    public void Print_Message_DisplayOnSysOut() {
+        // ARRANGE
+        TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -60,7 +93,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Print_ErrorMessage_DisplaysOnSysErr() {
+    public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
         TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createErrorMsg();
@@ -73,7 +106,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Print_DebugMessage_DisplaysOnSysOut() {
+    public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
         TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsgWithId(0);

@@ -219,6 +219,6 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public String toString() {
-        return "TerminalPrinter" + " | level: " + getLevel() + " | timestamping: " + (isTimestamping() ? "active" : "inactive");
+        return "TerminalPrinter" + " | level: " + getLevel() + " | timestamping: " + isTimestamping();
     }
 }

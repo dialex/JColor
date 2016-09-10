@@ -2,7 +2,10 @@ package com.diogonunes.jcdp.unit;
 
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 import helpers.DataGenerator;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -22,7 +25,6 @@ public class TestTerminalPrinter {
 
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-    private TerminalPrinter printer; // System Under Test (SUT)
 
     @BeforeClass
     public static void init() {
@@ -38,11 +40,6 @@ public class TestTerminalPrinter {
         System.setErr(null);
     }
 
-    @Before
-    public void setUp() {
-        printer = null;
-    }
-
     @After
     public void tearDown() {
         outContent.reset();
@@ -52,7 +49,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_Message_DisplaysOnSysOut() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -65,7 +62,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_ErrorMessage_DisplaysOnSysErr() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
@@ -78,7 +75,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_DebugMessage_DisplaysOnSysOut() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsgWithId(0);
 
         // ACT
@@ -91,7 +88,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
         String msgNoLevel = DataGenerator.createMsgWithId(0);
         String msgLevelOne = DataGenerator.createMsgWithId(1);
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
@@ -110,7 +107,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_DebugMessage_IgnoreIfLevelAbove() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
         String msgLevelThree = DataGenerator.createMsgWithId(3);
 
@@ -126,7 +123,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(3);
 
         // ACT
@@ -141,7 +138,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_DebugMessage_DisplayAfterEnablingDebug() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(2);
 
         // ACT
@@ -157,7 +154,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_Message_DisplayTimestamp() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, true).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, true).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -173,7 +170,7 @@ public class TestTerminalPrinter {
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        printer = new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -194,7 +191,7 @@ public class TestTerminalPrinter {
     public void Print_Message_DisplayTimestampWithCustomDateFormat() {
         // ARRANGE
         DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
-        printer = new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
+        TerminalPrinter printer =new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(timestampFormat);
 

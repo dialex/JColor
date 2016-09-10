@@ -54,12 +54,26 @@ public class PrinterBuilderTests {
     public void Printer_Creation_BuilderChaining() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
-        boolean flag = true;
         int number = 3;
 
         // ACT
-        IPrinter printer = b.timestamping(flag).level(number).build();
+        IPrinter printer = b.timestamping(true).level(number).build();
         System.out.print(printer.toString());
+
+        // ASSERT
+        assertThat(printer, not(equalTo(null)));
+        assertThat(printer.getLevel(), equalTo(number));
+    }
+
+    @Test
+    public void Printer_Creation_PassingBuilderToConstructor() {
+        // ARRANGE
+        Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
+        int number = 3;
+
+        // ACT
+        b.level(3).timestamping(true);
+        IPrinter printer = new Printer(b);
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));

@@ -95,7 +95,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_Message_DisplayTimestamp() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, true).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, true).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -111,7 +111,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -132,7 +132,7 @@ public class TerminalPrinterTests {
     public void Print_Message_DisplayTimestampWithCustomDateFormat() {
         // ARRANGE
         DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(timestampFormat);
 
@@ -147,7 +147,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
@@ -160,7 +160,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsgWithId(0);
 
         // ACT
@@ -173,7 +173,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_DebugMessage_DisplayAfterEnablingDebug() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(2);
 
         // ACT
@@ -189,18 +189,18 @@ public class TerminalPrinterTests {
     @Test
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
-        String msgNoLevel = DataGenerator.createMsgWithId(0);
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
+        String msgLevelZero = DataGenerator.createMsgWithId(0);
         String msgLevelOne = DataGenerator.createMsgWithId(1);
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
 
         // ACT
-        printer.debugPrint(msgNoLevel, 0);
+        printer.debugPrint(msgLevelZero, 0);
         printer.debugPrint(msgLevelOne, 1);
         printer.debugPrint(msgLevelTwo, 2);
 
         // ASSERT
-        assertThat(outContent.toString(), containsString(msgNoLevel));
+        assertThat(outContent.toString(), containsString(msgLevelZero));
         assertThat(outContent.toString(), containsString(msgLevelOne));
         assertThat(outContent.toString(), containsString(msgLevelTwo));
     }
@@ -208,7 +208,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(3);
 
         // ACT
@@ -223,7 +223,7 @@ public class TerminalPrinterTests {
     @Test
     public void Print_DebugMessage_IgnoreIfLevelAbove() {
         // ARRANGE
-        TerminalPrinter printer =new TerminalPrinter.Builder(2, false).build();
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
         String msgLevelThree = DataGenerator.createMsgWithId(3);
 
@@ -234,6 +234,20 @@ public class TerminalPrinterTests {
         // ASSERT
         assertThat(outContent.toString(), containsString(msgLevelTwo));
         assertThat("Ignores messages above current level", outContent.toString(), not(containsString(msgLevelThree)));
+    }
+
+    @Test
+    public void Print_DebugMessage_IgnoreDebugIsDisabled() {
+        // ARRANGE
+        TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
+        String msg = DataGenerator.createMsg();
+
+        // ACT
+        printer.setDebugging(false);
+        printer.debugPrint(msg);
+
+        // ASSERT
+        assertThat(outContent.toString(), not(containsString(msg)));
     }
 
     //TODO test debug messages that are always displayed

@@ -159,7 +159,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode());
@@ -169,7 +169,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode(attr, fg, bg));
@@ -184,7 +184,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode());
@@ -194,7 +194,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode(attr, fg, bg));
@@ -209,7 +209,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode());
@@ -219,7 +219,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode(attr, fg, bg));
@@ -234,7 +234,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode());
@@ -244,7 +244,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             System.out.print(generateCode(attr, fg, bg));
@@ -326,7 +326,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
     @Override
     public String toString() {
         return "ColoredPrinterNIX" + " | level: " + getLevel() + " | timestamping: "
-                + isTimestamping() + " | Attribute: " + getAttribute().name()
+                + isLoggingTimestamps() + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
     }

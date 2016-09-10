@@ -97,7 +97,6 @@ public class TerminalPrinter extends AbstractPrinter {
         public TerminalPrinter build() {
             return new TerminalPrinter(this);
         }
-
     }
 
     // =================================
@@ -127,7 +126,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void print(Object msg) {
-        if (isTimestamping())
+        if (isLoggingTimestamps())
             printTimestamp();
         System.out.print(msg);
     }
@@ -139,7 +138,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void println(Object msg) {
-        if (isTimestamping())
+        if (isLoggingTimestamps())
             printTimestamp();
         System.out.println(msg);
     }
@@ -151,7 +150,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        if (isTimestamping())
+        if (isLoggingTimestamps())
             printErrorTimestamp();
         System.err.print(msg);
     }
@@ -163,7 +162,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        if (isTimestamping())
+        if (isLoggingTimestamps())
             printTimestamp();
         System.err.println(msg);
     }
@@ -175,7 +174,8 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void debugPrint(Object msg) {
-        print(msg);
+        if (isLoggingDebug())
+            print(msg);
     }
 
     /**
@@ -187,7 +187,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void debugPrint(Object msg, int level) {
-        if (canPrint(level))
+        if (isLoggingDebug() && canPrint(level))
             print(msg);
     }
 
@@ -219,6 +219,6 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public String toString() {
-        return "TerminalPrinter" + " | level: " + getLevel() + " | timestamping: " + isTimestamping();
+        return "TerminalPrinter" + " | level: " + getLevel() + " | timestamping: " + isLoggingTimestamps();
     }
 }

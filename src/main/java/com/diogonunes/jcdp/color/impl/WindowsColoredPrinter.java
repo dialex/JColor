@@ -150,6 +150,11 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         AnsiConsole.out.print(generateCode() + getDateTime() + " ");
     }
 
+    @Override
+    public void printErrorTimestamp() {
+        AnsiConsole.err.print(generateCode() + getDateTime() + " ");
+    }
+
     /**
      * Prints a message to terminal.
      *

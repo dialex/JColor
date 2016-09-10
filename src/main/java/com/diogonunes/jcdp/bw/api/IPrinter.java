@@ -37,12 +37,17 @@ public interface IPrinter {
     String getDateTime();
 
     /**
-     * Prints current Time and Date.
+     * Prints current Time and Date to System.out.
      */
     void printTimestamp();
 
     /**
-     * Usual System.out.print
+     * Prints current Time and Date to System.err.
+     */
+    void printErrorTimestamp();
+
+    /**
+     * Usual System.out.print.
      *
      * @param msg Message to display
      */
@@ -56,14 +61,14 @@ public interface IPrinter {
     void println(Object msg);
 
     /**
-     * Usual System.err.print
+     * Usual System.err.print.
      *
      * @param msg Error message to display
      */
     void errorPrint(Object msg);
 
     /**
-     * Usual System.err.println
+     * Usual System.err.println.
      *
      * @param msg Error message to display
      */

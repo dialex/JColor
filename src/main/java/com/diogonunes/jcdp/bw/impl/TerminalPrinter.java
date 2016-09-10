@@ -113,6 +113,14 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
+     * Prints current Time and Date to terminal.
+     */
+    @Override
+    public void printErrorTimestamp() {
+        System.err.print(getDateTime() + " ");
+    }
+
+    /**
      * Prints a message to terminal.
      *
      * @param msg The message to print.
@@ -144,7 +152,7 @@ public class TerminalPrinter extends AbstractPrinter {
     @Override
     public void errorPrint(Object msg) {
         if (isTimestamping())
-            printTimestamp();
+            printErrorTimestamp();
         System.err.print(msg);
     }
 

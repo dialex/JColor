@@ -181,6 +181,11 @@ public class ColoredPrinter implements IColoredPrinter {
     }
 
     @Override
+    public void printErrorTimestamp() {
+        getImpl().printTimestamp();
+    }
+
+    @Override
     public void print(Object msg) {
         getImpl().print(msg);
     }

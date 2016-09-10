@@ -147,6 +147,11 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
         System.out.print(generateCode() + getDateTime() + " ");
     }
 
+    @Override
+    public void printErrorTimestamp() {
+        System.out.print(generateCode() + getDateTime() + " ");
+    }
+
     /**
      * Prints a message to terminal.
      *

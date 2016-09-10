@@ -154,6 +154,11 @@ public class Printer implements IPrinter {
     }
 
     @Override
+    public void printErrorTimestamp() {
+        getImpl().printErrorTimestamp();
+    }
+
+    @Override
     public void print(Object msg) {
         getImpl().print(msg);
     }

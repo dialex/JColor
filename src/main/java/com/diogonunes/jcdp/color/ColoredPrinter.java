@@ -10,6 +10,7 @@ import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * If you want to create a Colored Printer this is the only class you should
@@ -171,8 +172,13 @@ public class ColoredPrinter implements IColoredPrinter {
     }
 
     @Override
-    public String getDateTime() {
-        return getImpl().getDateTime();
+    public String getDateFormatted() {
+        return getImpl().getDateFormatted();
+    }
+
+    @Override
+    public Date getDate() {
+        return new Date();
     }
 
     @Override

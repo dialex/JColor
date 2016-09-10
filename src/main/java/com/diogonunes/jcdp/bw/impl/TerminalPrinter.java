@@ -109,7 +109,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void printTimestamp() {
-        System.out.print(getDateTime() + " ");
+        System.out.print(getDateFormatted() + " ");
     }
 
     /**
@@ -117,7 +117,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void printErrorTimestamp() {
-        System.err.print(getDateTime() + " ");
+        System.err.print(getDateFormatted() + " ");
     }
 
     /**

@@ -1,5 +1,7 @@
 package com.diogonunes.jcdp.bw.api;
 
+import java.util.Date;
+
 /**
  * Every class that implements this interface is called a Printer. A Printer
  * must print normal, error and debug messages. It must offer a choice to print
@@ -31,10 +33,15 @@ public interface IPrinter {
     void setLevel(int level);
 
     /**
-     * @return the current date and time using some format specified by the
-     * class which implements this interface.
+     * @return the current date and time using a format specified by the
+     * implementation of this interface.
      */
-    String getDateTime();
+    String getDateFormatted();
+
+    /**
+     * @return the current date and time.
+     */
+    Date getDate();
 
     /**
      * Prints current Time and Date to System.out.

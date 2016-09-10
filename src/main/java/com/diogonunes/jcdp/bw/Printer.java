@@ -6,6 +6,7 @@ import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * If you want to create a Printer this is the only class you should use. This
@@ -144,8 +145,13 @@ public class Printer implements IPrinter {
     }
 
     @Override
-    public String getDateTime() {
-        return getImpl().getDateTime();
+    public String getDateFormatted() {
+        return getImpl().getDateFormatted();
+    }
+
+    @Override
+    public Date getDate() {
+        return getImpl().getDate();
     }
 
     @Override

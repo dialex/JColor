@@ -147,12 +147,12 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void printTimestamp() {
-        AnsiConsole.out.print(generateCode() + getDateTime() + " ");
+        AnsiConsole.out.print(generateCode() + getDateFormatted() + " ");
     }
 
     @Override
     public void printErrorTimestamp() {
-        AnsiConsole.err.print(generateCode() + getDateTime() + " ");
+        AnsiConsole.err.print(generateCode() + getDateFormatted() + " ");
     }
 
     /**

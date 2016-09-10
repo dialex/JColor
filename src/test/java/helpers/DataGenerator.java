@@ -7,15 +7,23 @@ public class DataGenerator {
 
     public static final String DATE_FORMAT_ISO8601 = "yyyy-MM-dd HH:mm:ss";
 
-    public static String getNormalMsg() {
+    public static String createMsg() {
         return "Normal";
     }
 
-    public static String getDate(DateFormat formatter) {
+    public static String createMsgWithId(int n) {
+        return "Debug" + n;
+    }
+
+    public static String createErrorMsg() {
+        return "Error";
+    }
+
+    public static String getCurrentDate(DateFormat formatter) {
         return formatter.format(new Date());
     }
 
-    public static String getDate() {
+    public static String getCurrentDate() {
         return new Date().toString();
     }
 }

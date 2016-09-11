@@ -162,7 +162,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode());
@@ -172,7 +172,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode(attr, fg, bg));
@@ -187,7 +187,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode());
@@ -197,7 +197,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode(attr, fg, bg));
@@ -212,7 +212,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode());
@@ -222,7 +222,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode(attr, fg, bg));
@@ -237,7 +237,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode());
@@ -247,7 +247,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isTimestamping()) {
+        if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
             AnsiConsole.out.print(generateCode(attr, fg, bg));
@@ -328,8 +328,8 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public String toString() {
-        return "ColoredPrinterWIN" + " | level: " + getLevel() + " | timestamping: "
-                + (isTimestamping() ? "active" : "inactive") + " | Attribute: " + getAttribute().name()
+        return getClass().getSimpleName() + " | level: " + getLevel() + " | timestamping: "
+                + isLoggingTimestamps() + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
     }

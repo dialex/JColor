@@ -15,7 +15,7 @@ public abstract class AbstractPrinter implements IPrinter {
 
     private int _level; /* the current level of debug */
     private DateFormat _dateFormat; /* the format of date and time */
-    private boolean _timestamp; /* true if timestamping is active */
+    private boolean _timestamping;
 
     // =====================
     // GET and SET METHODS
@@ -53,8 +53,8 @@ public abstract class AbstractPrinter implements IPrinter {
     /**
      * @return True if timestamp printing is active, false otherwise.
      */
-    public boolean isTimestamping() {
-        return _timestamp;
+    public boolean isLoggingTimestamps() {
+        return _timestamping;
     }
 
     /**
@@ -63,7 +63,14 @@ public abstract class AbstractPrinter implements IPrinter {
      * @param timestampFlag true if you want timestamp before each message.
      */
     public void setTimestamping(boolean timestampFlag) {
-        _timestamp = timestampFlag;
+        _timestamping = timestampFlag;
+    }
+
+    /**
+     * @return True if timestamp printing is active, false otherwise.
+     */
+    public boolean isLoggingDebug() {
+        return getLevel() >= 0;
     }
 
     /**

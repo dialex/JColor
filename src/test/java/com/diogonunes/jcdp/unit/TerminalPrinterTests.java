@@ -116,10 +116,10 @@ public class TerminalPrinterTests {
         String msg = DataGenerator.createMsg();
 
         // ACT
-        printer.print(msg);
+        printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg));
+        assertThat(outContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test
@@ -181,10 +181,10 @@ public class TerminalPrinterTests {
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
-        printer.errorPrint(msg);
+        printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg));
+        assertThat(errContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test
@@ -194,10 +194,10 @@ public class TerminalPrinterTests {
         String msg = DataGenerator.createMsgWithId(0);
 
         // ACT
-        printer.debugPrint(msg);
+        printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg));
+        assertThat(outContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test

@@ -26,4 +26,8 @@ public class DataGenerator {
     public static String getCurrentDate() {
         return new Date().toString();
     }
+
+    public static String createSeparator() {
+        return " // ";
+    }
 }

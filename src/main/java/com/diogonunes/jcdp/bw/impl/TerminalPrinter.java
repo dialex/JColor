@@ -20,7 +20,7 @@ public class TerminalPrinter extends AbstractPrinter {
      * timestamping active using format according to ISO 8601.
      */
     public TerminalPrinter() {
-        this(new Builder(0, true));
+        this(new Builder(0, false));
     }
 
     /**
@@ -61,25 +61,6 @@ public class TerminalPrinter extends AbstractPrinter {
         public Builder(int level, boolean tsFlag) {
             _level = level;
             _timestampFlag = tsFlag;
-        }
-
-        /**
-         * @param level specifies the maximum level of debug this printer can
-         *              print.
-         * @return the builder.
-         */
-        public Builder level(int level) {
-            this._level = level;
-            return this;
-        }
-
-        /**
-         * @param flag true, if you want a timestamp before each message.
-         * @return the builder.
-         */
-        public Builder timestamping(boolean flag) {
-            this._timestampFlag = flag;
-            return this;
         }
 
         /**

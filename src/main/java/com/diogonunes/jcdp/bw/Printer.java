@@ -49,7 +49,9 @@ public class Printer implements IPrinter {
         setImpl(implementation);
     }
 
+
     /**
+     * @param b Builder with the desired configurations for the new printers.
      * @throws IllegalArgumentException if at least one argument is incorrect.
      */
     public Printer(Builder b) throws IllegalArgumentException {

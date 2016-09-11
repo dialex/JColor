@@ -25,6 +25,8 @@ public class TerminalPrinter extends AbstractPrinter {
 
     /**
      * Constructor using builder.
+     *
+     * @param builder Builder with the desired configurations.
      */
     public TerminalPrinter(Builder builder) {
         setLevel(builder._level);
@@ -85,7 +87,7 @@ public class TerminalPrinter extends AbstractPrinter {
     // =================================
 
     /**
-     * Prints current Time and Date to terminal.
+     * {@inheritDoc}
      */
     @Override
     public void printTimestamp() {
@@ -93,7 +95,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints current Time and Date to terminal.
+     * {@inheritDoc}
      */
     @Override
     public void printErrorTimestamp() {
@@ -101,9 +103,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a message to terminal.
-     *
-     * @param msg The message to print.
+     * {@inheritDoc}
      */
     @Override
     public void print(Object msg) {
@@ -113,9 +113,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a message to terminal with a new line at the end.
-     *
-     * @param msg The message to print.
+     * {@inheritDoc}
      */
     @Override
     public void println(Object msg) {
@@ -125,9 +123,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints an error message to terminal.
-     *
-     * @param msg The error message to print.
+     * {@inheritDoc}
      */
     @Override
     public void errorPrint(Object msg) {
@@ -137,9 +133,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints an error message to terminal with a new line at the end.
-     *
-     * @param msg The error message to print.
+     * {@inheritDoc}
      */
     @Override
     public void errorPrintln(Object msg) {
@@ -149,9 +143,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a debug message to terminal.
-     *
-     * @param msg Debug message to print
+     * {@inheritDoc}
      */
     @Override
     public void debugPrint(Object msg) {
@@ -160,11 +152,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a debug message to terminal if the printer has enough level of
-     * debug to print that message.
-     *
-     * @param msg   Debug message to print
-     * @param level Level of debug needed to print msg
+     * {@inheritDoc}
      */
     @Override
     public void debugPrint(Object msg, int level) {
@@ -173,9 +161,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a debug message (with a newline at the end) to terminal.
-     *
-     * @param msg Debug message to print
+     * {@inheritDoc}
      */
     @Override
     public void debugPrintln(Object msg) {
@@ -183,11 +169,7 @@ public class TerminalPrinter extends AbstractPrinter {
     }
 
     /**
-     * Prints a debug message (with a newline at the end) to terminal if the
-     * printer has enough level of debug to print that message.
-     *
-     * @param msg   Debug message to print
-     * @param level Level of debug needed to print msg
+     * {@inheritDoc}
      */
     @Override
     public void debugPrintln(Object msg, int level) {

@@ -86,9 +86,9 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
             return "";
         else
             return Ansi.PREFIX +
-                attr.toString() + Ansi.SEPARATOR +
-                fColor.toString() + Ansi.SEPARATOR +
-                bColor.toString() + Ansi.POSTFIX;
+                    attr.toString() + Ansi.SEPARATOR +
+                    fColor.toString() + Ansi.SEPARATOR +
+                    bColor.toString() + Ansi.POSTFIX;
     }
 
     @Override

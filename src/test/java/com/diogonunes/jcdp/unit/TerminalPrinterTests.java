@@ -187,6 +187,22 @@ public class TerminalPrinterTests {
     }
 
     @Test
+    public void Print_DebugMessage_DisplayWithoutLevel() {
+        // ARRANGE
+        TerminalPrinter printer = new TerminalPrinter.Builder(1, false).build();
+        String msgNoLevel = DataGenerator.createMsg();
+        String msgLevelTwo = DataGenerator.createMsgWithId(2);
+
+        // ACT
+        printer.debugPrint(msgNoLevel);
+        printer.debugPrint(msgLevelTwo, 2);
+
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msgNoLevel));
+        assertThat(outContent.toString(), not(containsString(msgLevelTwo)));
+    }
+
+    @Test
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
@@ -249,6 +265,4 @@ public class TerminalPrinterTests {
         // ASSERT
         assertThat(outContent.toString(), not(containsString(msg)));
     }
-
-    //TODO test debug messages that are always displayed
 }

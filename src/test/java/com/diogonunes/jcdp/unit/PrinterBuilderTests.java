@@ -5,6 +5,9 @@ import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -54,10 +57,11 @@ public class PrinterBuilderTests {
     public void Printer_Creation_BuilderChaining() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         int number = 3;
 
         // ACT
-        IPrinter printer = b.timestamping(true).level(number).build();
+        IPrinter printer = b.type(Printer.Types.TERM).timestamping(true).level(number).withFormat(df).build();
         System.out.print(printer.toString());
 
         // ASSERT

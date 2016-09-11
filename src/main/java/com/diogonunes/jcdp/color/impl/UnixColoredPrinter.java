@@ -25,7 +25,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      * zero level of debug and timestamping active according to ISO 8601.
      */
     public UnixColoredPrinter() {
-        this(new Builder(0, true));
+        this(new Builder(0, false));
     }
 
     /**
@@ -325,7 +325,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public String toString() {
-        return "ColoredPrinterNIX" + " | level: " + getLevel() + " | timestamping: "
+        return getClass().getSimpleName() + " | level: " + getLevel() + " | timestamping: "
                 + isLoggingTimestamps() + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();

@@ -393,7 +393,7 @@ public class UnixColoredPrinterTests {
     }
 
     @Test
-    public void ColoredPrint_Message_FormatContainsAnsiCode() {
+    public void ColoredPrint_Message_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.LIGHT).
@@ -402,16 +402,16 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createMsg();
 
         // ACT
-        String ansiCode = printer.generateCode();
         printer.print(msg);
 
         // ASSERT
+        String ansiCode = printer.generateCode();
         assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
     }
 
     @Test
-    public void ColoredPrint_ErrorMessage_FormatContainsAnsiCode() {
+    public void ColoredPrint_ErrorMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.BOLD).
@@ -420,16 +420,16 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
-        String ansiCode = printer.generateCode();
         printer.errorPrint(msg);
 
         // ASSERT
+        String ansiCode = printer.generateCode();
         assertThat("Message is formatted with ansi code", errContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", errContent.toString(), containsString(msg));
     }
 
     @Test
-    public void ColoredPrint_DebugMessage_FormatContainsAnsiCode() {
+    public void ColoredPrint_DebugMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.LIGHT).
@@ -438,20 +438,58 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createMsg();
 
         // ACT
-        String ansiCode = printer.generateCode();
         printer.debugPrint(msg);
 
         // ASSERT
+        String ansiCode = printer.generateCode();
         assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
     }
 
+    @Test
+    public void ColoredPrint_Message_SingleMessageFormat() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        String msg = DataGenerator.createMsg();
+        Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
+        Ansi.FColor fColor1 = Ansi.FColor.MAGENTA;
+        Ansi.BColor bColor1 = Ansi.BColor.CYAN;
 
-    /*
+        // ACT
+        printer.errorPrint(msg);
+        printer.print(msg, attr1, fColor1, bColor1);
 
-    CLEAR("0"), BOLD("1"), LIGHT("1"), DARK("2"), UNDERLINE("4"), REVERSE("7"), HIDDEN("8"), NONE("");
-    BLACK("40"), RED("41"), GREEN("42"), YELLOW("43"), BLUE("44"), MAGENTA("45"), CYAN("46"), WHITE("47"), NONE("");
-    BLACK("30"), RED("31"), GREEN("32"), YELLOW("33"), BLUE("34"), MAGENTA("35"), CYAN("36"), WHITE("37"), NONE("");
+        // ASSERT
+        String ansiCode = printer.generateCode(attr1, fColor1, bColor1);
+        assertThat("Message is not formatted with ansi code", errContent.toString(), not(containsString(ansiCode)));
+        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is printed", outContent.toString(), containsString(msg));
+    }
 
-     */
+    @Test
+    public void ColoredPrint_Message_SingleMessageWithTwoFormats() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        String separator = DataGenerator.createSeparator();
+        String msg = DataGenerator.createMsg();
+        Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
+        Ansi.FColor fColor1 = Ansi.FColor.MAGENTA;
+        Ansi.BColor bColor1 = Ansi.BColor.CYAN;
+        Ansi.Attribute attr2 = Ansi.Attribute.LIGHT;
+        Ansi.FColor fColor2 = Ansi.FColor.RED;
+        Ansi.BColor bColor2 = Ansi.BColor.BLUE;
+
+        // ACT
+        printer.print(msg, attr1, fColor1, bColor1);
+        printer.print(separator, attr1, fColor1, bColor1);
+        printer.print(msg, attr2, fColor2, bColor2);
+
+        // ASSERT
+        String[] messages = outContent.toString().split(Pattern.quote(separator));
+        String ansiCode1 = printer.generateCode(attr1, fColor1, bColor1);
+        String ansiCode2 = printer.generateCode(attr2, fColor2, bColor2);
+        assertThat("Messages were displayed with separator between", messages.length, equalTo(2));
+        assertThat("First message is formatted with ansi code", messages[0], containsString(ansiCode1));
+        assertThat("Second message has different ansi code", messages[1], containsString(ansiCode2));
+    }
 }

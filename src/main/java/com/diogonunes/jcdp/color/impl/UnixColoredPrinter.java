@@ -193,7 +193,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printErrorTimestamp();
         } else {
-            System.out.print(generateCode());
+            System.err.print(generateCode());
         }
         System.err.print(msg);
     }

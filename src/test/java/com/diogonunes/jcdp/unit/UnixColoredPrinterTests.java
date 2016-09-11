@@ -1,5 +1,6 @@
 package com.diogonunes.jcdp.unit;
 
+
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 import helpers.DataGenerator;
@@ -118,10 +119,10 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createMsg();
 
         // ACT
-        printer.print(msg);
+        printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg));
+        assertThat(outContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test
@@ -183,10 +184,10 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
-        printer.errorPrint(msg);
+        printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg));
+        assertThat(errContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test
@@ -196,10 +197,10 @@ public class UnixColoredPrinterTests {
         String msg = DataGenerator.createMsgWithId(0);
 
         // ACT
-        printer.debugPrint(msg);
+        printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg));
+        assertThat(outContent.toString(), equalTo(msg + "\n"));
     }
 
     @Test
@@ -312,7 +313,7 @@ public class UnixColoredPrinterTests {
 
         // ASSERT
         assertThat("Code starts with Ansi Prefix", codeTokens[0], containsString(Ansi.PREFIX));
-        assertThat("Code ends with Ansi Postfix", codeTokens[codeTokens.length-1], containsString(Ansi.POSTFIX));
+        assertThat("Code ends with Ansi Postfix", codeTokens[codeTokens.length - 1], containsString(Ansi.POSTFIX));
     }
 
     @Test
@@ -390,6 +391,61 @@ public class UnixColoredPrinterTests {
         assertThat(codeTokens[1], equalTo(""));
         assertThat("Code contain background color", codeTokens[2], containsString(bColor.toString()));
     }
+
+    @Test
+    public void ColoredPrint_Message_FormatContainsAnsiCode() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+                attribute(Ansi.Attribute.LIGHT).
+                foreground(Ansi.FColor.GREEN).
+                background(Ansi.BColor.BLACK).build();
+        String msg = DataGenerator.createMsg();
+
+        // ACT
+        String ansiCode = printer.generateCode();
+        printer.print(msg);
+
+        // ASSERT
+        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is printed", outContent.toString(), containsString(msg));
+    }
+
+    @Test
+    public void ColoredPrint_ErrorMessage_FormatContainsAnsiCode() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+                attribute(Ansi.Attribute.BOLD).
+                foreground(Ansi.FColor.WHITE).
+                background(Ansi.BColor.RED).build();
+        String msg = DataGenerator.createErrorMsg();
+
+        // ACT
+        String ansiCode = printer.generateCode();
+        printer.errorPrint(msg);
+
+        // ASSERT
+        assertThat("Message is formatted with ansi code", errContent.toString(), containsString(ansiCode));
+        assertThat("Message is printed", errContent.toString(), containsString(msg));
+    }
+
+    @Test
+    public void ColoredPrint_DebugMessage_FormatContainsAnsiCode() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+                attribute(Ansi.Attribute.LIGHT).
+                foreground(Ansi.FColor.CYAN).
+                background(Ansi.BColor.BLUE).build();
+        String msg = DataGenerator.createMsg();
+
+        // ACT
+        String ansiCode = printer.generateCode();
+        printer.debugPrint(msg);
+
+        // ASSERT
+        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is printed", outContent.toString(), containsString(msg));
+    }
+
 
     /*
 

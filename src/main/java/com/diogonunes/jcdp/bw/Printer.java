@@ -88,11 +88,6 @@ public class Printer implements IPrinter {
             _type = type;
         }
 
-        public Builder type(Types t) {
-            this._type = t;
-            return this;
-        }
-
         public Builder level(int level) {
             this._level = level;
             return this;

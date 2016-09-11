@@ -3,6 +3,7 @@ package com.diogonunes.jcdp.unit;
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
+import helpers.DataGenerator;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -57,11 +58,11 @@ public class PrinterBuilderTests {
     public void Printer_Creation_BuilderChaining() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        DateFormat df = new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601);
         int number = 3;
 
         // ACT
-        IPrinter printer = b.type(Printer.Types.TERM).timestamping(true).level(number).withFormat(df).build();
+        IPrinter printer = b.timestamping(true).level(number).withFormat(df).build();
         System.out.print(printer.toString());
 
         // ASSERT

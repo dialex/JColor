@@ -64,25 +64,6 @@ public class TerminalPrinter extends AbstractPrinter {
         }
 
         /**
-         * @param level specifies the maximum level of debug this printer can
-         *              print.
-         * @return the builder.
-         */
-        public Builder level(int level) {
-            this._level = level;
-            return this;
-        }
-
-        /**
-         * @param flag true, if you want a timestamp before each message.
-         * @return the builder.
-         */
-        public Builder timestamping(boolean flag) {
-            this._timestampFlag = flag;
-            return this;
-        }
-
-        /**
          * @param df the printing format of the timestamp.
          * @return the builder.
          */

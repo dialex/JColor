@@ -48,9 +48,39 @@ public class TerminalPrinterTests {
     }
 
     @Test
+    public void Constructor_Creation_Default() {
+        // ARRANGE
+
+        // ACT
+        TerminalPrinter printer = new TerminalPrinter();
+
+        // ASSERT
+        assertThat(printer, not(equalTo(null)));
+        assertThat(printer.isLoggingTimestamps(), equalTo(false));
+        assertThat(printer.isLoggingDebug(), equalTo(true));
+        assertThat(printer.getLevel(), equalTo(0));
+    }
+
+    @Test
+    public void Constructor_Creation_PassingBuilderAsParameter() {
+        // ARRANGE
+        boolean flag = true;
+        int number = 1;
+        TerminalPrinter.Builder b = new TerminalPrinter.Builder(number, flag);
+
+        // ACT
+        TerminalPrinter printer = new TerminalPrinter(b);
+
+        // ASSERT
+        assertThat(printer, not(equalTo(null)));
+        assertThat(printer.getLevel(), equalTo(number));
+        assertThat(printer.isLoggingTimestamps(), equalTo(flag));
+    }
+
+    @Test
     public void ToString_Description_DisplayName() {
         // ARRANGE
-        TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
+        TerminalPrinter printer = new TerminalPrinter();
 
         // ACT
         String description = printer.toString();

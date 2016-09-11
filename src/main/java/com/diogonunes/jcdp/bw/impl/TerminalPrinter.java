@@ -20,7 +20,7 @@ public class TerminalPrinter extends AbstractPrinter {
      * timestamping active using format according to ISO 8601.
      */
     public TerminalPrinter() {
-        this(new Builder(0, true));
+        this(new Builder(0, false));
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.diogonunes.jcdp.unit;
 
+import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 import helpers.DataGenerator;
 import org.junit.After;
@@ -296,4 +297,105 @@ public class UnixColoredPrinterTests {
         // ASSERT
         assertThat(outContent.toString(), not(containsString(msg)));
     }
+
+    @Test
+    public void ColoredPrint_AnsiCode_DelimitCodeWithAnsiTokens() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter();
+        Ansi.Attribute attr = Ansi.Attribute.UNDERLINE;
+        Ansi.FColor fColor = Ansi.FColor.BLACK;
+        Ansi.BColor bColor = Ansi.BColor.YELLOW;
+
+        // ACT
+        String ansiCode = printer.generateCode(attr, fColor, bColor);
+        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
+
+        // ASSERT
+        assertThat("Code starts with Ansi Prefix", codeTokens[0], containsString(Ansi.PREFIX));
+        assertThat("Code ends with Ansi Postfix", codeTokens[codeTokens.length-1], containsString(Ansi.POSTFIX));
+    }
+
+    @Test
+    public void ColoredPrint_AnsiCode_GenerateForAllProperties() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter();
+        Ansi.Attribute attr = Ansi.Attribute.DARK;
+        Ansi.FColor fColor = Ansi.FColor.GREEN;
+        Ansi.BColor bColor = Ansi.BColor.BLACK;
+
+        // ACT
+        String ansiCode = printer.generateCode(attr, fColor, bColor);
+        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
+
+        // ASSERT
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
+        assertThat("Code contains foreground color", codeTokens[1], containsString(fColor.toString()));
+        assertThat("Code contains background color", codeTokens[2], containsString(bColor.toString()));
+    }
+
+    @Test
+    public void ColoredPrint_AnsiCode_GenerateForAttributeOnly() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter();
+        Ansi.Attribute attr = Ansi.Attribute.LIGHT;
+        Ansi.FColor fColor = Ansi.FColor.NONE;
+        Ansi.BColor bColor = Ansi.BColor.NONE;
+
+        // ACT
+        String ansiCode = printer.generateCode(attr, fColor, bColor);
+        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
+
+        // ASSERT
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
+        assertThat(codeTokens[1], equalTo(""));
+        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
+    }
+
+    @Test
+    public void ColoredPrint_AnsiCode_GenerateForForegroundColorOnly() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter();
+        Ansi.Attribute attr = Ansi.Attribute.NONE;
+        Ansi.FColor fColor = Ansi.FColor.RED;
+        Ansi.BColor bColor = Ansi.BColor.NONE;
+
+        // ACT
+        String ansiCode = printer.generateCode(attr, fColor, bColor);
+        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
+
+        // ASSERT
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
+        assertThat("Code contain foreground color", codeTokens[1], containsString(fColor.toString()));
+        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
+    }
+
+    @Test
+    public void ColoredPrint_AnsiCode_GenerateForBackgroundColorOnly() {
+        // ARRANGE
+        UnixColoredPrinter printer = new UnixColoredPrinter();
+        Ansi.Attribute attr = Ansi.Attribute.NONE;
+        Ansi.FColor fColor = Ansi.FColor.NONE;
+        Ansi.BColor bColor = Ansi.BColor.MAGENTA;
+
+        // ACT
+        String ansiCode = printer.generateCode(attr, fColor, bColor);
+        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
+
+        // ASSERT
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
+        assertThat(codeTokens[1], equalTo(""));
+        assertThat("Code contain background color", codeTokens[2], containsString(bColor.toString()));
+    }
+
+    /*
+
+    CLEAR("0"), BOLD("1"), LIGHT("1"), DARK("2"), UNDERLINE("4"), REVERSE("7"), HIDDEN("8"), NONE("");
+    BLACK("40"), RED("41"), GREEN("42"), YELLOW("43"), BLUE("44"), MAGENTA("45"), CYAN("46"), WHITE("47"), NONE("");
+    BLACK("30"), RED("31"), GREEN("32"), YELLOW("33"), BLUE("34"), MAGENTA("35"), CYAN("36"), WHITE("37"), NONE("");
+
+     */
 }

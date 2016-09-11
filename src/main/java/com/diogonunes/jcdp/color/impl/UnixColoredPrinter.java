@@ -149,7 +149,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
 
     @Override
     public void printErrorTimestamp() {
-        System.out.print(generateCode() + getDateFormatted() + " ");
+        System.err.print(generateCode() + getDateFormatted() + " ");
     }
 
     /**
@@ -210,7 +210,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
     @Override
     public void errorPrint(Object msg) {
         if (isLoggingTimestamps()) {
-            printTimestamp();
+            printErrorTimestamp();
         } else {
             System.out.print(generateCode());
         }

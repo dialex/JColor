@@ -283,7 +283,7 @@ public class TerminalPrinterTests {
     }
 
     @Test
-    public void Print_DebugMessage_IgnoreDebugIsDisabled() {
+    public void Print_DebugMessage_IgnoreDebugIfDisabled() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();

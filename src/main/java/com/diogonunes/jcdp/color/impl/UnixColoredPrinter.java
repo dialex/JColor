@@ -259,12 +259,14 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void debugPrint(Object msg) {
-        print(msg);
+        if (isLoggingDebug())
+            print(msg);
     }
 
     @Override
     public void debugPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        print(msg, attr, fg, bg);
+        if (isLoggingDebug())
+            print(msg, attr, fg, bg);
     }
 
     /**
@@ -276,7 +278,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void debugPrint(Object msg, int level) {
-        if (canPrint(level))
+        if (isLoggingDebug() && canPrint(level))
             print(msg);
     }
 

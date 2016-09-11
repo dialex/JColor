@@ -26,7 +26,7 @@ import java.util.Date;
  */
 public class ColoredPrinter implements IColoredPrinter {
 
-    /* object with printer's implementation */
+    // object with printer's implementation
     private AbstractColoredPrinter _impl;
 
     // ===========================
@@ -43,7 +43,7 @@ public class ColoredPrinter implements IColoredPrinter {
     }
 
     /**
-     * @throws IllegalArgumentException if at least one argument is incorrect.
+     * @param b Builder with the desired configurations for the new printers.
      */
     public ColoredPrinter(Builder b) {
         if (System.getProperty("os.name").toLowerCase().startsWith("win"))
@@ -161,146 +161,233 @@ public class ColoredPrinter implements IColoredPrinter {
     // INTERFACE METHODS call implementation
     // =======================================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return getImpl().getLevel();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         getImpl().setLevel(level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDateFormatted() {
         return getImpl().getDateFormatted();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Date getDate() {
         return new Date();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printTimestamp() {
         getImpl().printTimestamp();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printErrorTimestamp() {
         getImpl().printTimestamp();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void print(Object msg) {
         getImpl().print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void println(Object msg) {
         getImpl().println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrint(Object msg) {
         getImpl().errorPrint(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrintln(Object msg) {
         getImpl().errorPrintln(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg) {
         getImpl().debugPrint(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, int level) {
         getImpl().debugPrint(msg, level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg) {
         getImpl().debugPrintln(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, int level) {
         getImpl().debugPrintln(msg, level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return getImpl().toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAttribute(Attribute attr) {
         getImpl().setAttribute(attr);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setForegroundColor(FColor foreground) {
         getImpl().setForegroundColor(foreground);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBackgroundColor(BColor background) {
         getImpl().setBackgroundColor(background);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void clear() {
         getImpl().clear();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String generateCode() {
         return getImpl().generateCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String generateCode(Attribute attr, FColor foreground, BColor background) {
         return getImpl().generateCode(attr, foreground, background);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().print(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().print(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().errorPrint(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().errorPrintln(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrint(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrint(msg, level, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrintln(msg, attr, fg, bg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrintln(msg, level, attr, fg, bg);

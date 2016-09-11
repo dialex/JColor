@@ -33,6 +33,8 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
     /**
      * Constructor using builder.
+     *
+     * @param builder Builder with the desired configurations.
      */
     public WindowsColoredPrinter(Builder builder) {
         setLevel(builder._level);
@@ -143,22 +145,23 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     // =================================
 
     /**
-     * Prints current Time and Date to terminal.
+     * {@inheritDoc}
      */
     @Override
     public void printTimestamp() {
         AnsiConsole.out.print(generateCode() + getDateFormatted() + " ");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printErrorTimestamp() {
         AnsiConsole.err.print(generateCode() + getDateFormatted() + " ");
     }
 
     /**
-     * Prints a message to terminal.
-     *
-     * @param msg The message to print.
+     * {@inheritDoc}
      */
     @Override
     public void print(Object msg) {
@@ -170,6 +173,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         AnsiConsole.out.print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
         if (isLoggingTimestamps()) {
@@ -181,9 +187,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     }
 
     /**
-     * Prints a message to terminal with a new line at the end.
-     *
-     * @param msg The message to print.
+     * {@inheritDoc}
      */
     @Override
     public void println(Object msg) {
@@ -195,6 +199,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         AnsiConsole.out.println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
         if (isLoggingTimestamps()) {
@@ -206,9 +213,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     }
 
     /**
-     * Prints an error message to terminal.
-     *
-     * @param msg The error message to print.
+     * {@inheritDoc}
      */
     @Override
     public void errorPrint(Object msg) {
@@ -220,6 +225,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         AnsiConsole.err.print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
         if (isLoggingTimestamps()) {
@@ -231,9 +239,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     }
 
     /**
-     * Prints an error message to terminal with a new line at the end.
-     *
-     * @param msg The error message to print.
+     * {@inheritDoc}
      */
     @Override
     public void errorPrintln(Object msg) {
@@ -245,6 +251,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         AnsiConsole.err.println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
         if (isLoggingTimestamps()) {
@@ -256,26 +265,23 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     }
 
     /**
-     * Prints a debug message to terminal.
-     *
-     * @param msg Debug message to print
+     * {@inheritDoc}
      */
     @Override
     public void debugPrint(Object msg) {
         print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
         print(msg, attr, fg, bg);
     }
 
     /**
-     * Prints a debug message to terminal if the printer has enough level of
-     * debug to print that message.
-     *
-     * @param msg   Debug message to print
-     * @param level Level of debug needed to print msg
+     * {@inheritDoc}
      */
     @Override
     public void debugPrint(Object msg, int level) {
@@ -283,6 +289,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
             print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         if (canPrint(level))
@@ -290,26 +299,23 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
     }
 
     /**
-     * Prints a debug message (with a newline at the end) to terminal.
-     *
-     * @param msg Debug message to print
+     * {@inheritDoc}
      */
     @Override
     public void debugPrintln(Object msg) {
         println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
         println(msg, attr, fg, bg);
     }
 
     /**
-     * Prints a debug message (with a newline at the end) to terminal if the
-     * printer has enough level of debug to print that message.
-     *
-     * @param msg   Debug message to print
-     * @param level Level of debug needed to print msg
+     * {@inheritDoc}
      */
     @Override
     public void debugPrintln(Object msg, int level) {
@@ -317,6 +323,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
             println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         if (canPrint(level))

@@ -78,10 +78,17 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
 
     @Override
     public String generateCode() {
-        return Ansi.PREFIX +
-                getAttribute().toString() + Ansi.SEPARATOR +
-                getForegroundColor().toString() + Ansi.SEPARATOR +
-                getBackgroundColor().toString() + Ansi.POSTFIX;
+        Attribute attr = getAttribute();
+        FColor fColor = getForegroundColor();
+        BColor bColor = getBackgroundColor();
+
+        if ((attr == Attribute.NONE) && (fColor == FColor.NONE) && (bColor == BColor.NONE))
+            return "";
+        else
+            return Ansi.PREFIX +
+                attr.toString() + Ansi.SEPARATOR +
+                fColor.toString() + Ansi.SEPARATOR +
+                bColor.toString() + Ansi.POSTFIX;
     }
 
     @Override

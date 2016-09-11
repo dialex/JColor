@@ -26,7 +26,7 @@ import java.util.Date;
  */
 public class ColoredPrinter implements IColoredPrinter {
 
-    /* object with printer's implementation */
+    // object with printer's implementation
     private AbstractColoredPrinter _impl;
 
     // ===========================

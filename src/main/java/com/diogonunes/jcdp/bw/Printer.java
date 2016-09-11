@@ -33,7 +33,7 @@ public class Printer implements IPrinter {
         TERM, FILE
     }
 
-    /* object with printer's implementation */
+    // object with printer's implementation
     private AbstractPrinter _impl;
 
     // ===========================

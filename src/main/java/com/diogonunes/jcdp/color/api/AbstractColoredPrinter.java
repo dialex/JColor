@@ -15,7 +15,7 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * @version 1.2 beta
  */
 public abstract class AbstractColoredPrinter extends AbstractPrinter implements IColoredPrinter {
-    /* this three components define the printing format of all messages */
+
     private Attribute _attribute;
     private FColor _foregroundColor;
     private BColor _backgroundColor;

@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public abstract class AbstractPrinter implements IPrinter {
 
-    private int _level; /* the current level of debug */
-    private DateFormat _dateFormat; /* the format of date and time */
+    private int _level;             // the current level of debug
+    private DateFormat _dateFormat; // the format of date and time
     private boolean _timestamping;
 
     // =====================
@@ -81,9 +81,9 @@ public abstract class AbstractPrinter implements IPrinter {
      */
     public void setDebugging(boolean debugFlag) {
         if (debugFlag)
-            setLevel(0); /* prints all debug messages */
+            setLevel(0);    // prints all debug messages
         else
-            setLevel(-1); /* prints no debug messages */
+            setLevel(-1);   // prints no debug messages
     }
 
     // ===============

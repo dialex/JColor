@@ -113,6 +113,31 @@ public class UnixColoredPrinterTests {
     }
 
     @Test
+    public void ToString_Description_DisplayAnsiProperties() {
+        // ARRANGE
+        boolean flag = true;
+        int number = 1;
+        Ansi.Attribute attr = Ansi.Attribute.LIGHT;
+        Ansi.FColor fColor = Ansi.FColor.MAGENTA;
+        Ansi.BColor bColor = Ansi.BColor.CYAN;
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).
+                attribute(attr).foreground(fColor).background(bColor).build();
+        String separator = " | ";
+
+        // ACT
+        String description = printer.toString();
+        String[] descTokens = description.split(Pattern.quote(separator));
+
+        // ASSERT
+        assertThat("Attribute property is displayed", descTokens[3], containsString("Attribute"));
+        assertThat("Attribute property value is displayed", descTokens[3], containsString(attr.name()));
+        assertThat("ForegroundColor property is displayed", descTokens[4], containsString("Foreground"));
+        assertThat("ForegroundColor property value is displayed", descTokens[4], containsString(fColor.name()));
+        assertThat("BackgroundColor property is displayed", descTokens[5], containsString("Background"));
+        assertThat("BackgroundColor property value is displayed", descTokens[5], containsString(bColor.name()));
+    }
+
+    @Test
     public void Print_Message_DisplayOnSysOut() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();

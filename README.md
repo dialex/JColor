@@ -76,29 +76,16 @@ You can import this library into your own project using...
  
 ```xml
 <dependency>
-	<groupId>com.github.dialex</groupId>
-	<artifactId>JCDP</artifactId>
-	<version>2.0</version>
+    <groupId>com.diogonunes</groupId>
+    <artifactId>JCDP</artifactId>
+    <version>2.0.0</version>
 </dependency>
-<repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-    </repository>
-</repositories>
 ```
 
 #### Gradle
 
 ```javascript
-allprojects {
-	repositories {
-		maven { url "https://jitpack.io" }
-	}
-}
-dependencies {
-	compile 'com.github.dialex:JCDP:v2.0'
-}
+compile 'com.diogonunes:JCDP:2.0.0'
 ```
 
 ###Documentation

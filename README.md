@@ -20,7 +20,7 @@
 
 The screenshots above were produced by running this example code:
 
-```
+```java
 // =============================
 // Example of a terminal Printer
 // =============================

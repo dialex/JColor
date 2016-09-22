@@ -2,7 +2,7 @@
 
 **Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
 
-###Screenshots
+### Screenshots
 
 ![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ubuntu-console.png)
 
@@ -16,59 +16,56 @@
 
 *Running on Windows 8.1 (cmd)*
 
-###Example
+### Example
 
 The screenshots above were produced by running this example code:
 
-```java
-package com.diogonunes.jcdp.main;
+```
+// =============================
+// Example of a terminal Printer
+// =============================
 
-import com.diogonunes.jcdp.*;
-import com.diogonunes.jcdp.bw.api.Printer.*;
-import com.diogonunes.jcdp.color.*;
-import com.diogonunes.jcdp.color.api.Ansi.*;
+Printer p = new Printer.Builder(Types.TERM).build();
+p.println(p);
+p.println("This is a normal message.");
+p.errorPrintln("This is an error message.");
+p.debugPrintln("This debug message is always printed.");
+p = new Printer.Builder(Types.TERM).level(1).timestamping(false).build();
+p.println(p);
+p.debugPrintln("This is printed because its level is <= 1", 1);
+p.debugPrintln("This isn't printed because its level is > 1", 2);
+p.setLevel(2);
+p.debugPrintln("Now this is printed because its level is <= 2", 2);
 
-public class ExampleApp {
-    public static void main(String[] args) throws IllegalArgumentException {
+// =======================================================
+// Example of a Colored terminal Printer (WINDOWS or UNIX)
+// =======================================================
 
-        //example of a terminal Printer
-        Printer p = new Printer.Builder(Types.TERM).build();
-        p.println(p);
-        p.println("This is a normal message.");
-        p.errorPrintln("This is an error message.");
-        p.debugPrintln("This debug message is always printed.");
-        p = new Printer.Builder(Types.TERM).level(1).timestamping(false).build();
-        p.println(p);
-        p.debugPrintln("This is printed because its level is <= 1", 1);
-        p.debugPrintln("This isn't printed because its level is > 1", 2);
-        p.setLevel(2);
-        p.debugPrintln("Now this is printed because its level is <= 2", 2);
+ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
+                        .foreground(FColor.WHITE).background(BColor.BLUE)   //setting format
+                        .build();
 
-        //example of a Colored terminal Printer (WINDOWS or UNIX)
-        ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
-                                .foreground(FColor.WHITE).background(BColor.BLUE)   //setting format
-                                .build();
-            //printing according to that format
-        cp.println(cp);
-        cp.setAttribute(Attribute.REVERSE);
-        cp.println("This is a normal message (with format reversed).");
-            //resetting the terminal to its default colors
-        cp.clear();
-        cp.print(cp.getDateFormatted(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
-        cp.debugPrintln(" This debug message is always printed.");
-        cp.clear();
-        cp.print("This example used JCDP 1.25   ");
-            //temporarily overriding that format
-        cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
-        cp.print("IN PORTUGAL\t\n", Attribute.BOLD, FColor.YELLOW, BColor.RED);
-        cp.println("I hope you find it useful ;)");
+//printing according to that format
+cp.println(cp);
+cp.setAttribute(Attribute.REVERSE);
+cp.println("This is a normal message (with format reversed).");
 
-        cp.clear(); //don't forget to clear the terminal's format before exiting
-    }
-}
+//resetting the terminal to its default colors
+cp.clear();
+cp.print(cp.getDateFormatted(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
+cp.debugPrintln(" This debug message is always printed.");
+cp.clear();
+cp.print("This example used JCDP 1.25   ");
+
+//temporarily overriding that format
+cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
+cp.print("IN PORTUGAL\t\n", Attribute.BOLD, FColor.YELLOW, BColor.RED);
+cp.println("I hope you find it useful ;)");
+
+cp.clear(); //don't forget to clear the terminal's format before exiting
 ```
 
-###Build tools
+### Build tools
 
 You can import this library into your own project using...
 
@@ -88,13 +85,13 @@ You can import this library into your own project using...
 compile 'com.diogonunes:JCDP:2.0.0'
 ```
 
-###Documentation
+### Documentation
 
 [Javadoc](http://dialex.github.io/JCDP/javadoc/)
 
 [Changelog](changelog.md)
 
-###License
+### License
 
 JCDP  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.

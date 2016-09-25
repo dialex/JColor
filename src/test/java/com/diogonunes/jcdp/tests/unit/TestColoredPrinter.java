@@ -1,4 +1,4 @@
-package com.diogonunes.jcdp.unit;
+package com.diogonunes.jcdp.tests.unit;
 
 
 import com.diogonunes.jcdp.color.api.Ansi;
@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.*;
  * @author Diogo Nunes
  * @version 2.0
  */
-public class UnixColoredPrinterTests {
+public class TestColoredPrinter {
 
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();

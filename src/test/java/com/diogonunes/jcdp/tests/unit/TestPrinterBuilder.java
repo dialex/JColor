@@ -1,4 +1,4 @@
-package com.diogonunes.jcdp.unit;
+package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.api.IPrinter;
@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class PrinterBuilderTests {
+public class TestPrinterBuilder {
 
     @Test
     public void Printer_Creation_BuilderExists() {
@@ -63,7 +63,6 @@ public class PrinterBuilderTests {
 
         // ACT
         IPrinter printer = b.timestamping(true).level(number).withFormat(df).build();
-        System.out.print(printer.toString());
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));

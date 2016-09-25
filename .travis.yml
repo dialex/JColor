@@ -3,3 +3,8 @@ jdk:
   - oraclejdk8
 
 install: mvn install -Dgpg.skip=true
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always

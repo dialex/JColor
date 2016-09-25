@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-logo.png" width="150">
 
-[![Travis Build Status](https://img.shields.io/travis/dialex/JCDP.svg?maxAge=2592000)](https://travis-ci.org/dialex/JCDP)
+[![Travis Build Status](https://img.shields.io/travis/dialex/JCDP.svg?maxAge=2592000)](https://travis-ci.org/dialex/JCDP) [![Codacy grade](https://img.shields.io/codacy/grade/faaed58a577d4c3099cf8d6d4d572fb8.svg?maxAge=2592000?style=flat-square)]()
 
 **Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
 

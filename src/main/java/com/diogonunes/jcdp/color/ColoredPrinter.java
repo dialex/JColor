@@ -342,7 +342,7 @@ public class ColoredPrinter implements IColoredPrinter {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().print(msg, attr, fg, bg);
+        getImpl().println(msg, attr, fg, bg);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 [![Travis Build Status](https://img.shields.io/travis/dialex/JCDP.svg?maxAge=2592000)](https://travis-ci.org/dialex/JCDP) [![Codacy grade](https://img.shields.io/codacy/grade/faaed58a577d4c3099cf8d6d4d572fb8.svg?maxAge=2592000)]() [![Version](https://img.shields.io/github/tag/dialex/JCDP.svg)](https://github.com/dialex/JCDP#build-tools) [![License](https://img.shields.io/github/license/dialex/JCDP.svg?maxAge=2592000)](https://github.com/dialex/JCDP/blob/master/LICENSE)
 
-**Java Colored Debug Printer** (JCDP) is a Java library that offers you a convenient way to print colored messages or debug messages on a terminal.
+**Java Colored Debug Printer** (JCDP) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
 
 ### Screenshots
 
@@ -69,23 +69,7 @@ cp.clear(); //don't forget to clear the terminal's format before exiting
 
 ### Build tools
 
-You can import this library into your own project using...
-
-#### Maven
- 
-```xml
-<dependency>
-    <groupId>com.diogonunes</groupId>
-    <artifactId>JCDP</artifactId>
-    <version>2.0.1</version>
-</dependency>
-```
-
-#### Gradle
-
-```javascript
-compile 'com.diogonunes:JCDP:2.0.1'
-```
+You can import this library through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JCDP).
 
 ### Documentation
 

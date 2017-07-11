@@ -6,14 +6,14 @@ import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
-import org.junit.Test;
+import org.junit.Ignore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class TestHumanEye {
 
-    @Test
+    @Ignore
     public void TestHowItLooksOnConsole() {
 
         // =============================

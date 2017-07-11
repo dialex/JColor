@@ -165,12 +165,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            AnsiConsole.out.print(generateCode());
-        }
-        AnsiConsole.out.print(msg);
+        printWithColor(msg, generateCode(), false);
     }
 
     /**
@@ -178,12 +173,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            AnsiConsole.out.print(generateCode(attr, fg, bg));
-        }
-        AnsiConsole.out.print(msg);
+        printWithColor(msg, generateCode(attr, fg, bg), false);
     }
 
     /**
@@ -191,12 +181,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            AnsiConsole.out.print(generateCode());
-        }
-        AnsiConsole.out.println(msg);
+        printWithColor(msg, generateCode(), true);
     }
 
     /**
@@ -204,12 +189,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            AnsiConsole.out.print(generateCode(attr, fg, bg));
-        }
-        AnsiConsole.out.println(msg);
+        printWithColor(msg, generateCode(attr, fg, bg), true);
     }
 
     /**
@@ -341,5 +321,15 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
                 + isLoggingTimestamps() + " | Attribute: " + getAttribute().name()
                 + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
                 + getBackgroundColor().name();
+    }
+
+    private void printWithColor(Object msg, String ansiFormatCode, boolean appendNewline) {
+        StringBuilder output = new StringBuilder();
+        output.append(ansiFormatCode);
+        output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
+        output.append(msg);
+        output.append(appendNewline ?  '\n' : "");
+
+        AnsiConsole.out.print(output.toString());
     }
 }

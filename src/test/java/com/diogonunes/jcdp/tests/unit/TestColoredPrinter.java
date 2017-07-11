@@ -1,7 +1,6 @@
 package com.diogonunes.jcdp.tests.unit;
 
 
-import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 import helpers.DataGenerator;
@@ -535,6 +534,30 @@ public class TestColoredPrinter {
 
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor, bColor);
+        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
+    }
+
+    @Test
+    public void ColoredPrint_Message_CustomFormatOverridesPrinterConfigWithTimestampActive() {
+        // ARRANGE
+        String msg = DataGenerator.createMsg();
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).build();
+        Ansi.Attribute attr = Ansi.Attribute.NONE;
+        Ansi.BColor bColor = Ansi.BColor.NONE;
+
+        // ACT
+        Ansi.FColor fColor1 = Ansi.FColor.GREEN;
+        printer.setForegroundColor(fColor1);
+        printer.println(msg);
+        // ASSERT
+        String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
+        assertThat("Message is colored with printer's internal config", outContent.toString(), containsString(expectedAnsiCode));
+
+        // ACT
+        Ansi.FColor fColor2 = Ansi.FColor.RED;
+        printer.println(msg, attr, fColor2, bColor);
+        // ASSERT
+        expectedAnsiCode = printer.generateCode(attr, fColor2, bColor);
         assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
     }
 }

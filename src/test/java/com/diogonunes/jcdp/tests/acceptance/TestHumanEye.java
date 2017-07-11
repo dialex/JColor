@@ -8,7 +8,10 @@ import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import org.junit.Test;
 
-public class TestVisually {
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
+public class TestHumanEye {
 
     @Test
     public void TestHowItLooksOnConsole() {
@@ -55,5 +58,7 @@ public class TestVisually {
         cp.println("I hope you find it useful ;)");
 
         cp.clear(); //don't forget to clear the terminal's format before exiting
+
+        assertThat("This test is for humans only, so it always passes on CI", true, is(true));
     }
 }

@@ -84,4 +84,4 @@ This program is licensed under the terms of the MIT License and it comes with AB
 
 ### Credits
 
-A special thanks to all contributors, specially [@xafero](https://github.com/xafero) who _maven-ized_ this whole project.
+A big thanks to all contributors, specially [@xafero](https://github.com/xafero) who _maven-ized_ this whole project.

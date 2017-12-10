@@ -82,4 +82,6 @@ You can import this library through Maven or Gradle, just [pick a version](https
 JCDP  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
+### Credits
+
 A special thanks to all contributors, specially [@xafero](https://github.com/xafero) who _maven-ized_ this whole project.

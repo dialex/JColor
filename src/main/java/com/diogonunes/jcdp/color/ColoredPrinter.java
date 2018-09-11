@@ -24,7 +24,7 @@ import java.util.Date;
  * @author Diogo Nunes
  * @version 2.0
  */
-public class ColoredPrinter implements IColoredPrinter {
+public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
 
     // object with printer's implementation
     private AbstractColoredPrinter _impl;
@@ -391,5 +391,20 @@ public class ColoredPrinter implements IColoredPrinter {
     @Override
     public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrintln(msg, level, attr, fg, bg);
+    }
+    
+    /**
+     * This method is called through the java.lang.AutoCloseable interface. It is called
+     * when the garbage collector of the JVM determines that this object no longer has any
+     * references being made to it. It is usually used for streams that must be closed in
+     * order to assure that the data has made it's way through the stream.
+     * <p>
+     * This method removes the need to call {@linkplain #clear()}. Do not call this method.
+     * 
+     * @author CodeDojo
+     */
+    @Override
+    public void close() {
+        getImpl().clear();
     }
 }

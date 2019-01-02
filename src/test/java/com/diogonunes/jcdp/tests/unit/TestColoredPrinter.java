@@ -40,7 +40,6 @@ public class TestColoredPrinter {
     public static void reset() {
         // Resets standard outputs to their normal behavior
         System.setOut(null);
-        System.setOut(null);
         System.setErr(null);
     }
 

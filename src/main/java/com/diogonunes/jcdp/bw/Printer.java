@@ -2,8 +2,11 @@ package com.diogonunes.jcdp.bw;
 
 import com.diogonunes.jcdp.bw.api.AbstractPrinter;
 import com.diogonunes.jcdp.bw.api.IPrinter;
+import com.diogonunes.jcdp.bw.impl.FilePrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,7 +63,12 @@ public class Printer implements IPrinter {
                 setImpl(new TerminalPrinter.Builder(b._level, b._tsFlag).withFormat(b._dateFormat).build());
                 break;
             case FILE:
-                throw new IllegalArgumentException("This type of printer isn't supported... yet!");
+                try {
+                    setImpl(new FilePrinter.Builder(b._file, b._level, b._tsFlag).withFormat(b._dateFormat).build());
+                } catch (FileNotFoundException fe) {
+                    throw new IllegalArgumentException("Bad file: " + b._file.getAbsolutePath(), fe);
+                }
+                break;
             default:
                 throw new IllegalArgumentException("Unknown printer type: " + b._type);
         }
@@ -77,6 +85,7 @@ public class Printer implements IPrinter {
         private int _level = 0;
         private boolean _tsFlag = true;
         private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        private File _file = new File("./JCDP.log");
 
         /**
          * Constructor of static printers. The printer returned is one of the
@@ -102,6 +111,11 @@ public class Printer implements IPrinter {
 
         public Builder withFormat(DateFormat df) {
             this._dateFormat = df;
+            return this;
+        }
+
+        public Builder withFile(File f) {
+            this._file = f;
             return this;
         }
 

@@ -1,5 +1,6 @@
 # <img src="https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-logo.png" width="150">
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://app.codacy.com/app/dialex-nunes/JCDP?utm_source=github.com&utm_medium=referral&utm_content=dialex/JCDP&utm_campaign=Badge_Grade_Dashboard)
 [![Travis Build Status](https://img.shields.io/travis/dialex/JCDP.svg?maxAge=2592000)](https://travis-ci.org/dialex/JCDP) [![Codacy grade](https://img.shields.io/codacy/grade/faaed58a577d4c3099cf8d6d4d572fb8.svg?maxAge=2592000)]() [![Version](https://img.shields.io/github/tag/dialex/JCDP.svg)](https://github.com/dialex/JCDP#build-tools) [![License](https://img.shields.io/github/license/dialex/JCDP.svg)](https://github.com/dialex/JCDP/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
 

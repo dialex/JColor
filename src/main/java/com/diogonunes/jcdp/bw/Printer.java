@@ -62,7 +62,7 @@ public class Printer implements IPrinter {
             case FILE:
                 throw new IllegalArgumentException("This type of printer isn't supported... yet!");
             default:
-                throw new IllegalArgumentException("Unknown type!");
+                throw new IllegalArgumentException("Unknown printer type: " + b._type);
         }
     }
 

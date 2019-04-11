@@ -4,6 +4,10 @@ jdk:
 
 install: mvn install -Dgpg.skip=true
 
+branches:
+  only:
+    - master
+
 notifications:
   email:
     on_success: never

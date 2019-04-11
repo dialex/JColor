@@ -1,26 +1,3 @@
-/*
- * MIT License
- *
- * Copyright (c) 2019 Giacomo Lacava
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
 package com.diogonunes.jcdp.bw.impl;
 
 import com.diogonunes.jcdp.bw.api.AbstractPrinter;
@@ -33,17 +10,22 @@ import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * an AbstractPrinter that outputs to file.
- * <p>
- * This allows one to use JCDP as an actual logging mechanism,
- * so it doesn't need to be coupled with more heavyweight solutions
- * in the simple case.
- * <p>
- * A SLF4J adapter is available separately, which can be configured to
- * log simultaneously to terminal and file with one call.
- * See <a href="https://github.com/toyg/slf4j-jcdp">SLF4J-JCDP</a> for details.
+ * This class is a File implementation of the Printer interface, hence all
+ * output is sent to a file. It implements all abstract methods
+ * inherited from the {@link AbstractPrinter} class.
+ * <br>
+ * This allows one to use JCDP as an actual logging mechanism. A SLF4J adapter
+ * is available separately, which can be configured to log simultaneously to
+ * terminal and file with one call. See <a href="https://github.com/toyg/slf4j-jcdp">SLF4J-JCDP</a> for details.
+ *
+ * @author Giacomo Lacava
+ * @version 2.1
  */
 public class FilePrinter extends AbstractPrinter {
+
+    // =========
+    // THREADING
+    // =========
 
     private class CleanupThread extends Thread {
         private final LockableWriter _writer;
@@ -57,7 +39,6 @@ public class FilePrinter extends AbstractPrinter {
             _writer.close();
         }
     }
-
 
     /**
      * writer using a {@link ReentrantLock} for safe multithreading
@@ -75,7 +56,7 @@ public class FilePrinter extends AbstractPrinter {
          * @param file {@link File} for output
          * @throws FileNotFoundException if file cannot be found
          */
-        public LockableWriter(File file) throws FileNotFoundException, SecurityException {
+        LockableWriter(File file) throws FileNotFoundException, SecurityException {
             Charset charset;
             try {
                 charset = Charset.forName("UTF-8");
@@ -94,7 +75,7 @@ public class FilePrinter extends AbstractPrinter {
         /**
          * guard against threads trying to write to closed streams
          */
-        public boolean isOpen() {
+        boolean isOpen() {
             return this.open;
         }
 
@@ -103,7 +84,7 @@ public class FilePrinter extends AbstractPrinter {
          *
          * @param str the string to output
          */
-        public void write(String str) {
+        void write(String str) {
             lock.lock();
             if (this.isOpen())
                 writer.write(str);
@@ -163,11 +144,10 @@ public class FilePrinter extends AbstractPrinter {
         /**
          * accessor to file details
          */
-        public File getFile() {
+        File getFile() {
             return file;
         }
     }
-
 
     /* we keep a static map of file paths -> threadsafe output streams,
      * so multiple instances can orderly write to the same file. */
@@ -183,7 +163,7 @@ public class FilePrinter extends AbstractPrinter {
      * @throws FileNotFoundException if the file cannot be created or accessed
      * @throws SecurityException     if the file cannot be created or accessed
      */
-    public FilePrinter(Builder builder) throws FileNotFoundException, SecurityException {
+    private FilePrinter(Builder builder) throws FileNotFoundException, SecurityException {
         setFile(builder._logFile);
         setLevel(builder._level);
         setTimestamping(builder._timestampFlag);
@@ -196,7 +176,6 @@ public class FilePrinter extends AbstractPrinter {
         lockRegistry.putIfAbsent(outFile.getAbsolutePath(), new LockableWriter(outFile));
         this.writer = lockRegistry.get(outFile.getAbsolutePath());
     }
-
 
     // =========
     // BUILDER
@@ -254,18 +233,29 @@ public class FilePrinter extends AbstractPrinter {
         this.writer.write("[ " + level + " ] " + msg.toString());
     }
 
+    // =================================
+    // OTHER METHODS (implementations)
+    // =================================
 
-    /* -- OUTPUT METHODS -- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printTimestamp() {
         this.writer.write(getDateFormatted() + " ");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printErrorTimestamp() {
         this.writer.write(getDateFormatted() + " ");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void print(Object msg) {
         if (isLoggingTimestamps())
@@ -273,6 +263,9 @@ public class FilePrinter extends AbstractPrinter {
         this.writer.write(msg.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void println(Object msg) {
         if (isLoggingTimestamps())
@@ -280,39 +273,60 @@ public class FilePrinter extends AbstractPrinter {
         this.writer.write(msg.toString() + System.lineSeparator());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrint(Object msg) {
         print(msg.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrintln(Object msg) {
         println(msg.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg) {
         if (isLoggingDebug()) print(msg.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, int level) {
         if (isLoggingDebug() && canPrint(level))
             printWithLevel(msg.toString(), level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg) {
         if (isLoggingDebug())
             print(msg.toString() + System.lineSeparator());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, int level) {
         if (isLoggingDebug() && canPrint(level))
             printWithLevel(msg.toString() + System.lineSeparator(), level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName()

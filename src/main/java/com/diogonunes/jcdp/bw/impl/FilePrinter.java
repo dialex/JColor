@@ -163,7 +163,7 @@ public class FilePrinter extends AbstractPrinter {
      * @throws FileNotFoundException if the file cannot be created or accessed
      * @throws SecurityException     if the file cannot be created or accessed
      */
-    private FilePrinter(Builder builder) throws FileNotFoundException, SecurityException {
+    public FilePrinter(Builder builder) throws FileNotFoundException, SecurityException {
         setFile(builder._logFile);
         setLevel(builder._level);
         setTimestamping(builder._timestampFlag);

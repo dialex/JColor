@@ -1,6 +1,5 @@
 package com.diogonunes.jcdp.tests.unit;
 
-
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 import helpers.DataGenerator;

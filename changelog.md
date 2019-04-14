@@ -1,5 +1,13 @@
 # Release Changelog
 
+## 3.0
+
+- File printer
+
+**BREAKING CHANGES**
+
+- Minimum required Java version was increased to Java 8.
+
 ## 2.0
 
 - Support for Maven and Gradle
@@ -19,10 +27,10 @@
 ## 1.2
 
 - Colored Printer interface
-- Colored Printer
+- Colored terminal printer
 - New import structure
 
 ## 1.15
 
 - Printer interface
-- Terminal Printer
+- Terminal printer

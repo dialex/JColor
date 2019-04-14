@@ -44,14 +44,14 @@ public class TestPrinterBuilder {
     public void Printer_Creation_BuilderHandlesLevel() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
-        int number = 2;
+        int desiredLogLevel = 2;
 
         // ACT
-        IPrinter printer = b.level(number).build();
+        IPrinter printer = b.level(desiredLogLevel).build();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
-        assertThat(printer.getLevel(), equalTo(number));
+        assertThat(printer.getLevel(), equalTo(desiredLogLevel));
     }
 
     @Test

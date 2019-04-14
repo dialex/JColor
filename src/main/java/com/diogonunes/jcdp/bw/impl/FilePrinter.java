@@ -157,6 +157,16 @@ public class FilePrinter extends AbstractPrinter {
     private LockableWriter writer;
 
     /**
+     * Constructor (using defaults).
+     *
+     * @throws FileNotFoundException if the file cannot be created or accessed
+     * @throws SecurityException     if the file cannot be created or accessed
+     */
+    public FilePrinter() throws FileNotFoundException, SecurityException {
+        this(new FilePrinter.Builder(new File("./JCDP.log"), 0, false));  //FIXME this magic string is duplicated on Printer.java
+    }
+
+    /**
      * Constructor using builder.
      *
      * @param builder {@link Builder} with the desired configuration

@@ -46,7 +46,7 @@ public class TerminalPrinter extends AbstractPrinter {
         private int _level;
         private boolean _timestampFlag;
         // optional parameters, initialized to default values
-        private DateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        private DateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //FIXME this magic string is duplicated on Printer.java
 
         /**
          * The Printer created uses, by default, timestamping format according

@@ -1,5 +1,7 @@
 package com.diogonunes.jcdp.tests.unit;
 
+import com.diogonunes.jcdp.bw.Printer;
+import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 import helpers.DataGenerator;
 import org.junit.After;
@@ -46,6 +48,20 @@ public class TestTerminalPrinter {
     public void tearDown() {
         outContent.reset();
         errContent.reset();
+    }
+
+    @Test
+    public void Builder_BuildsInstanceOfTerminalPrinter() {
+        // ARRANGE
+        Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
+
+        // ACT
+        IPrinter printer = b.build();
+
+        // ASSERT
+        assertThat(printer, not(equalTo(null)));
+        assertThat(printer, instanceOf(Printer.class));
+        assertThat("Implementation is TerminalPrinter", printer.toString(), containsString(TerminalPrinter.class.getSimpleName()));
     }
 
     @Test

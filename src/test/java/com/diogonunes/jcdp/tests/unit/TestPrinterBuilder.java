@@ -30,29 +30,13 @@ public class TestPrinterBuilder {
     @Test
     public void Printer_Creation_BuilderForTypeFileExists() {
         // ARRANGE
-        Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
 
         // ACT
-        IPrinter printer = b.build();
+        Printer.Builder printerBuilder = new Printer.Builder(Printer.Types.FILE);
 
         // ASSERT
-        assertThat(printer, not(equalTo(null)));
-        assertThat(printer, instanceOf(Printer.class));
-        assertThat("Implementation is TerminalPrinter", printer.toString(), containsString(TerminalPrinter.class.getSimpleName()));
-    }
-
-    @Test
-    public void Printer_Creation_BuilderReturnsFilePrinter() {
-        // ARRANGE
-        Printer.Builder b = new Printer.Builder(Printer.Types.FILE);
-
-        // ACT
-        IPrinter printer = b.build();
-
-        // ASSERT
-        assertThat(printer, not(equalTo(null)));
-        assertThat(printer, instanceOf(Printer.class));
-        assertThat("Implementation is FilePrinter", printer.toString(), containsString(FilePrinter.class.getSimpleName()));
+        assertThat(printerBuilder, not(equalTo(null)));
+        assertThat(printerBuilder, instanceOf(Printer.Builder.class));
     }
 
     @Test

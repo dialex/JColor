@@ -2,6 +2,7 @@ package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.api.IPrinter;
+import com.diogonunes.jcdp.bw.impl.FilePrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
 import helpers.DataGenerator;
 import org.junit.Test;
@@ -38,6 +39,20 @@ public class TestPrinterBuilder {
         assertThat(printer, not(equalTo(null)));
         assertThat(printer, instanceOf(Printer.class));
         assertThat("Implementation is TerminalPrinter", printer.toString(), containsString(TerminalPrinter.class.getSimpleName()));
+    }
+
+    @Test
+    public void Printer_Creation_BuilderReturnsFilePrinter() {
+        // ARRANGE
+        Printer.Builder b = new Printer.Builder(Printer.Types.FILE);
+
+        // ACT
+        IPrinter printer = b.build();
+
+        // ASSERT
+        assertThat(printer, not(equalTo(null)));
+        assertThat(printer, instanceOf(Printer.class));
+        assertThat("Implementation is FilePrinter", printer.toString(), containsString(FilePrinter.class.getSimpleName()));
     }
 
     @Test

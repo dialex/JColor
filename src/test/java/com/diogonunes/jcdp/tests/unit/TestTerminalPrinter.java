@@ -51,7 +51,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Builder_BuildsInstanceOfTerminalPrinter() {
+    public void Printer_Builder_ReturnsTerminalPrinterBasedOnType() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
 
@@ -65,7 +65,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Constructor_Creation_Default() {
+    public void TerminalPrinter_Constructor_UsesDefaults() {
         // ARRANGE
 
         // ACT
@@ -79,7 +79,7 @@ public class TestTerminalPrinter {
     }
 
     @Test
-    public void Constructor_Creation_PassingBuilderAsParameter() {
+    public void TerminalPrinter_Constructor_UsesBuilderConfig() {
         // ARRANGE
         boolean flag = true;
         int number = 1;

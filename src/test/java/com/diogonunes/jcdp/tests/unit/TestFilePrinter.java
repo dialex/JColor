@@ -43,7 +43,7 @@ public class TestFilePrinter {
     }
 
     @Test
-    public void Printer_Creation_BuilderReturnsFilePrinter() {
+    public void Printer_Builder_ReturnsFilePrinterBasedOnType() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.FILE);
 
@@ -58,7 +58,7 @@ public class TestFilePrinter {
     }
 
 //    @Test
-//    public void Constructor_Creation_Default() {
+//    public void FilePrinter_Constructor_UsesDefaults() {
 //        // ARRANGE
 //
 //        // ACT
@@ -74,7 +74,7 @@ public class TestFilePrinter {
 //    }
 
     @Test
-    public void Constructor_Creation_PassingBuilderAsParameter() {
+    public void FilePrinter_Constructor_UsesBuilderConfig() {
         // ARRANGE
         boolean flag = true;
         int number = 1;

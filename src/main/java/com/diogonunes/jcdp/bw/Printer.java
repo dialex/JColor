@@ -52,7 +52,6 @@ public class Printer implements IPrinter {
         setImpl(implementation);
     }
 
-
     /**
      * @param b Builder with the desired configurations for the new printers.
      * @throws IllegalArgumentException if at least one argument is incorrect.
@@ -114,6 +113,7 @@ public class Printer implements IPrinter {
             return this;
         }
 
+        //FIXME
         public Builder withFile(File f) {
             this._file = f;
             return this;

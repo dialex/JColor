@@ -16,8 +16,7 @@ import java.text.SimpleDateFormat;
 public class TerminalPrinter extends AbstractPrinter {
 
     /**
-     * Constructor (using defaults): creates a Printer with zero level of debug,
-     * timestamping active using format according to ISO 8601.
+     * Constructor (using defaults).
      */
     public TerminalPrinter() {
         this(new Builder(0, false));

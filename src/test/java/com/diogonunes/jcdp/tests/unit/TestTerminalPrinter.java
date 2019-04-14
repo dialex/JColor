@@ -41,6 +41,7 @@ public class TestTerminalPrinter {
         System.setErr(null);
     }
 
+    //FIXME on setup
     @After
     public void tearDown() {
         outContent.reset();

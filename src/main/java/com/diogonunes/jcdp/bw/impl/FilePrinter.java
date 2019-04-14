@@ -157,9 +157,9 @@ public class FilePrinter extends AbstractPrinter {
     private LockableWriter writer;
 
     /**
-     * constructor
+     * Constructor using builder.
      *
-     * @param builder {@link Builder} with the necessary configuration
+     * @param builder {@link Builder} with the desired configuration
      * @throws FileNotFoundException if the file cannot be created or accessed
      * @throws SecurityException     if the file cannot be created or accessed
      */
@@ -175,6 +175,7 @@ public class FilePrinter extends AbstractPrinter {
         // then retrieve a reference
         lockRegistry.putIfAbsent(outFile.getAbsolutePath(), new LockableWriter(outFile));
         this.writer = lockRegistry.get(outFile.getAbsolutePath());
+        //TODO replace this.writer with _writer
     }
 
     // =========

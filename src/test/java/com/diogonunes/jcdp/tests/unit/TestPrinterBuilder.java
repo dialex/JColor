@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.*;
 public class TestPrinterBuilder {
 
     @Test
-    public void Printer_Creation_BuilderExists() {
+    public void Printer_Creation_BuilderForTypeTerminalExists() {
         // ARRANGE
 
         // ACT
@@ -28,7 +28,7 @@ public class TestPrinterBuilder {
     }
 
     @Test
-    public void Printer_Creation_BuilderReturnsTerminalPrinter() {
+    public void Printer_Creation_BuilderForTypeFileExists() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
 
@@ -85,13 +85,13 @@ public class TestPrinterBuilder {
     }
 
     @Test
-    public void Printer_Creation_PassingBuilderToConstructor() {
+    public void Printer_Creation_ConstructorUsesBuilderConfig() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
         int number = 3;
 
         // ACT
-        b.level(3).timestamping(true);
+        b.level(number).timestamping(true);
         IPrinter printer = new Printer(b);
 
         // ASSERT

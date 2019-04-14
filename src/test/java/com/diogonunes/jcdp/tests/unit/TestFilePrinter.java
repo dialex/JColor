@@ -95,4 +95,24 @@ public class TestFilePrinter {
         }
     }
 
+    @Test
+    public void FilePrinter_Constructor_ThrowsExceptionOnFailedFileCreation() {
+        // ARRANGE
+        String invalidFilename = "";
+        FilePrinter.Builder builder = new FilePrinter.Builder(new File(invalidFilename), 0, false);
+        Exception errorOccurred = null;
+
+        try {
+            // ACT
+            new FilePrinter(builder);
+        } catch (Exception e) {
+            errorOccurred = e;
+        } finally {
+            // ASSERT
+            assertThat(errorOccurred, not(equalTo(null)));
+            assertThat(errorOccurred, is(instanceOf(FileNotFoundException.class)));
+        }
+        //FIXME use a simple exception assertion using jUnit 5
+    }
+
 }

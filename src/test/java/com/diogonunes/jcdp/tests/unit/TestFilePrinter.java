@@ -22,7 +22,7 @@ import static org.junit.Assert.fail;
  */
 public class TestFilePrinter {
 
-    static private File TEST_DIR = new File("./test_output/");
+    static private File TEST_DIR = new File("test_output/");
     static private File LOG_FILE = new File(TEST_DIR, "custom-name.log");
     static private File DEFAULT_LOG_FILE = new File("JCDP.log");
 

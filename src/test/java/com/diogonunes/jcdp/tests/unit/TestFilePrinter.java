@@ -63,15 +63,15 @@ public class TestFilePrinter {
         try {
             // ACT
             printer = new FilePrinter();
-        } catch (FileNotFoundException | SecurityException e) {
-            fail(); // this flow is checked on another test
-        } finally {
+
             // ASSERT
             assertThat(printer, not(equalTo(null)));
             assertThat(printer.isLoggingTimestamps(), equalTo(false));
             assertThat(printer.isLoggingDebug(), equalTo(true));
             assertThat(printer.getLevel(), equalTo(0));
             assertThat(DEFAULT_LOG_FILE.exists(), is(true));
+        } catch (FileNotFoundException | SecurityException e) {
+            fail(); // this flow is checked on another test
         }
     }
 
@@ -86,14 +86,14 @@ public class TestFilePrinter {
         try {
             // ACT
             printer = new FilePrinter(builder);
-        } catch (FileNotFoundException | SecurityException e) {
-            fail(); // this flow is checked on another test
-        } finally {
+
             // ASSERT
             assertThat(printer, not(equalTo(null)));
             assertThat(printer.getLevel(), equalTo(number));
             assertThat(printer.isLoggingTimestamps(), equalTo(flag));
             assertThat(LOG_FILE.exists(), is(true));
+        } catch (FileNotFoundException | SecurityException e) {
+            fail(); // this flow is checked on another test
         }
     }
 
@@ -111,10 +111,11 @@ public class TestFilePrinter {
             errorOccurred = e;
         } finally {
             // ASSERT
+            //FIXME use a simple exception assertion using jUnit 5
             assertThat(errorOccurred, not(equalTo(null)));
             assertThat(errorOccurred, is(instanceOf(FileNotFoundException.class)));
         }
-        //FIXME use a simple exception assertion using jUnit 5
+    }
     }
 
 }

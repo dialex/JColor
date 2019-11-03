@@ -8,6 +8,7 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Library for printing colored or debug messages on a terminal.</description>
     <url>https://github.com/dialex/JCDP</url>
+    <inceptionYear>2011</inceptionYear>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

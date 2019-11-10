@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.*;
  * @author Diogo Nunes
  * @version 2.0
  */
-public class TestColoredPrinter {
+public class TestColoredNixPrinter {
 
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();

@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class TestTerminalPrinter {
 
+    private final String newline = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -119,7 +120,7 @@ public class TestTerminalPrinter {
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test
@@ -184,7 +185,7 @@ public class TestTerminalPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + "\n"));
+        assertThat(errContent.toString(), equalTo(msg + newline));
     }
 
     @Test
@@ -197,7 +198,7 @@ public class TestTerminalPrinter {
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test

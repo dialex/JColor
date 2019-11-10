@@ -23,6 +23,8 @@ import java.text.SimpleDateFormat;
  */
 public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
+    private final String newline = System.getProperty("line.separator");
+
     /**
      * Constructor (using defaults): creates a Colored Printer with no format,
      * zero level of debug and timestamping active according to ISO 8601.
@@ -329,7 +331,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         output.append(ansiFormatCode);
         output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
         output.append(msg);
-        output.append(appendNewline ?  '\n' : "");
+        output.append(appendNewline ? newline : "");
 
         AnsiConsole.out.print(output.toString());
     }

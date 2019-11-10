@@ -25,6 +25,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class TestColoredWinPrinter {
 
+    private final String newline = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -145,7 +146,7 @@ public class TestColoredWinPrinter {
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test
@@ -215,7 +216,7 @@ public class TestColoredWinPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + "\n"));
+        assertThat(errContent.toString(), equalTo(msg + newline));
     }
 
     @Test
@@ -228,7 +229,7 @@ public class TestColoredWinPrinter {
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test

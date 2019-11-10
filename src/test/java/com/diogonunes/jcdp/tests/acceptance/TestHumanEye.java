@@ -54,7 +54,7 @@ public class TestHumanEye {
 
         //temporarily overriding that format
         cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
-        cp.print("IN PORTUGAL\t\n", Attribute.BOLD, FColor.YELLOW, BColor.RED);
+        cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
         cp.println("I hope you find it useful ;)");
 
         cp.clear(); //don't forget to clear the terminal's format before exiting

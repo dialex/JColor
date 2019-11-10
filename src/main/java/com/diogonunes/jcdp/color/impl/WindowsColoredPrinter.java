@@ -28,7 +28,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      * zero level of debug and timestamping active according to ISO 8601.
      */
     public WindowsColoredPrinter() {
-        this(new Builder(0, true));
+        this(new Builder(0, false));
     }
 
     /**
@@ -200,7 +200,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            AnsiConsole.out.print(generateCode());
+            AnsiConsole.err.print(generateCode());
         }
         AnsiConsole.err.print(msg);
     }
@@ -213,7 +213,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            AnsiConsole.out.print(generateCode(attr, fg, bg));
+            AnsiConsole.err.print(generateCode(attr, fg, bg));
         }
         AnsiConsole.err.print(msg);
     }
@@ -226,7 +226,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            AnsiConsole.out.print(generateCode());
+            AnsiConsole.err.print(generateCode());
         }
         AnsiConsole.err.println(msg);
     }
@@ -239,7 +239,7 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            AnsiConsole.out.print(generateCode(attr, fg, bg));
+            AnsiConsole.err.print(generateCode(attr, fg, bg));
         }
         AnsiConsole.err.println(msg);
     }
@@ -249,7 +249,8 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void debugPrint(Object msg) {
-        print(msg);
+        if (isLoggingDebug())
+            print(msg);
     }
 
     /**

@@ -175,14 +175,18 @@ public class TestColoredNixPrinter {
 
         // ACT
         printer.print(msg);
-        printer.setTimestamping(true);
-        printer.errorPrint(msg);
-
         // ASSERT
         assertThat(outContent.toString(), containsString(msg));
         assertThat(outContent.toString(), not(containsString(timestamp)));
-        assertThat(errContent.toString(), containsString(msg));
-        assertThat("After enabling timestamping, message includes it", errContent.toString(), containsString(timestamp));
+
+        outContent.reset();
+
+        // ACT
+        printer.setTimestamping(true);
+        printer.print(msg);
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat("After enabling timestamping, message includes it", outContent.toString(), containsString(timestamp));
     }
 
     @Test

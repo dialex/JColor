@@ -160,8 +160,9 @@ public class TestColoredWinPrinter {
         printer.print(msg);
 
         // ASSERT
-        assertThat("Message is printed", outContent.toString(), containsString(msg));
-        assertThat("Message includes timestamp", outContent.toString(), containsString(timestamp));
+        String output = outContent.toString();
+        assertThat("Message is printed", output, containsString(msg));
+        assertThat("Message includes timestamp", output, containsString(timestamp));
     }
 
     @Test
@@ -174,14 +175,18 @@ public class TestColoredWinPrinter {
 
         // ACT
         printer.print(msg);
-        printer.setTimestamping(true);
-        printer.errorPrint(msg);
-
         // ASSERT
         assertThat(outContent.toString(), containsString(msg));
         assertThat(outContent.toString(), not(containsString(timestamp)));
-        assertThat(errContent.toString(), containsString(msg));
-        assertThat("After enabling timestamping, message includes it", errContent.toString(), containsString(timestamp));
+
+        outContent.reset();
+
+        // ACT
+        printer.setTimestamping(true);
+        printer.print(msg);
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat("After enabling timestamping, message includes it", outContent.toString(), containsString(timestamp));
     }
 
     @Test

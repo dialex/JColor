@@ -434,8 +434,8 @@ public class TestColoredWinPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
@@ -452,8 +452,8 @@ public class TestColoredWinPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", errContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", errContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", errContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
@@ -470,8 +470,8 @@ public class TestColoredWinPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
@@ -490,8 +490,8 @@ public class TestColoredWinPrinter {
         // ASSERT
         String ansiCode = printer.generateCode(attr1, fColor1, bColor1);
         assertThat("Message is not formatted with ansi code", errContent.toString(), not(containsString(ansiCode)));
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
@@ -517,8 +517,8 @@ public class TestColoredWinPrinter {
         String ansiCode1 = printer.generateCode(attr1, fColor1, bColor1);
         String ansiCode2 = printer.generateCode(attr2, fColor2, bColor2);
         assertThat("Messages were displayed with separator between", messages.length, equalTo(2));
-        assertThat("First message is formatted with ansi code", messages[0], containsString(ansiCode1));
-        assertThat("Second message has different ansi code", messages[1], containsString(ansiCode2));
+        assertThat("Message displays color instead of ansi code", messages[0], not(containsString(ansiCode1)));
+        assertThat("Message displays color instead of ansi code", messages[1], not(containsString(ansiCode2)));
     }
 
     @Test
@@ -537,7 +537,7 @@ public class TestColoredWinPrinter {
 
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
     }
 
     @Test
@@ -554,13 +554,13 @@ public class TestColoredWinPrinter {
         printer.println(msg);
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
-        assertThat("Message is colored with printer's internal config", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
 
         // ACT
         Ansi.FColor fColor2 = Ansi.FColor.RED;
         printer.println(msg, attr, fColor2, bColor);
         // ASSERT
         expectedAnsiCode = printer.generateCode(attr, fColor2, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
     }
 }

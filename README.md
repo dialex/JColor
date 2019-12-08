@@ -75,7 +75,7 @@ You can import this library through Maven or Gradle, just [pick a version](https
 
 [Javadoc](http://dialex.github.io/JCDP/javadoc/)
 
-[Changelog](changelog.md)
+[Changelog](https://github.com/dialex/JCDP/releases/)
 
 ### License
 

@@ -29,6 +29,7 @@ target/
 .project
 .settings
 dependency-reduced-pom.xml
+release.properties
 
 ## ============================================================================
 ## gitignore for JetBrains: IntelliJ, Android Studio, ...

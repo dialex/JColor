@@ -72,8 +72,7 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         setAttribute(Attribute.CLEAR);
         setForegroundColor(FColor.NONE);
         setBackgroundColor(BColor.NONE);
-        print(""); // refresh terminal line, so that the changes take immediate
-        // effect
+        print(""); // refresh terminal line, so that the changes take immediate effect
     }
 
     @Override

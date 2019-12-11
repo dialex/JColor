@@ -1,8 +1,7 @@
 package com.diogonunes.jcdp.tests.unit;
 
-
 import com.diogonunes.jcdp.color.api.Ansi;
-import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
 import helpers.DataGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -19,13 +18,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 /**
- * Tests for UnixColoredPrinter class.
+ * Tests for WindowsColoredPrinter class.
  *
  * @author Diogo Nunes
  * @version 2.0
  */
-public class TestColoredPrinter {
+public class TestColoredWinPrinter {
 
+    private final String newline = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -54,7 +54,7 @@ public class TestColoredPrinter {
         // ARRANGE
 
         // ACT
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -68,10 +68,10 @@ public class TestColoredPrinter {
         // ARRANGE
         boolean flag = true;
         int number = 1;
-        UnixColoredPrinter.Builder b = new UnixColoredPrinter.Builder(number, flag);
+        WindowsColoredPrinter.Builder b = new WindowsColoredPrinter.Builder(number, flag);
 
         // ACT
-        UnixColoredPrinter printer = new UnixColoredPrinter(b);
+        WindowsColoredPrinter printer = new WindowsColoredPrinter(b);
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -82,13 +82,13 @@ public class TestColoredPrinter {
     @Test
     public void ToString_Description_DisplayName() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
 
         // ACT
         String description = printer.toString();
 
         // ASSERT
-        assertThat(description, containsString(UnixColoredPrinter.class.getSimpleName()));
+        assertThat(description, containsString(WindowsColoredPrinter.class.getSimpleName()));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TestColoredPrinter {
         // ARRANGE
         boolean flag = true;
         int number = 1;
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(number, flag).build();
         String separator = " | ";
 
         // ACT
@@ -119,7 +119,7 @@ public class TestColoredPrinter {
         Ansi.Attribute attr = Ansi.Attribute.LIGHT;
         Ansi.FColor fColor = Ansi.FColor.MAGENTA;
         Ansi.BColor bColor = Ansi.BColor.CYAN;
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(number, flag).
                 attribute(attr).foreground(fColor).background(bColor).build();
         String separator = " | ";
 
@@ -139,20 +139,20 @@ public class TestColoredPrinter {
     @Test
     public void Print_Message_DisplayOnSysOut() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test
     public void Print_Message_DisplayTimestamp() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, true).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, true).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -161,35 +161,40 @@ public class TestColoredPrinter {
         printer.print(msg);
 
         // ASSERT
-        assertThat("Message is printed", outContent.toString(), containsString(msg));
-        assertThat("Message includes timestamp", outContent.toString(), containsString(timestamp));
+        String output = outContent.toString();
+        assertThat("Message is printed", output, containsString(msg));
+        assertThat("Message includes timestamp", output, containsString(timestamp));
     }
 
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
         // ACT
         printer.print(msg);
-        printer.setTimestamping(true);
-        printer.errorPrint(msg);
-
         // ASSERT
         assertThat(outContent.toString(), containsString(msg));
         assertThat(outContent.toString(), not(containsString(timestamp)));
-        assertThat(errContent.toString(), containsString(msg));
-        assertThat("After enabling timestamping, message includes it", errContent.toString(), containsString(timestamp));
+
+        outContent.reset();
+
+        // ACT
+        printer.setTimestamping(true);
+        printer.print(msg);
+        // ASSERT
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat("After enabling timestamping, message includes it", outContent.toString(), containsString(timestamp));
     }
 
     @Test
     public void Print_Message_DisplayTimestampWithCustomDateFormat() {
         // ARRANGE
         DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, true).withFormat(timestampFormat).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, true).withFormat(timestampFormat).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(timestampFormat);
 
@@ -204,33 +209,33 @@ public class TestColoredPrinter {
     @Test
     public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + "\n"));
+        assertThat(errContent.toString(), equalTo(msg + newline));
     }
 
     @Test
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsgWithId(0);
 
         // ACT
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + "\n"));
+        assertThat(outContent.toString(), equalTo(msg + newline));
     }
 
     @Test
     public void Print_DebugMessage_DisplayAfterEnablingDebug() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(2);
 
         // ACT
@@ -246,7 +251,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_DisplayWithoutLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(1, false).build();
         String msgNoLevel = DataGenerator.createMsg();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
 
@@ -262,7 +267,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msgLevelZero = DataGenerator.createMsgWithId(0);
         String msgLevelOne = DataGenerator.createMsgWithId(1);
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
@@ -281,7 +286,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(3);
 
         // ACT
@@ -296,7 +301,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_IgnoreIfLevelAbove() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
         String msgLevelThree = DataGenerator.createMsgWithId(3);
 
@@ -312,7 +317,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_IgnoreDebugIfDisabled() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -326,7 +331,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_AnsiCode_DelimitCodeWithAnsiTokens() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
         Ansi.Attribute attr = Ansi.Attribute.UNDERLINE;
         Ansi.FColor fColor = Ansi.FColor.BLACK;
         Ansi.BColor bColor = Ansi.BColor.YELLOW;
@@ -343,7 +348,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAllProperties() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
         Ansi.Attribute attr = Ansi.Attribute.DARK;
         Ansi.FColor fColor = Ansi.FColor.GREEN;
         Ansi.BColor bColor = Ansi.BColor.BLACK;
@@ -362,7 +367,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAttributeOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
         Ansi.Attribute attr = Ansi.Attribute.LIGHT;
         Ansi.FColor fColor = Ansi.FColor.NONE;
         Ansi.BColor bColor = Ansi.BColor.NONE;
@@ -381,7 +386,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForForegroundColorOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
         Ansi.Attribute attr = Ansi.Attribute.NONE;
         Ansi.FColor fColor = Ansi.FColor.RED;
         Ansi.BColor bColor = Ansi.BColor.NONE;
@@ -400,7 +405,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForBackgroundColorOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter();
         Ansi.Attribute attr = Ansi.Attribute.NONE;
         Ansi.FColor fColor = Ansi.FColor.NONE;
         Ansi.BColor bColor = Ansi.BColor.MAGENTA;
@@ -419,7 +424,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_Message_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.LIGHT).
                 foreground(Ansi.FColor.GREEN).
                 background(Ansi.BColor.BLACK).build();
@@ -430,14 +435,14 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
     public void ColoredPrint_ErrorMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.BOLD).
                 foreground(Ansi.FColor.WHITE).
                 background(Ansi.BColor.RED).build();
@@ -448,14 +453,14 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", errContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", errContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", errContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
     public void ColoredPrint_DebugMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).
                 attribute(Ansi.Attribute.LIGHT).
                 foreground(Ansi.FColor.CYAN).
                 background(Ansi.BColor.BLUE).build();
@@ -466,14 +471,14 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
     public void ColoredPrint_Message_SingleMessageFormat() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
         Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
         Ansi.FColor fColor1 = Ansi.FColor.MAGENTA;
@@ -486,14 +491,14 @@ public class TestColoredPrinter {
         // ASSERT
         String ansiCode = printer.generateCode(attr1, fColor1, bColor1);
         assertThat("Message is not formatted with ansi code", errContent.toString(), not(containsString(ansiCode)));
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(ansiCode)));
     }
 
     @Test
     public void ColoredPrint_Message_SingleMessageWithTwoFormats() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false).build();
         String separator = DataGenerator.createSeparator();
         String msg = DataGenerator.createMsg();
         Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
@@ -513,8 +518,8 @@ public class TestColoredPrinter {
         String ansiCode1 = printer.generateCode(attr1, fColor1, bColor1);
         String ansiCode2 = printer.generateCode(attr2, fColor2, bColor2);
         assertThat("Messages were displayed with separator between", messages.length, equalTo(2));
-        assertThat("First message is formatted with ansi code", messages[0], containsString(ansiCode1));
-        assertThat("Second message has different ansi code", messages[1], containsString(ansiCode2));
+        assertThat("Message displays color instead of ansi code", messages[0], not(containsString(ansiCode1)));
+        assertThat("Message displays color instead of ansi code", messages[1], not(containsString(ansiCode2)));
     }
 
     @Test
@@ -525,7 +530,7 @@ public class TestColoredPrinter {
         Ansi.BColor bColor = Ansi.BColor.NONE;
         Ansi.Attribute attr = Ansi.Attribute.NONE;
 
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, false).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(1, false).build();
         printer.setForegroundColor(fColor);
 
         // ACT
@@ -533,14 +538,14 @@ public class TestColoredPrinter {
 
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
     }
 
     @Test
     public void ColoredPrint_Message_CustomFormatOverridesPrinterConfigWithTimestampActive() {
         // ARRANGE
         String msg = DataGenerator.createMsg();
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).build();
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(1, true).build();
         Ansi.Attribute attr = Ansi.Attribute.NONE;
         Ansi.BColor bColor = Ansi.BColor.NONE;
 
@@ -550,13 +555,13 @@ public class TestColoredPrinter {
         printer.println(msg);
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
-        assertThat("Message is colored with printer's internal config", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
 
         // ACT
         Ansi.FColor fColor2 = Ansi.FColor.RED;
         printer.println(msg, attr, fColor2, bColor);
         // ASSERT
         expectedAnsiCode = printer.generateCode(attr, fColor2, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
+        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
     }
 }

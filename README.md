@@ -18,7 +18,7 @@
 
 *Running on Windows 8.1 (cmd)*
 
-### Example
+### Usage
 
 The screenshots above were produced by running this example code:
 
@@ -67,15 +67,19 @@ cp.println("I hope you find it useful ;)");
 cp.clear(); //don't forget to clear the terminal's format before exiting
 ```
 
-### Build tools
+### Installation
 
-You can import this library through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JCDP).
+You can import this dependency through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JCDP).
 
-### Documentation
+#### Requirements
 
-[Javadoc](http://dialex.github.io/JCDP/javadoc/)
+- JCDP `v3.*` (latest) supports Java +8, Linux, Mac, Windows
+- JCDP `v2.*` (legacy) supports Java +6, Linux, Mac, Windows
 
-[Changelog](https://github.com/dialex/JCDP/releases/)
+#### Useful links
+
+- [Javadoc](http://dialex.github.io/JCDP/javadoc/)
+- [Changelog](https://github.com/dialex/JCDP/releases/)
 
 ### License
 

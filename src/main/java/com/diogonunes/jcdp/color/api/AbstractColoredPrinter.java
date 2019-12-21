@@ -75,6 +75,7 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         print(""); // refresh terminal line, so that the changes take immediate effect
     }
 
+    //TODO should be Ansi.generateCode(), not a printer's responsibility
     @Override
     public String generateCode() {
         Attribute attr = getAttribute();
@@ -90,6 +91,8 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
                     bColor.toString() + Ansi.POSTFIX;
     }
 
+    //TODO should be Ansi.generateCode(), not a printer's responsibility
+    //TODO should be refactored with the above
     @Override
     public String generateCode(Attribute attr, FColor fg, BColor bg) {
         return Ansi.PREFIX +

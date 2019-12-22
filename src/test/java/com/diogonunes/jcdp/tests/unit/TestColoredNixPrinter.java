@@ -1,7 +1,9 @@
 package com.diogonunes.jcdp.tests.unit;
 
-
 import com.diogonunes.jcdp.color.api.Ansi;
+import com.diogonunes.jcdp.color.api.Ansi.Attribute;
+import com.diogonunes.jcdp.color.api.Ansi.BColor;
+import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
 import helpers.DataGenerator;
 import org.junit.After;
@@ -117,9 +119,9 @@ public class TestColoredNixPrinter {
         // ARRANGE
         boolean flag = true;
         int number = 1;
-        Ansi.Attribute attr = Ansi.Attribute.LIGHT;
-        Ansi.FColor fColor = Ansi.FColor.MAGENTA;
-        Ansi.BColor bColor = Ansi.BColor.CYAN;
+        Attribute attr = Attribute.LIGHT;
+        FColor fColor = FColor.MAGENTA;
+        BColor bColor = BColor.CYAN;
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).
                 attribute(attr).foreground(fColor).background(bColor).build();
         String separator = " | ";
@@ -142,12 +144,13 @@ public class TestColoredNixPrinter {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
+        String noFormat = Ansi.generateCode();
 
         // ACT
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(noFormat + msg + newline));
     }
 
     @Test
@@ -224,12 +227,13 @@ public class TestColoredNixPrinter {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsgWithId(0);
+        String noFormat = Ansi.generateCode();
 
         // ACT
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(noFormat + msg + newline));
     }
 
     @Test
@@ -237,6 +241,7 @@ public class TestColoredNixPrinter {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(2);
+        String noFormat = Ansi.generateCode();
 
         // ACT
         printer.setDebugging(false);
@@ -245,7 +250,7 @@ public class TestColoredNixPrinter {
         printer.debugPrint(msg, 2);
 
         // ASSERT
-        assertThat("Disabling debug mutes that message type", outContent.toString(), equalTo(msg));
+        assertThat("Disabling debug mutes that message type", outContent.toString(), equalTo(noFormat + msg));
     }
 
     @Test
@@ -288,6 +293,7 @@ public class TestColoredNixPrinter {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(3);
+        String noFormat = Ansi.generateCode();
 
         // ACT
         printer.debugPrint(msg, 3);
@@ -295,7 +301,7 @@ public class TestColoredNixPrinter {
         printer.debugPrint(msg, 3);
 
         // ASSERT
-        assertThat("After changing level message is printed", outContent.toString(), equalTo(msg));
+        assertThat("After changing level message is printed", outContent.toString(), equalTo(noFormat + msg));
     }
 
     @Test
@@ -328,13 +334,14 @@ public class TestColoredNixPrinter {
         assertThat(outContent.toString(), not(containsString(msg)));
     }
 
+    //TODO Move to TestAnsi and refactor
     @Test
     public void ColoredPrint_AnsiCode_DelimitCodeWithAnsiTokens() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter();
-        Ansi.Attribute attr = Ansi.Attribute.UNDERLINE;
-        Ansi.FColor fColor = Ansi.FColor.BLACK;
-        Ansi.BColor bColor = Ansi.BColor.YELLOW;
+        Attribute attr = Attribute.UNDERLINE;
+        FColor fColor = FColor.BLACK;
+        BColor bColor = BColor.YELLOW;
 
         // ACT
         String ansiCode = printer.generateCode(attr, fColor, bColor);
@@ -345,13 +352,14 @@ public class TestColoredNixPrinter {
         assertThat("Code ends with Ansi Postfix", codeTokens[codeTokens.length - 1], containsString(Ansi.POSTFIX));
     }
 
+    //TODO Move to TestAnsi and refactor
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAllProperties() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter();
-        Ansi.Attribute attr = Ansi.Attribute.DARK;
-        Ansi.FColor fColor = Ansi.FColor.GREEN;
-        Ansi.BColor bColor = Ansi.BColor.BLACK;
+        Attribute attr = Attribute.DARK;
+        FColor fColor = FColor.GREEN;
+        BColor bColor = BColor.BLACK;
 
         // ACT
         String ansiCode = printer.generateCode(attr, fColor, bColor);
@@ -364,70 +372,88 @@ public class TestColoredNixPrinter {
         assertThat("Code contains background color", codeTokens[2], containsString(bColor.toString()));
     }
 
+
+    //TODO Move to TestAnsi and refactor
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAttributeOnly() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter();
-        Ansi.Attribute attr = Ansi.Attribute.LIGHT;
-        Ansi.FColor fColor = Ansi.FColor.NONE;
-        Ansi.BColor bColor = Ansi.BColor.NONE;
+        Attribute attr = Attribute.LIGHT;
+        FColor fColor = FColor.NONE;
+        BColor bColor = BColor.NONE;
 
         // ACT
         String ansiCode = printer.generateCode(attr, fColor, bColor);
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
         assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
-        assertThat(codeTokens[1], equalTo(""));
-        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
     }
 
+    //TODO Move to TestAnsi and refactor
     @Test
     public void ColoredPrint_AnsiCode_GenerateForForegroundColorOnly() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter();
-        Ansi.Attribute attr = Ansi.Attribute.NONE;
-        Ansi.FColor fColor = Ansi.FColor.RED;
-        Ansi.BColor bColor = Ansi.BColor.NONE;
+        Attribute attr = Attribute.NONE;
+        FColor fColor = FColor.RED;
+        BColor bColor = BColor.NONE;
 
         // ACT
         String ansiCode = printer.generateCode(attr, fColor, bColor);
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
-        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
-        assertThat("Code contain foreground color", codeTokens[1], containsString(fColor.toString()));
-        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
+        assertThat("Code contain foreground color", codeTokens[0], containsString(fColor.toString()));
     }
 
+    //TODO Move to TestAnsi and refactor
     @Test
     public void ColoredPrint_AnsiCode_GenerateForBackgroundColorOnly() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter();
-        Ansi.Attribute attr = Ansi.Attribute.NONE;
-        Ansi.FColor fColor = Ansi.FColor.NONE;
-        Ansi.BColor bColor = Ansi.BColor.MAGENTA;
+        Attribute attr = Attribute.NONE;
+        FColor fColor = FColor.NONE;
+        BColor bColor = BColor.MAGENTA;
 
         // ACT
         String ansiCode = printer.generateCode(attr, fColor, bColor);
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
-        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
-        assertThat(codeTokens[1], equalTo(""));
-        assertThat("Code contain background color", codeTokens[2], containsString(bColor.toString()));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
+        assertThat("Code contains background color", codeTokens[0], containsString(bColor.toString()));
+    }
+
+    // TODO should be a unit test of Ansi class
+    // Addresses https://github.com/dialex/JCDP/issues/6
+    //TODO Move to TestAnsi and refactor
+    @Test
+    public void ColoredPrint_AnsiCode_FColorIsPrintedWithoutBColor() {
+        // ARRANGE
+        String msg = DataGenerator.createMsg();
+        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).
+                background(BColor.NONE).foreground(FColor.MAGENTA).
+                build();
+
+        // ACT
+        String ansiCode = printer.generateCode();
+        System.out.println(ansiCode);
+
+        // ASSERT
+        int suffixIndex = ansiCode.lastIndexOf(Ansi.POSTFIX);
+        assertThat("Code ending in semicolon does not show color", ansiCode.charAt(suffixIndex - 1), is(not(';')));
     }
 
     @Test
     public void ColoredPrint_Message_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
-                attribute(Ansi.Attribute.LIGHT).
-                foreground(Ansi.FColor.GREEN).
-                background(Ansi.BColor.BLACK).build();
+                attribute(Attribute.LIGHT).
+                foreground(FColor.GREEN).
+                background(BColor.BLACK).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -443,9 +469,9 @@ public class TestColoredNixPrinter {
     public void ColoredPrint_ErrorMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
-                attribute(Ansi.Attribute.BOLD).
-                foreground(Ansi.FColor.WHITE).
-                background(Ansi.BColor.RED).build();
+                attribute(Attribute.BOLD).
+                foreground(FColor.WHITE).
+                background(BColor.RED).build();
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
@@ -461,9 +487,9 @@ public class TestColoredNixPrinter {
     public void ColoredPrint_DebugMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
-                attribute(Ansi.Attribute.LIGHT).
-                foreground(Ansi.FColor.CYAN).
-                background(Ansi.BColor.BLUE).build();
+                attribute(Attribute.LIGHT).
+                foreground(FColor.CYAN).
+                background(BColor.BLUE).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -480,9 +506,9 @@ public class TestColoredNixPrinter {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
-        Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
-        Ansi.FColor fColor1 = Ansi.FColor.MAGENTA;
-        Ansi.BColor bColor1 = Ansi.BColor.CYAN;
+        Attribute attr1 = Attribute.LIGHT;
+        FColor fColor1 = FColor.MAGENTA;
+        BColor bColor1 = BColor.CYAN;
 
         // ACT
         printer.errorPrint(msg);
@@ -501,12 +527,12 @@ public class TestColoredNixPrinter {
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
         String separator = DataGenerator.createSeparator();
         String msg = DataGenerator.createMsg();
-        Ansi.Attribute attr1 = Ansi.Attribute.LIGHT;
-        Ansi.FColor fColor1 = Ansi.FColor.MAGENTA;
-        Ansi.BColor bColor1 = Ansi.BColor.CYAN;
-        Ansi.Attribute attr2 = Ansi.Attribute.LIGHT;
-        Ansi.FColor fColor2 = Ansi.FColor.RED;
-        Ansi.BColor bColor2 = Ansi.BColor.BLUE;
+        Attribute attr1 = Attribute.LIGHT;
+        FColor fColor1 = FColor.MAGENTA;
+        BColor bColor1 = BColor.CYAN;
+        Attribute attr2 = Attribute.LIGHT;
+        FColor fColor2 = FColor.RED;
+        BColor bColor2 = BColor.BLUE;
 
         // ACT
         printer.print(msg, attr1, fColor1, bColor1);
@@ -526,9 +552,9 @@ public class TestColoredNixPrinter {
     public void ColoredPrint_Message_FontIsColoredEvenWithoutBColor() {
         // ARRANGE
         String msg = DataGenerator.createMsg();
-        Ansi.FColor fColor = Ansi.FColor.GREEN;
-        Ansi.BColor bColor = Ansi.BColor.NONE;
-        Ansi.Attribute attr = Ansi.Attribute.NONE;
+        FColor fColor = FColor.GREEN;
+        BColor bColor = BColor.NONE;
+        Attribute attr = Attribute.NONE;
 
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, false).build();
         printer.setForegroundColor(fColor);
@@ -546,22 +572,16 @@ public class TestColoredNixPrinter {
         // ARRANGE
         String msg = DataGenerator.createMsg();
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).build();
-        Ansi.Attribute attr = Ansi.Attribute.NONE;
-        Ansi.BColor bColor = Ansi.BColor.NONE;
+        Attribute attr = Attribute.NONE;
+        BColor bColor = BColor.NONE;
 
         // ACT
-        Ansi.FColor fColor1 = Ansi.FColor.GREEN;
+        FColor fColor1 = FColor.GREEN;
         printer.setForegroundColor(fColor1);
         printer.println(msg);
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
         assertThat("Message is colored with printer's internal config", outContent.toString(), containsString(expectedAnsiCode));
-
-        // ACT
-        Ansi.FColor fColor2 = Ansi.FColor.RED;
-        printer.println(msg, attr, fColor2, bColor);
-        // ASSERT
-        expectedAnsiCode = printer.generateCode(attr, fColor2, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
     }
+
 }

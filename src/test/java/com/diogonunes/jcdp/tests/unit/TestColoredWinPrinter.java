@@ -377,10 +377,8 @@ public class TestColoredWinPrinter {
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
         assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
-        assertThat(codeTokens[1], equalTo(""));
-        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
     }
 
     @Test
@@ -396,10 +394,8 @@ public class TestColoredWinPrinter {
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
-        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
-        assertThat("Code contain foreground color", codeTokens[1], containsString(fColor.toString()));
-        assertThat(codeTokens[2], equalTo("" + Ansi.POSTFIX));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
+        assertThat("Code contain foreground color", codeTokens[0], containsString(fColor.toString()));
     }
 
     @Test
@@ -415,10 +411,8 @@ public class TestColoredWinPrinter {
         String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
 
         // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
-        assertThat(codeTokens[0], equalTo(Ansi.PREFIX + ""));
-        assertThat(codeTokens[1], equalTo(""));
-        assertThat("Code contain background color", codeTokens[2], containsString(bColor.toString()));
+        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
+        assertThat("Code contain background color", codeTokens[0], containsString(bColor.toString()));
     }
 
     @Test
@@ -555,13 +549,6 @@ public class TestColoredWinPrinter {
         printer.println(msg);
         // ASSERT
         String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
-        assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
-
-        // ACT
-        Ansi.FColor fColor2 = Ansi.FColor.RED;
-        printer.println(msg, attr, fColor2, bColor);
-        // ASSERT
-        expectedAnsiCode = printer.generateCode(attr, fColor2, bColor);
         assertThat("Message displays color instead of ansi code", outContent.toString(), not(containsString(expectedAnsiCode)));
     }
 }

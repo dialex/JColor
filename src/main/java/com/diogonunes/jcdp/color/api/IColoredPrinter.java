@@ -45,6 +45,7 @@ public interface IColoredPrinter extends IPrinter {
      * @return the ansi code which contains all three components' codes. This is
      * the code used to tell the terminal the format of the message.
      */
+    @Deprecated
     String generateCode();
 
     /**
@@ -53,6 +54,7 @@ public interface IColoredPrinter extends IPrinter {
      * @param background specifies the background color
      * @return the ansi code which contains all three components' codes
      */
+    @Deprecated
     String generateCode(Attribute attr, FColor foreground, BColor background);
 
     /**

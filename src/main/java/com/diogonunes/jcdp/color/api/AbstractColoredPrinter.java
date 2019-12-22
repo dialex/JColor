@@ -75,26 +75,21 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         print(""); // refresh terminal line, so that the changes take immediate effect
     }
 
+    //TODO should be Ansi.generateCode(), not a printer's responsibility
     @Override
+    @Deprecated
     public String generateCode() {
         Attribute attr = getAttribute();
         FColor fColor = getForegroundColor();
         BColor bColor = getBackgroundColor();
 
-        if ((attr == Attribute.NONE) && (fColor == FColor.NONE) && (bColor == BColor.NONE))
-            return "";
-        else
-            return Ansi.PREFIX +
-                    attr.toString() + Ansi.SEPARATOR +
-                    fColor.toString() + Ansi.SEPARATOR +
-                    bColor.toString() + Ansi.POSTFIX;
+        return generateCode(attr, fColor, bColor);
     }
 
+    //TODO should be Ansi.generateCode(), not a printer's responsibility
     @Override
+    @Deprecated
     public String generateCode(Attribute attr, FColor fg, BColor bg) {
-        return Ansi.PREFIX +
-                attr.toString() + Ansi.SEPARATOR +
-                fg.toString() + Ansi.SEPARATOR +
-                bg.toString() + Ansi.POSTFIX;
+        return Ansi.generateCode(attr, fg, bg);
     }
 }

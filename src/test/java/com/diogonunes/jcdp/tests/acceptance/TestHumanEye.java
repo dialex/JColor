@@ -6,15 +6,16 @@ import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
-import org.junit.Ignore;
+import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class TestHumanEye {
 
-    @Ignore
-    public void TestHowItLooksOnConsole() {
+    @Test
+    public void ShouldLookGood() {
 
         // =============================
         // Example of a terminal Printer
@@ -59,6 +60,19 @@ public class TestHumanEye {
 
         cp.clear(); //don't forget to clear the terminal's format before exiting
 
+        assertThat("This test is for humans only, so it always passes on CI", true, is(true));
+    }
+
+    @Test // Addresses https://github.com/dialex/JCDP/issues/6
+    public void ShouldColorForegroundEvenWithoutBackground() {
+        // ARRANGE
+        UnixColoredPrinter cpUnix = new UnixColoredPrinter.Builder(0, false).foreground(FColor.YELLOW).build();
+
+        // ACT
+        cpUnix.println("Should have YELLOW foreground");
+        cpUnix.clear();
+
+        // ASSERT
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));
     }
 }

@@ -7,14 +7,14 @@ import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
-import org.junit.Test;
+import org.junit.Ignore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class TestHumanEye {
 
-    @Test
+    @Ignore
     public void ShouldLookGood() {
 
         // =============================
@@ -63,7 +63,7 @@ public class TestHumanEye {
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));
     }
 
-    @Test // Addresses https://github.com/dialex/JCDP/issues/6
+    @Ignore // Addresses https://github.com/dialex/JCDP/issues/6
     public void ShouldColorForegroundEvenWithoutBackground() {
         // ARRANGE
         UnixColoredPrinter cpUnix = new UnixColoredPrinter.Builder(0, false).foreground(FColor.YELLOW).build();

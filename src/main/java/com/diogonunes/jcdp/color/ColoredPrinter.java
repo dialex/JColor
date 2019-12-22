@@ -317,6 +317,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public String generateCode() {
         return getImpl().generateCode();
     }

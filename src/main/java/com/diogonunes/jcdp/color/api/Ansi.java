@@ -17,11 +17,11 @@ public class Ansi {
      */
     public static final String PREFIX = "\033[";
     /**
-     * Every attribute is separated by this SEPARATOR.
+     * Two options must be separated by this SEPARATOR.
      */
     public static final String SEPARATOR = ";";
     /**
-     * Every Ansi escape code end with this POSTFIX.
+     * Every Ansi escape code must end with this POSTFIX.
      */
     public static final String POSTFIX = "m";
 
@@ -125,5 +125,26 @@ public class Ansi {
         public String toString() {
             return getCode();
         }
+    }
+
+    /**
+     * @param options ANSI options like background color, font attributes, etc.
+     * @return the ANSI code used to tell the terminal how to display a message.
+     */
+    public static String generateCode(Object... options) {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append(Ansi.PREFIX);
+        for (Object option : options) {
+            String code = option.toString();
+            if (code.equals(""))
+                continue;
+            builder.append(code);
+            builder.append(Ansi.SEPARATOR);
+        }
+        builder.append(Ansi.POSTFIX);
+
+        // because code must not end with SEPARATOR
+        return builder.toString().replace(SEPARATOR + POSTFIX, POSTFIX);
     }
 }

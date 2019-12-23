@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class TestColoredWinPrinter {
 
-    private final String newline = System.getProperty("line.separator");
+    private final String NEWLINE = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -146,7 +146,7 @@ public class TestColoredWinPrinter {
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -216,7 +216,7 @@ public class TestColoredWinPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + newline));
+        assertThat(errContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -229,7 +229,7 @@ public class TestColoredWinPrinter {
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -514,25 +514,6 @@ public class TestColoredWinPrinter {
         assertThat("Messages were displayed with separator between", messages.length, equalTo(2));
         assertThat("Message displays color instead of ansi code", messages[0], not(containsString(ansiCode1)));
         assertThat("Message displays color instead of ansi code", messages[1], not(containsString(ansiCode2)));
-    }
-
-    @Test
-    public void ColoredPrint_Message_FormatDoesNotOverrideConsole() {
-        // ARRANGE
-        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false)
-                .foreground(Ansi.FColor.BLUE).background(Ansi.BColor.WHITE)
-                .build();
-        String printerMsg = DataGenerator.createMsg();
-        // Prevent jansi from interpreting ansi code, so that we can assert its existence
-        System.setProperty("jansi.passthrough", "true");
-        System.setOut(new PrintStream(outContent));
-
-        // ACT
-        printer.print(printerMsg);
-
-        // ASSERT
-        String resetAnsiCode = Ansi.generateCode(Ansi.Attribute.CLEAR);
-        assertThat("Printer ends with code to reset format", outContent.toString(), endsWith(resetAnsiCode));
     }
 
     // TODO refactor: still needed?

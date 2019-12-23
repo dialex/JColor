@@ -39,6 +39,7 @@ public interface IColoredPrinter extends IPrinter {
     /**
      * Clears the current format and sets it to terminal's default format.
      */
+    @Deprecated
     void clear();
 
     /**

@@ -309,6 +309,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public void clear() {
         getImpl().clear();
     }

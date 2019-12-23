@@ -15,6 +15,17 @@ import static org.junit.Assert.assertThat;
 public class TestAnsi {
 
     @Test
+    public void Configuration_EscapeCode() {
+        // ARRANGE
+
+        // ACT
+
+        // ASSERT
+        char escapeChar = 27; // according to spec: https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences
+        assertThat(Ansi.PREFIX, equalTo(escapeChar + "["));
+    }
+
+    @Test
     public void GenerateCode_ZeroOptions() {
         // ARRANGE
         // ACT

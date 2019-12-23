@@ -75,4 +75,20 @@ public class TestHumanEye {
         // ASSERT
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));
     }
+
+    @Ignore // Covers https://github.com/dialex/JCDP/issues/29
+    public void ColoredPrinterShouldNotBleedFormatToSystem() {
+        // ARRANGE
+        ColoredPrinter cp = new ColoredPrinter.Builder(0, false)
+                .foreground(FColor.RED).background(BColor.GREEN)
+                .build();
+
+        // ACT
+        cp.print("Even if");
+        System.out.print(" you mix ");
+        cp.println("the two.");
+
+        // ASSERT
+        assertThat("This test is for humans only, so it always passes on CI", true, is(true));
+    }
 }

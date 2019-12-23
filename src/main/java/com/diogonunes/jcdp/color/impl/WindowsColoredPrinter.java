@@ -3,6 +3,7 @@ package com.diogonunes.jcdp.color.impl;
 import com.diogonunes.jcdp.bw.api.AbstractPrinter;
 import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
+import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
@@ -23,7 +24,7 @@ import java.text.SimpleDateFormat;
  */
 public class WindowsColoredPrinter extends AbstractColoredPrinter {
 
-    private final String newline = System.getProperty("line.separator");
+    private final String NEWLINE = System.getProperty("line.separator");
 
     /**
      * Constructor (using defaults): creates a Colored Printer with no format,
@@ -331,7 +332,9 @@ public class WindowsColoredPrinter extends AbstractColoredPrinter {
         output.append(ansiFormatCode);
         output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
         output.append(msg);
-        output.append(appendNewline ? newline : "");
+        output.append(appendNewline ? NEWLINE : "");
+        // ensures the format only affects the current message, which deprecates the method printer.clear()
+        output.append(Ansi.generateCode(Attribute.CLEAR));
 
         AnsiConsole.out.print(output.toString());
     }

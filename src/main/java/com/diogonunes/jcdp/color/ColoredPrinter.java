@@ -62,7 +62,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
         // required parameters
         private int _level;
         private boolean _timestampFlag;
-        // optional parameters - initialized to default values
+        // optional parameters - initialized with default values
         private Attribute _attribute = Attribute.NONE;
         private FColor _foregroundColor = FColor.NONE;
         private BColor _backgroundColor = BColor.NONE;
@@ -309,6 +309,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     public void clear() {
         getImpl().clear();
     }
@@ -393,19 +394,18 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
     public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
         getImpl().debugPrintln(msg, level, attr, fg, bg);
     }
-    
+
     /**
      * This method is called through the java.lang.AutoCloseable interface. It is called
      * when the garbage collector of the JVM determines that this object no longer has any
      * references being made to it. It is usually used for streams that must be closed in
      * order to assure that the data has made it's way through the stream.
      * <p>
-     * This method removes the need to call {@linkplain #clear()}. Do not call this method.
-     * 
+     * Do not call this method.
+     *
      * @author CodeDojo
      */
     @Override
     public void close() {
-        getImpl().clear();
     }
 }

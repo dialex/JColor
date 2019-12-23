@@ -68,6 +68,7 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
     // ===============
 
     @Override
+    @Deprecated
     public void clear() {
         setAttribute(Attribute.CLEAR);
         setForegroundColor(FColor.NONE);

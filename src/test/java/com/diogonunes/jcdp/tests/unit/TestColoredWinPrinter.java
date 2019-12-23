@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class TestColoredWinPrinter {
 
-    private final String newline = System.getProperty("line.separator");
+    private final String NEWLINE = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -146,7 +146,7 @@ public class TestColoredWinPrinter {
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -216,7 +216,7 @@ public class TestColoredWinPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + newline));
+        assertThat(errContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -229,7 +229,7 @@ public class TestColoredWinPrinter {
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), equalTo(msg + newline));
+        assertThat(outContent.toString(), equalTo(msg + NEWLINE));
     }
 
     @Test
@@ -516,6 +516,7 @@ public class TestColoredWinPrinter {
         assertThat("Message displays color instead of ansi code", messages[1], not(containsString(ansiCode2)));
     }
 
+    // TODO refactor: still needed?
     @Test
     public void ColoredPrint_Message_FontIsColoredEvenWithoutBColor() {
         // ARRANGE

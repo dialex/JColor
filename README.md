@@ -42,29 +42,38 @@ p.debugPrintln("Now this is printed because its level is <= 2", 2);
 // =======================================================
 // Example of a Colored terminal Printer (WINDOWS or UNIX)
 // =======================================================
+System.out.println("");
 
-ColoredPrinter cp = new ColoredPrinter.Builder(1, false)
-                        .foreground(FColor.WHITE).background(BColor.BLUE)   //setting format
-                        .build();
-
-//printing according to that format
+//setting a format for all messages
+ColoredPrinter cp = new ColoredPrinter.Builder(0, false)
+        .foreground(FColor.WHITE).background(BColor.BLUE)   //setting format
+        .build();
 cp.println(cp);
+cp.println("This printer will always format text with WHITE font on BLUE background.");
 cp.setAttribute(Attribute.REVERSE);
-cp.println("This is a normal message (with format reversed).");
+cp.println("From now on, that format is reversed.");
+System.out.println("ColoredPrinters do not affect System.* format.");
+cp.print("Even if");
+System.out.print(" you mix ");
+cp.println("the two.");
 
-//resetting the terminal to its default colors
-cp.clear();
-cp.print(cp.getDateFormatted(), Attribute.NONE, FColor.CYAN, BColor.BLACK);
-cp.debugPrintln(" This debug message is always printed.");
-cp.clear();
-cp.print("This example used JCDP 1.25   ");
+//using multiple printers for diff purposes
+ColoredPrinter cpWarn = new ColoredPrinter.Builder(1, true)
+        .foreground(FColor.RED)
+        .build();
+ColoredPrinter cpInfo = new ColoredPrinter.Builder(1, true)
+        .foreground(FColor.CYAN)
+        .build();
+cpWarn.println("This printer displays timestamps and warning messages.");
+cpInfo.println("And this printer can be used for info messages.");
 
-//temporarily overriding that format
+//overriding format per message
+cp = new ColoredPrinter.Builder(1, false)
+        .build();
+cp.print("This example used JCDP 3.0.2   ");
 cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
 cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
 cp.println("I hope you find it useful ;)");
-
-cp.clear(); //don't forget to clear the terminal's format before exiting
 ```
 
 ### Installation

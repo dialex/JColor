@@ -517,6 +517,26 @@ public class TestColoredWinPrinter {
     }
 
     @Test
+    public void ColoredPrint_Message_FormatDoesNotOverrideConsole() {
+        // ARRANGE
+        WindowsColoredPrinter printer = new WindowsColoredPrinter.Builder(0, false)
+                .foreground(Ansi.FColor.BLUE).background(Ansi.BColor.WHITE)
+                .build();
+        String printerMsg = DataGenerator.createMsg();
+        // Prevent jansi from interpreting ansi code, so that we can assert its existence
+        System.setProperty("jansi.passthrough", "true");
+        System.setOut(new PrintStream(outContent));
+
+        // ACT
+        printer.print(printerMsg);
+
+        // ASSERT
+        String resetAnsiCode = Ansi.generateCode(Ansi.Attribute.CLEAR);
+        assertThat("Printer ends with code to reset format", outContent.toString(), endsWith(resetAnsiCode));
+    }
+
+    // TODO refactor: still needed?
+    @Test
     public void ColoredPrint_Message_FontIsColoredEvenWithoutBColor() {
         // ARRANGE
         String msg = DataGenerator.createMsg();

@@ -2,7 +2,7 @@
 
 How to do stuff
 
-## New release
+## Release a new version
 
 - On GitHub,
   - Create PR
@@ -22,3 +22,15 @@ How to do stuff
   - Select tag that created by maven
   - Describe changes
 
+## Generate Javadoc
+
+- Locally,
+  - If after you prepared a new release...
+    - Copy the contents of folder `target/apidocs`
+  - If not...
+    - Run `mvn javadoc:javadoc` to generate docs
+    - Copy the contents of folder `target/site/apidocs/`
+  - Delete the contents of folder `docs`
+  - Paste your clipboard inside that folder
+  - Run `git add .; git commit -m "doc: update to version X.Y.Z`
+ 

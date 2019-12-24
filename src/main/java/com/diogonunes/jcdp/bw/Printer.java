@@ -49,7 +49,6 @@ public class Printer implements IPrinter {
         setImpl(implementation);
     }
 
-
     /**
      * @param b Builder with the desired configurations for the new printers.
      * @throws IllegalArgumentException if at least one argument is incorrect.
@@ -131,76 +130,121 @@ public class Printer implements IPrinter {
     // INTERFACE METHODS call implementation
     // =======================================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return getImpl().getLevel();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         getImpl().setLevel(level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDateFormatted() {
         return getImpl().getDateFormatted();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Date getDate() {
         return getImpl().getDate();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printTimestamp() {
         getImpl().printTimestamp();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printErrorTimestamp() {
         getImpl().printErrorTimestamp();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void print(Object msg) {
         getImpl().print(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void println(Object msg) {
         getImpl().println(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrint(Object msg) {
         getImpl().errorPrint(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void errorPrintln(Object msg) {
         getImpl().errorPrintln(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg) {
         getImpl().debugPrint(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrint(Object msg, int level) {
         getImpl().debugPrint(msg, level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg) {
         getImpl().debugPrintln(msg);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void debugPrintln(Object msg, int level) {
         getImpl().debugPrintln(msg, level);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return getImpl().toString();

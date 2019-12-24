@@ -87,7 +87,7 @@ You can import this dependency through Maven or Gradle, just [pick a version](ht
 
 #### Useful links
 
-- [Javadoc](http://dialex.github.io/JCDP/javadoc/)
+- [Javadoc](https://dialex.github.io/JCDP/)
 - [Changelog](https://github.com/dialex/JCDP/releases/)
 
 ### License

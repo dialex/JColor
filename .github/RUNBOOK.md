@@ -15,6 +15,7 @@ How to do stuff
     - Upgrading dependencies, increase minor (`*.Y.*`)
     - Fixing issues, increase patch (`*.*.Z`)
   - Run `mvn release:clean release:prepare`
+  - (See [Generate Javadoc](#Generate-Javadoc)
   - Run `mvn release:perform`
   - Run `git push`
 - On GitHub,

@@ -13,9 +13,13 @@ package com.diogonunes.jcdp.color.api;
 public class Ansi {
 
     /**
+     * Escape character used to start an ANSI code.
+     */
+    public static final char ESC = 27;
+    /**
      * Every Ansi escape code begins with this PREFIX.
      */
-    public static final String PREFIX = "\033[";
+    public static final String PREFIX = ESC + "[";
     /**
      * Two options must be separated by this SEPARATOR.
      */

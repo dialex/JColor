@@ -59,7 +59,7 @@ cp.println("the two.");
 
 //using multiple printers for diff purposes
 ColoredPrinter cpWarn = new ColoredPrinter.Builder(1, true)
-        .foreground(FColor.RED)
+        .foreground(FColor.YELLOW)
         .build();
 ColoredPrinter cpInfo = new ColoredPrinter.Builder(1, true)
         .foreground(FColor.CYAN)

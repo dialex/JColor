@@ -143,5 +143,4 @@ public interface IColoredPrinter extends IPrinter {
      * @param bg    specifies the background color
      */
     void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg);
-
 }

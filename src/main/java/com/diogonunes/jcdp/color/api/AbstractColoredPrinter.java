@@ -48,16 +48,25 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         return _backgroundColor;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setAttribute(Attribute a) {
         _attribute = a;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setForegroundColor(FColor c) {
         _foregroundColor = c;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBackgroundColor(BColor c) {
         _backgroundColor = c;

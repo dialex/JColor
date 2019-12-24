@@ -15,27 +15,39 @@ public abstract class AbstractPrinter implements IPrinter {
 
     private int _level;             // the current level of debug
     private DateFormat _dateFormat; // the format of date and time
-    private boolean _timestamping;
+    private boolean _timestamping;  // true if each msg should have a timestamp
 
     // =====================
     // GET and SET METHODS
     // =====================
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return _level;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLevel(int level) {
         _level = level;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDateFormatted() {
         return _dateFormat.format(getDate());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Date getDate() {
         return new Date();

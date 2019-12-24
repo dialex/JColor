@@ -1,4 +1,4 @@
-# <img src="https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/JCDP-logo.png" width="150">
+# <img src="https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/JCDP-logo.png" width="150">
 
 [![Travis build](https://img.shields.io/travis/dialex/jcdp)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JCDP)](https://mvnrepository.com/artifact/com.diogonunes/JCDP) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/app/dialex-nunes/JCDP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dialex/JCDP&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JCDP.svg)](https://github.com/dialex/JCDP/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
@@ -6,15 +6,15 @@
 
 ### Screenshots
 
-![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/ubuntu-console.png)
+![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/ubuntu-console.png)
 
 *Running on Ubuntu*
 
-![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/mac-iterm.png)
+![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/mac-iterm.png)
 
 *Running on MacOS X Yosemite (iTerm)*
 
-![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/doc/img/win8-cmd.png)
+![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/win8-cmd.png)
 
 *Running on Windows 8.1 (cmd)*
 

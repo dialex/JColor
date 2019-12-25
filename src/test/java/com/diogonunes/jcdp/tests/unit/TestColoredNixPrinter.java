@@ -549,21 +549,6 @@ public class TestColoredNixPrinter {
         assertThat("Second message has different ansi code", messages[1], containsString(ansiCode2));
     }
 
-    @Test
-    public void ColoredPrint_Message_FormatDoesNotOverrideConsole() {
-        // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false)
-                .foreground(Ansi.FColor.BLUE).background(Ansi.BColor.WHITE)
-                .build();
-        String printerMsg = DataGenerator.createMsg();
-
-        // ACT
-        printer.print(printerMsg);
-
-        // ASSERT
-        assertThat("Printer ends with code to reset format", outContent.toString(), endsWith(Ansi.RESET));
-    }
-
     // TODO refactor: still needed?
     @Test
     public void ColoredPrint_Message_FontIsColoredEvenWithoutBColor() {

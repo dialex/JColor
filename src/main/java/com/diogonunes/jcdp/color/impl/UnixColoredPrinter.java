@@ -146,7 +146,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        printWithFormat(msg, generateCode(), false);
+        formattedPrint(msg, generateCode(), false);
     }
 
     /**
@@ -154,7 +154,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        printWithFormat(msg, generateCode(attr, fg, bg), false);
+        formattedPrint(msg, generateCode(attr, fg, bg), false);
     }
 
     /**
@@ -162,7 +162,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        printWithFormat(msg, generateCode(), true);
+        formattedPrint(msg, generateCode(), true);
     }
 
     /**
@@ -170,7 +170,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        printWithFormat(msg, generateCode(attr, fg, bg), true);
+        formattedPrint(msg, generateCode(attr, fg, bg), true);
     }
 
     /**
@@ -306,7 +306,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
                 + getBackgroundColor().name();
     }
 
-    private void printWithFormat(Object msg, String ansiFormatCode, boolean appendNewline) {
+    private void formattedPrint(Object msg, String ansiFormatCode, boolean appendNewline) {
         StringBuilder output = new StringBuilder();
         output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
         output.append(msg);

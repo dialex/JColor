@@ -2,7 +2,7 @@ package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
-import helpers.DataGenerator;
+import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

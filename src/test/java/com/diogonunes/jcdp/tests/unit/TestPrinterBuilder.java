@@ -3,7 +3,7 @@ package com.diogonunes.jcdp.tests.unit;
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
-import helpers.DataGenerator;
+import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.Test;
 
 import java.text.DateFormat;

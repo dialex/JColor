@@ -1,7 +1,7 @@
 package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
-import helpers.DataGenerator;
+import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

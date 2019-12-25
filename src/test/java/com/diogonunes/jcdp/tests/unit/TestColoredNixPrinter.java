@@ -5,7 +5,7 @@ import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
-import helpers.DataGenerator;
+import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.*;
  */
 public class TestColoredNixPrinter {
 
-    private final String newline = System.getProperty("line.separator");
+    private final String NEWLINE = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
@@ -150,7 +150,8 @@ public class TestColoredNixPrinter {
         printer.println(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), containsString(msg + newline));
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat(outContent.toString(), endsWith(NEWLINE));
     }
 
     @Test
@@ -219,7 +220,7 @@ public class TestColoredNixPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + newline));
+        assertThat(errContent.toString(), equalTo(msg + NEWLINE));
     }
 
     // TODO refactor how it asserts formatting
@@ -227,13 +228,14 @@ public class TestColoredNixPrinter {
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
         UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
-        String msg = DataGenerator.createMsgWithId(0);
+        String msg = DataGenerator.createMsg();
 
         // ACT
         printer.debugPrintln(msg);
 
         // ASSERT
-        assertThat(outContent.toString(), containsString(msg + newline));
+        assertThat(outContent.toString(), containsString(msg));
+        assertThat(outContent.toString(), endsWith(NEWLINE));
     }
 
     // TODO refactor how it asserts formatting
@@ -559,8 +561,7 @@ public class TestColoredNixPrinter {
         printer.print(printerMsg);
 
         // ASSERT
-        String resetAnsiCode = Ansi.generateCode(Ansi.Attribute.CLEAR);
-        assertThat("Printer ends with code to reset format", outContent.toString(), endsWith(resetAnsiCode));
+        assertThat("Printer ends with code to reset format", outContent.toString(), endsWith(Ansi.RESET));
     }
 
     // TODO refactor: still needed?

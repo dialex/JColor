@@ -146,7 +146,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        printWithColor(msg, generateCode(), false);
+        printWithFormat(msg, generateCode(), false);
     }
 
     /**
@@ -154,7 +154,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        printWithColor(msg, generateCode(attr, fg, bg), false);
+        printWithFormat(msg, generateCode(attr, fg, bg), false);
     }
 
     /**
@@ -162,7 +162,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        printWithColor(msg, generateCode(), true);
+        printWithFormat(msg, generateCode(), true);
     }
 
     /**
@@ -170,7 +170,7 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        printWithColor(msg, generateCode(attr, fg, bg), true);
+        printWithFormat(msg, generateCode(attr, fg, bg), true);
     }
 
     /**
@@ -306,15 +306,13 @@ public class UnixColoredPrinter extends AbstractColoredPrinter {
                 + getBackgroundColor().name();
     }
 
-    private void printWithColor(Object msg, String ansiFormatCode, boolean appendNewline) {
+    private void printWithFormat(Object msg, String ansiFormatCode, boolean appendNewline) {
         StringBuilder output = new StringBuilder();
-        output.append(ansiFormatCode);
         output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
         output.append(msg);
         output.append(appendNewline ? NEWLINE : "");
-        // ensures the format only affects the current message, which deprecates the method printer.clear()
-        output.append(Ansi.generateCode(Attribute.CLEAR));
 
-        System.out.print(output.toString());
+        String formattedMsg = Ansi.formatMessage(output.toString(), ansiFormatCode);
+        System.out.print(formattedMsg);
     }
 }

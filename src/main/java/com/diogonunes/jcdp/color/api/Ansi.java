@@ -12,10 +12,9 @@ package com.diogonunes.jcdp.color.api;
  */
 public class Ansi {
 
-    /**
-     * Escape character used to start an ANSI code.
-     */
-    public static final char ESC = 27;
+    private static final String NEWLINE = System.getProperty("line.separator");
+    private static final char ESC = 27; // Escape character used to start an ANSI code
+
     /**
      * Every Ansi escape code begins with this PREFIX.
      */
@@ -28,6 +27,10 @@ public class Ansi {
      * Every Ansi escape code must end with this POSTFIX.
      */
     public static final String POSTFIX = "m";
+    /**
+     * Shorthand for the Ansi code that clears the current format and resets to the console's default.
+     */
+    public static final String RESET = PREFIX + Attribute.CLEAR + POSTFIX;
 
     /**
      * Enumeration of each Ansi code for Foreground Color.
@@ -150,5 +153,32 @@ public class Ansi {
 
         // because code must not end with SEPARATOR
         return builder.toString().replace(SEPARATOR + POSTFIX, POSTFIX);
+    }
+
+    /**
+     * Every formatted line should:
+     * 1) start with a code that sets the format;
+     * 2) end with a code that resets the format.
+     * This prevents "spilling" the format to other independent prints, which
+     * is noticeable when the background is colored. This method ensures those
+     * two rules, even when the original message contains newlines in itself.
+     *
+     * @param msg        Message to format, while preventing spillages
+     * @param ansiFormat Ansi format of each msg lines
+     * @return The formatted message, without formatting side-effects
+     */
+    public static String formatMessage(String msg, String ansiFormat) {
+        StringBuilder output = new StringBuilder();
+        boolean endsWithLine = msg.endsWith(NEWLINE);
+
+        String[] lines = msg.split(NEWLINE);
+        for (String line : lines) {
+            output.append(ansiFormat);
+            output.append(line);
+            output.append(Ansi.RESET);
+            if (endsWithLine)
+                output.append(NEWLINE);
+        }
+        return output.toString();
     }
 }

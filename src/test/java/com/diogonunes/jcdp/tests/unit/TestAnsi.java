@@ -3,7 +3,8 @@ package com.diogonunes.jcdp.tests.unit;
 import com.diogonunes.jcdp.color.api.Ansi;
 import org.junit.Test;
 
-import static org.hamcrest.Matchers.equalTo;
+import static com.diogonunes.jcdp.tests.helpers.DataGenerator.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -86,5 +87,53 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = Ansi.PREFIX + options[1] + Ansi.POSTFIX;
         assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void FormatMessage_MsgWithoutLine() {
+        // ARRANGE
+        Object[] options = new Object[]{Ansi.BColor.BLUE};
+        String msg = "words without lines";
+
+        // ACT
+        String code = Ansi.generateCode(options);
+        String formattedMsg = Ansi.formatMessage(msg, code);
+
+        // ASSERT
+        assertThat(formattedMsg, startsWith(code));
+        assertThat("Message should clear its format", formattedMsg, endsWith(Ansi.RESET));
+    }
+
+    @Test // Addresses https://github.com/dialex/JCDP/issues/38
+    public void FormatMessage_MsgWithLineEnd() {
+        // ARRANGE
+        Object[] options = new Object[]{Ansi.BColor.BLUE};
+        String msg = createMsgLine();
+
+        // ACT
+        String code = Ansi.generateCode(options);
+        String formattedMsg = Ansi.formatMessage(msg, code);
+
+        // ASSERT
+        assertThat(formattedMsg, startsWith(code));
+        assertThat("Format must be cleared before changing line, to avoid format spillage",
+                formattedMsg, endsWith(Ansi.RESET + NEWLINE));
+    }
+
+    @Test // Addresses https://github.com/dialex/JCDP/issues/38
+    public void FormatMessage_MsgMultiplesLines() {
+        // ARRANGE
+        Object[] options = new Object[]{Ansi.BColor.BLUE};
+        String msg1 = createMsgWithId(1), msg2 = createMsgWithId(2);
+        String fullMsg = msg1 + NEWLINE + msg2 + NEWLINE;
+
+        // ACT
+        String code = Ansi.generateCode(options);
+        String formattedMsg = Ansi.formatMessage(fullMsg, code);
+
+        // ASSERT
+        assertThat(formattedMsg, startsWith(code));
+        assertThat("Middle lines preserve format", formattedMsg, containsString(code + msg2 + Ansi.RESET));
+        assertThat(formattedMsg, endsWith(Ansi.RESET + NEWLINE));
     }
 }

@@ -70,7 +70,7 @@ cpInfo.println("And this printer can be used for info messages.");
 //overriding format per message
 cp = new ColoredPrinter.Builder(1, false)
         .build();
-cp.print("This example used JCDP 3.0.3   ");
+cp.print("This example used JCDP 3.0.4   ");
 cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
 cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
 cp.println("I hope you find it useful ;)");

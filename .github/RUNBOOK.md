@@ -33,5 +33,5 @@ How to do stuff
     - Copy the contents of folder `target/site/apidocs/`
   - Delete the contents of folder `docs`
   - Paste your clipboard inside that folder
-  - Run `git add .; git commit -m "doc: update to version X.Y.Z`
+  - Run `git add .; git commit -m "doc: update to version X.Y.Z"`
  

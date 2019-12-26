@@ -62,7 +62,7 @@ cpInfo.println("And this printer can be used for info messages.");
 //overriding format per message
 cp = new ColoredPrinter.Builder(1, false)
         .build();
-cp.print("This example used JCDP 3.0.4   ");
+cp.print("This example used JCDP 4.0.0   ");
 cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
 cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
 cp.println("I hope you find it useful ;)");
@@ -74,8 +74,9 @@ You can import this dependency through Maven or Gradle, just [pick a version](ht
 
 #### Requirements
 
-- JCDP `v3.*` (latest) supports Java +8, Linux, macOS, Windows
-- JCDP `v2.*` (legacy) supports Java +6, Linux, macOS, Windows
+- JCDP `v4.*` supports Java +8, Linux, macOS, Windows 10
+- JCDP `v3.*` supports Java +8, Linux, macOS, Windows
+- JCDP `v2.*` supports Java +6, Linux, macOS, Windows
 
 #### Useful links
 

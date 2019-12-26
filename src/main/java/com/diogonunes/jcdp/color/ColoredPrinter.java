@@ -6,7 +6,6 @@ import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.api.IColoredPrinter;
 import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
-import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,12 +45,8 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      * @param b Builder with the desired configurations for the new printers.
      */
     public ColoredPrinter(Builder b) {
-        if (System.getProperty("os.name").toLowerCase().startsWith("win"))
-            setImpl(new WindowsColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
-                    .attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
-        else
-            setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
-                    .attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
+        setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
+                .attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
     }
 
     /**

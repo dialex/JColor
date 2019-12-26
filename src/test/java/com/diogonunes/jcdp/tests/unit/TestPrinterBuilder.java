@@ -32,7 +32,7 @@ public class TestPrinterBuilder {
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
 
         // ACT
-        IPrinter printer = b.build();
+        Printer printer = b.build();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -47,7 +47,7 @@ public class TestPrinterBuilder {
         int number = 2;
 
         // ACT
-        IPrinter printer = b.level(number).build();
+        Printer printer = b.level(number).build();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -62,7 +62,7 @@ public class TestPrinterBuilder {
         int number = 3;
 
         // ACT
-        IPrinter printer = b.timestamping(true).level(number).withFormat(df).build();
+        Printer printer = b.timestamping(true).level(number).withFormat(df).build();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -77,7 +77,7 @@ public class TestPrinterBuilder {
 
         // ACT
         b.level(3).timestamping(true);
-        IPrinter printer = new Printer(b);
+        Printer printer = new Printer(b);
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));

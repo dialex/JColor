@@ -34,12 +34,6 @@ public interface IColoredPrinter extends IPrinter {
     void setBackgroundColor(BColor background);
 
     /**
-     * Clears the current format and sets it to terminal's default format.
-     */
-    @Deprecated
-    void clear();
-
-    /**
      * @return the ansi code which contains all three components' codes. This is
      * the code used to tell the terminal the format of the message.
      */

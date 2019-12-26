@@ -1,5 +1,6 @@
 package com.diogonunes.jcdp.tests.unit;
 
+import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
@@ -21,12 +22,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 /**
- * Tests for UnixColoredPrinter class.
+ * Tests for ColoredPrinter class.
  *
  * @author Diogo Nunes
- * @version 2.0
+ * @version 4.0.0
  */
-public class TestColoredNixPrinter {
+public class TestColoredPrinter {
 
     private final String NEWLINE = System.getProperty("line.separator");
     private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -85,13 +86,13 @@ public class TestColoredNixPrinter {
     @Test
     public void ToString_Description_DisplayName() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
 
         // ACT
         String description = printer.toString();
 
         // ASSERT
-        assertThat(description, containsString(UnixColoredPrinter.class.getSimpleName()));
+        assertThat(description, containsString(ColoredPrinter.class.getSimpleName()));
     }
 
     @Test
@@ -99,7 +100,7 @@ public class TestColoredNixPrinter {
         // ARRANGE
         boolean flag = true;
         int number = 1;
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(number, flag).build();
         String separator = " | ";
 
         // ACT
@@ -122,7 +123,7 @@ public class TestColoredNixPrinter {
         Attribute attr = Attribute.LIGHT;
         FColor fColor = FColor.MAGENTA;
         BColor bColor = BColor.CYAN;
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(number, flag).
+        ColoredPrinter printer = new ColoredPrinter.Builder(number, flag).
                 attribute(attr).foreground(fColor).background(bColor).build();
         String separator = " | ";
 
@@ -143,7 +144,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_Message_DisplayOnSysOut() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -157,7 +158,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_Message_DisplayTimestamp() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, true).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, true).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -173,7 +174,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -198,7 +199,7 @@ public class TestColoredNixPrinter {
     public void Print_Message_DisplayTimestampWithCustomDateFormat() {
         // ARRANGE
         DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, true).withFormat(timestampFormat).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, true).withFormat(timestampFormat).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(timestampFormat);
 
@@ -213,7 +214,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createErrorMsg();
 
         // ACT
@@ -227,7 +228,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -242,7 +243,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_DisplayAfterEnablingDebug() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(2);
 
         // ACT
@@ -258,7 +259,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_DisplayWithoutLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(1, false).build();
         String msgNoLevel = DataGenerator.createMsg();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
 
@@ -274,7 +275,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msgLevelZero = DataGenerator.createMsgWithId(0);
         String msgLevelOne = DataGenerator.createMsgWithId(1);
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
@@ -294,7 +295,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsgWithId(3);
 
         // ACT
@@ -309,7 +310,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_IgnoreIfLevelAbove() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msgLevelTwo = DataGenerator.createMsgWithId(2);
         String msgLevelThree = DataGenerator.createMsgWithId(3);
 
@@ -325,7 +326,7 @@ public class TestColoredNixPrinter {
     @Test
     public void Print_DebugMessage_IgnoreDebugIfDisabled() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
         String msg = DataGenerator.createMsg();
 
         // ACT
@@ -340,7 +341,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_AnsiCode_DelimitCodeWithAnsiTokens() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         Attribute attr = Attribute.UNDERLINE;
         FColor fColor = FColor.BLACK;
         BColor bColor = BColor.YELLOW;
@@ -358,7 +359,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAllProperties() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         Attribute attr = Attribute.DARK;
         FColor fColor = FColor.GREEN;
         BColor bColor = BColor.BLACK;
@@ -378,7 +379,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForAttributeOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         Attribute attr = Attribute.LIGHT;
         FColor fColor = FColor.NONE;
         BColor bColor = BColor.NONE;
@@ -396,7 +397,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForForegroundColorOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         Attribute attr = Attribute.NONE;
         FColor fColor = FColor.RED;
         BColor bColor = BColor.NONE;
@@ -414,7 +415,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_AnsiCode_GenerateForBackgroundColorOnly() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         Attribute attr = Attribute.NONE;
         FColor fColor = FColor.NONE;
         BColor bColor = BColor.MAGENTA;
@@ -435,7 +436,7 @@ public class TestColoredNixPrinter {
     public void ColoredPrint_AnsiCode_FColorIsPrintedWithoutBColor() {
         // ARRANGE
         String msg = DataGenerator.createMsg();
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).
+        ColoredPrinter printer = new ColoredPrinter.Builder(1, true).
                 background(BColor.NONE).foreground(FColor.MAGENTA).
                 build();
 
@@ -451,7 +452,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_Message_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.LIGHT).
                 foreground(FColor.GREEN).
                 background(BColor.BLACK).build();
@@ -469,7 +470,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_ErrorMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.BOLD).
                 foreground(FColor.WHITE).
                 background(BColor.RED).build();
@@ -487,7 +488,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_DebugMessage_GlobalFormatContainsAnsiCode() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.LIGHT).
                 foreground(FColor.CYAN).
                 background(BColor.BLUE).build();
@@ -505,7 +506,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_Message_SingleMessageFormat() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
         Attribute attr1 = Attribute.LIGHT;
         FColor fColor1 = FColor.MAGENTA;
@@ -525,7 +526,7 @@ public class TestColoredNixPrinter {
     @Test
     public void ColoredPrint_Message_SingleMessageWithTwoFormats() {
         // ARRANGE
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String separator = DataGenerator.createSeparator();
         String msg = DataGenerator.createMsg();
         Attribute attr1 = Attribute.LIGHT;
@@ -558,7 +559,7 @@ public class TestColoredNixPrinter {
         BColor bColor = BColor.NONE;
         Attribute attr = Attribute.NONE;
 
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(1, false).build();
         printer.setForegroundColor(fColor);
 
         // ACT
@@ -573,7 +574,7 @@ public class TestColoredNixPrinter {
     public void ColoredPrint_Message_CustomFormatOverridesPrinterConfigWithTimestampActive() {
         // ARRANGE
         String msg = DataGenerator.createMsg();
-        UnixColoredPrinter printer = new UnixColoredPrinter.Builder(1, true).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(1, true).build();
         Attribute attr = Attribute.NONE;
         BColor bColor = BColor.NONE;
 

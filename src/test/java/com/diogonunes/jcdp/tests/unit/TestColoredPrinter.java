@@ -5,7 +5,7 @@ import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
-import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -58,7 +58,7 @@ public class TestColoredPrinter {
         // ARRANGE
 
         // ACT
-        UnixColoredPrinter printer = new UnixColoredPrinter();
+        ColoredPrinter printer = new ColoredPrinter();
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -72,10 +72,10 @@ public class TestColoredPrinter {
         // ARRANGE
         boolean flag = true;
         int number = 1;
-        UnixColoredPrinter.Builder b = new UnixColoredPrinter.Builder(number, flag);
+        ColoredPrinter.Builder b = new ColoredPrinter.Builder(number, flag);
 
         // ACT
-        UnixColoredPrinter printer = new UnixColoredPrinter(b);
+        ColoredPrinter printer = new ColoredPrinter(b);
 
         // ASSERT
         assertThat(printer, not(equalTo(null)));
@@ -174,7 +174,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
+        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
         String msg = DataGenerator.createMsg();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -189,6 +189,7 @@ public class TestColoredPrinter {
 
         // ACT
         printer.setTimestamping(true);
+        assertThat(printer.isLoggingTimestamps(), is(true));
         printer.print(msg);
         // ASSERT
         assertThat(outContent.toString(), containsString(msg));

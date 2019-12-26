@@ -9,7 +9,7 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * This class is a template of a Colored Printer, hence it contains what is
  * common to each Colored Printer implementation offered by the library. Each
  * Colored Printer of this package should extend this class and thus implement
- * {@link com.diogonunes.jcdp.color.ColoredPrinter} interface.
+ * {@link IColoredPrinter} interface.
  *
  * @author Diogo Nunes
  * @version 1.2 beta

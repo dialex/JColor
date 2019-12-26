@@ -2,11 +2,10 @@ package com.diogonunes.jcdp.tests.acceptance;
 
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.Printer.Types;
-import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
-import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import com.diogonunes.jcdp.color.ColoredPrinter;
 import org.junit.Ignore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -75,13 +74,13 @@ public class TestHumanEye {
     @Ignore // Covers https://github.com/dialex/JCDP/issues/6
     public void ShouldColorForegroundEvenWithoutBackground() {
         // ARRANGE
-        UnixColoredPrinter cpUnix = new UnixColoredPrinter.Builder(0, false)
+        ColoredPrinter cp = new ColoredPrinter.Builder(0, false)
                 .foreground(FColor.YELLOW)
                 .build();
 
         // ACT
-        cpUnix.println("Should have YELLOW foreground");
-        cpUnix.clear();
+        cp.println("Should have YELLOW foreground");
+        cp.clear();
 
         // ASSERT
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));

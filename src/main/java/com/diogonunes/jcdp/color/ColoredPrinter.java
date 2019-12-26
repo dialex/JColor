@@ -61,7 +61,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
         private Attribute _attribute = Attribute.NONE;
         private FColor _foregroundColor = FColor.NONE;
         private BColor _backgroundColor = BColor.NONE;
-        private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        private DateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         /**
          * The Colored Printer created, by default, has no format. It comes with

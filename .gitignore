@@ -30,6 +30,7 @@ target/
 .settings
 dependency-reduced-pom.xml
 release.properties
+*.releaseBackup
 
 ## ============================================================================
 ## gitignore for JetBrains: IntelliJ, Android Studio, ...

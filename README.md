@@ -6,21 +6,13 @@
 
 ### Screenshots
 
-![Ubuntu screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/ubuntu-console.png)
+![JCDP running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-mac-iterm-304-fancy.png)
 
-*Running on Ubuntu*
-
-![MacIterm screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/mac-iterm.png)
-
-*Running on MacOS X Yosemite (iTerm)*
-
-![Win8cmd screenshot](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/win8-cmd.png)
-
-*Running on Windows 8.1 (cmd)*
+How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-IntelliJ-304.png)
 
 ### Usage
 
-The screenshots above were produced by running this example code:
+The screenshot was the result of running this demo code:
 
 ```java
 // =============================
@@ -82,8 +74,8 @@ You can import this dependency through Maven or Gradle, just [pick a version](ht
 
 #### Requirements
 
-- JCDP `v3.*` (latest) supports Java +8, Linux, Mac, Windows
-- JCDP `v2.*` (legacy) supports Java +6, Linux, Mac, Windows
+- JCDP `v3.*` (latest) supports Java +8, Linux, macOS, Windows
+- JCDP `v2.*` (legacy) supports Java +6, Linux, macOS, Windows
 
 #### Useful links
 
@@ -97,4 +89,4 @@ This program is licensed under the terms of the MIT License and it comes with AB
 
 ### Credits
 
-A big thanks to all [contributors](https://github.com/dialex/JCDP/graphs/contributors), specially [@xafero](https://github.com/xafero) who _maven-ized_ this whole project.
+A big thanks to all [contributors](https://github.com/dialex/JCDP/graphs/contributors), namely [@xafero](https://github.com/xafero) who _maven-ized_ this project.

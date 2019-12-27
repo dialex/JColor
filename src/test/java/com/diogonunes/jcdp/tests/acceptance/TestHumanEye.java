@@ -2,11 +2,10 @@ package com.diogonunes.jcdp.tests.acceptance;
 
 import com.diogonunes.jcdp.bw.Printer;
 import com.diogonunes.jcdp.bw.Printer.Types;
-import com.diogonunes.jcdp.color.ColoredPrinter;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
-import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
+import com.diogonunes.jcdp.color.ColoredPrinter;
 import org.junit.Ignore;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -64,7 +63,7 @@ public class TestHumanEye {
         //overriding format per message
         cp = new ColoredPrinter.Builder(1, false)
                 .build();
-        cp.print("This example used JCDP 3.0.4   ");
+        cp.print("This example used JCDP 4.0.0   ");
         cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
         cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
         cp.println("I hope you find it useful ;)");
@@ -75,13 +74,13 @@ public class TestHumanEye {
     @Ignore // Covers https://github.com/dialex/JCDP/issues/6
     public void ShouldColorForegroundEvenWithoutBackground() {
         // ARRANGE
-        UnixColoredPrinter cpUnix = new UnixColoredPrinter.Builder(0, false)
+        ColoredPrinter cp = new ColoredPrinter.Builder(0, false)
                 .foreground(FColor.YELLOW)
                 .build();
 
         // ACT
-        cpUnix.println("Should have YELLOW foreground");
-        cpUnix.clear();
+        cp.println("Should have YELLOW foreground");
+        cp.clear();
 
         // ASSERT
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));

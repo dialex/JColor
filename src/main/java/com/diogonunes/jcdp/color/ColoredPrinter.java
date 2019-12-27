@@ -1,58 +1,53 @@
 package com.diogonunes.jcdp.color;
 
+import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.color.api.AbstractColoredPrinter;
+import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
 import com.diogonunes.jcdp.color.api.IColoredPrinter;
-import com.diogonunes.jcdp.color.impl.UnixColoredPrinter;
-import com.diogonunes.jcdp.color.impl.WindowsColoredPrinter;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
+//TODO remove all author and version tags from comments
 /**
- * If you want to create a Colored Printer this is the only class you should
- * use. This is your Colored Printers Factory and it abstracts the creation of a
- * Colored Printer and its real implementation. It offers two types of
- * constructors, one for static and other for dynamic printers. If you use the
- * static constructor you will use one implementation offered by the library. If
- * you use the dynamic constructor you must pass as argument an instance of any
- * class that implements {@link IColoredPrinter} interface.
- *
- * @author Diogo Nunes
- * @version 2.0
+ * If you want to create a ColoredPrinter this is the class you should use. This class lets
+ * you define a format once and print all messages using that format.
+ * Check the {@link IColoredPrinter} for the full API. This class also implements all abstract
+ * methods inherited from the {@link AbstractColoredPrinter} class.
  */
-public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
+public class ColoredPrinter extends AbstractColoredPrinter {
 
-    // object with printer's implementation
-    private AbstractColoredPrinter _impl;
-
-    // ===========================
-    // CONSTRUCTORS and BUILDERS
-    // ===========================
+    //TODO refactor: move shared constants to shared Constant class
+    private final String NEWLINE = System.getProperty("line.separator");
 
     /**
-     * Constructor of dynamic printers.
+     * Constructor (using defaults): creates a Colored Printer with no format,
+     * zero level of debug and timestamping active according to ISO 8601.
+     */
+    public ColoredPrinter() {
+        this(new Builder(0, false));
+    }
+
+    /**
+     * Constructor using builder.
      *
-     * @param implementation of {@link IColoredPrinter}
+     * @param builder Builder with the desired configurations.
      */
-    public ColoredPrinter(AbstractColoredPrinter implementation) {
-        setImpl(implementation);
+    public ColoredPrinter(Builder builder) {
+        setLevel(builder._level);
+        setTimestamping(builder._timestampFlag);
+        setDateFormat(builder._dateFormat);
+        setAttribute(builder._attribute);
+        setForegroundColor(builder._foregroundColor);
+        setBackgroundColor(builder._backgroundColor);
     }
 
-    /**
-     * @param b Builder with the desired configurations for the new printers.
-     */
-    public ColoredPrinter(Builder b) {
-        if (System.getProperty("os.name").toLowerCase().startsWith("win"))
-            setImpl(new WindowsColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
-                    .attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
-        else
-            setImpl(new UnixColoredPrinter.Builder(b._level, b._timestampFlag).withFormat(b._dateFormat)
-                    .attribute(b._attribute).foreground(b._foregroundColor).background(b._backgroundColor).build());
-    }
+    // =========
+    // BUILDER
+    // =========
 
     /**
      * Builder pattern: allows the caller to specify the attributes that it
@@ -62,15 +57,15 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
         // required parameters
         private int _level;
         private boolean _timestampFlag;
-        // optional parameters - initialized with default values
+        // optional parameters - initialized to default values
         private Attribute _attribute = Attribute.NONE;
         private FColor _foregroundColor = FColor.NONE;
         private BColor _backgroundColor = BColor.NONE;
-        private DateFormat _dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        private DateFormat _dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         /**
-         * The Colored Printer created, by default, has no format. It comes with
-         * timestamping active and zero level of debug.
+         * The Colored Printer created, by default, has no format. So it's just
+         * like a usual Printer {@link IPrinter}.
          *
          * @param level  specifies the maximum level of debug this printer can
          *               print.
@@ -79,25 +74,6 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
         public Builder(int level, boolean tsFlag) {
             _level = level;
             _timestampFlag = tsFlag;
-        }
-
-        /**
-         * @param level specifies the maximum level of debug this printer can
-         *              print.
-         * @return the builder.
-         */
-        public Builder level(int level) {
-            this._level = level;
-            return this;
-        }
-
-        /**
-         * @param flag true, if you want a timestamp before each message.
-         * @return the builder.
-         */
-        public Builder timestamping(boolean flag) {
-            this._timestampFlag = flag;
-            return this;
         }
 
         /**
@@ -137,7 +113,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
         }
 
         /**
-         * @return a new instance of a Colored Printer.
+         * @return a new instance of ColoredPrinterNIX.
          */
         public ColoredPrinter build() {
             return new ColoredPrinter(this);
@@ -145,60 +121,16 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
 
     }
 
-    // =====================
-    // GET and SET METHODS
-    // =====================
-
-    private AbstractColoredPrinter getImpl() {
-        return _impl;
-    }
-
-    private void setImpl(AbstractColoredPrinter impl) {
-        _impl = impl;
-    }
-
-    // =======================================
-    // INTERFACE METHODS call implementation
-    // =======================================
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getLevel() {
-        return getImpl().getLevel();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setLevel(int level) {
-        getImpl().setLevel(level);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getDateFormatted() {
-        return getImpl().getDateFormatted();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Date getDate() {
-        return new Date();
-    }
+    // =================================
+    // OTHER METHODS (implementations)
+    // =================================
 
     /**
      * {@inheritDoc}
      */
     @Override
     public void printTimestamp() {
-        getImpl().printTimestamp();
+        System.out.print(generateCode() + getDateFormatted() + " ");
     }
 
     /**
@@ -206,7 +138,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void printErrorTimestamp() {
-        getImpl().printTimestamp();
+        System.err.print(generateCode() + getDateFormatted() + " ");
     }
 
     /**
@@ -214,121 +146,7 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void print(Object msg) {
-        getImpl().print(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void println(Object msg) {
-        getImpl().println(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void errorPrint(Object msg) {
-        getImpl().errorPrint(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void errorPrintln(Object msg) {
-        getImpl().errorPrintln(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void debugPrint(Object msg) {
-        getImpl().debugPrint(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void debugPrint(Object msg, int level) {
-        getImpl().debugPrint(msg, level);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void debugPrintln(Object msg) {
-        getImpl().debugPrintln(msg);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void debugPrintln(Object msg, int level) {
-        getImpl().debugPrintln(msg, level);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return getImpl().toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setAttribute(Attribute attr) {
-        getImpl().setAttribute(attr);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setForegroundColor(FColor foreground) {
-        getImpl().setForegroundColor(foreground);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setBackgroundColor(BColor background) {
-        getImpl().setBackgroundColor(background);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Deprecated
-    public void clear() {
-        getImpl().clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @Deprecated
-    public String generateCode() {
-        return getImpl().generateCode();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String generateCode(Attribute attr, FColor foreground, BColor background) {
-        return getImpl().generateCode(attr, foreground, background);
+        formattedPrint(msg, generateCode(), false);
     }
 
     /**
@@ -336,7 +154,15 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().print(msg, attr, fg, bg);
+        formattedPrint(msg, generateCode(attr, fg, bg), false);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void println(Object msg) {
+        formattedPrint(msg, generateCode(), true);
     }
 
     /**
@@ -344,7 +170,20 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().println(msg, attr, fg, bg);
+        formattedPrint(msg, generateCode(attr, fg, bg), true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void errorPrint(Object msg) {
+        if (isLoggingTimestamps()) {
+            printErrorTimestamp();
+        } else {
+            System.err.print(generateCode());
+        }
+        System.err.print(msg);
     }
 
     /**
@@ -352,7 +191,25 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().errorPrint(msg, attr, fg, bg);
+        if (isLoggingTimestamps()) {
+            printTimestamp();
+        } else {
+            System.out.print(generateCode(attr, fg, bg));
+        }
+        System.err.print(msg);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void errorPrintln(Object msg) {
+        if (isLoggingTimestamps()) {
+            printTimestamp();
+        } else {
+            System.out.print(generateCode());
+        }
+        System.err.println(msg);
     }
 
     /**
@@ -360,7 +217,21 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().errorPrintln(msg, attr, fg, bg);
+        if (isLoggingTimestamps()) {
+            printTimestamp();
+        } else {
+            System.out.print(generateCode(attr, fg, bg));
+        }
+        System.err.println(msg);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void debugPrint(Object msg) {
+        if (isLoggingDebug())
+            print(msg);
     }
 
     /**
@@ -368,7 +239,17 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void debugPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().debugPrint(msg, attr, fg, bg);
+        if (isLoggingDebug())
+            print(msg, attr, fg, bg);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void debugPrint(Object msg, int level) {
+        if (isLoggingDebug() && canPrint(level))
+            print(msg);
     }
 
     /**
@@ -376,7 +257,16 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void debugPrint(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
-        getImpl().debugPrint(msg, level, attr, fg, bg);
+        if (canPrint(level))
+            print(msg, attr, fg, bg);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void debugPrintln(Object msg) {
+        println(msg);
     }
 
     /**
@@ -384,7 +274,16 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void debugPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-        getImpl().debugPrintln(msg, attr, fg, bg);
+        println(msg, attr, fg, bg);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void debugPrintln(Object msg, int level) {
+        if (canPrint(level))
+            println(msg);
     }
 
     /**
@@ -392,20 +291,28 @@ public class ColoredPrinter implements IColoredPrinter, AutoCloseable {
      */
     @Override
     public void debugPrintln(Object msg, int level, Attribute attr, FColor fg, BColor bg) {
-        getImpl().debugPrintln(msg, level, attr, fg, bg);
+        if (canPrint(level))
+            println(msg, attr, fg, bg);
     }
 
     /**
-     * This method is called through the java.lang.AutoCloseable interface. It is called
-     * when the garbage collector of the JVM determines that this object no longer has any
-     * references being made to it. It is usually used for streams that must be closed in
-     * order to assure that the data has made it's way through the stream.
-     * <p>
-     * Do not call this method.
-     *
-     * @author CodeDojo
+     * @return The text representation of the Printer.
      */
     @Override
-    public void close() {
+    public String toString() {
+        return getClass().getSimpleName() + " | level: " + getLevel() + " | timestamping: "
+                + isLoggingTimestamps() + " | Attribute: " + getAttribute().name()
+                + " | Foreground color: " + getForegroundColor().name() + " | Background color: "
+                + getBackgroundColor().name();
+    }
+
+    private void formattedPrint(Object msg, String ansiFormatCode, boolean appendNewline) {
+        StringBuilder output = new StringBuilder();
+        output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
+        output.append(msg);
+        output.append(appendNewline ? NEWLINE : "");
+
+        String formattedMsg = Ansi.formatMessage(output.toString(), ansiFormatCode);
+        System.out.print(formattedMsg);
     }
 }

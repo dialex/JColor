@@ -3,10 +3,9 @@ package com.diogonunes.jcdp.tests.helpers;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class DataGenerator {
+import static com.diogonunes.jcdp.Constants.NEWLINE;
 
-    public static final String NEWLINE = System.getProperty("line.separator");
-    public static final String DATE_FORMAT_ISO8601 = "yyyy-MM-dd HH:mm:ss";
+public class DataGenerator {
 
     public static String createText() {
         return "Message";

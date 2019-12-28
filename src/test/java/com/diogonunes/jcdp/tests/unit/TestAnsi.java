@@ -3,7 +3,9 @@ package com.diogonunes.jcdp.tests.unit;
 import com.diogonunes.jcdp.color.api.Ansi;
 import org.junit.Test;
 
-import static com.diogonunes.jcdp.tests.helpers.DataGenerator.*;
+import static com.diogonunes.jcdp.Constants.NEWLINE;
+import static com.diogonunes.jcdp.tests.helpers.DataGenerator.createTextLine;
+import static com.diogonunes.jcdp.tests.helpers.DataGenerator.createTextWithId;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 

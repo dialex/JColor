@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 
+import static com.diogonunes.jcdp.Constants.DATE_FORMAT_ISO8601;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -125,7 +126,7 @@ public class TestTerminalPrinter {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, true).build();
         String msg = DataGenerator.createText();
-        String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
+        String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
         // ACT
@@ -141,7 +142,7 @@ public class TestTerminalPrinter {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
         String msg = DataGenerator.createText();
-        String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
+        String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
         // ACT

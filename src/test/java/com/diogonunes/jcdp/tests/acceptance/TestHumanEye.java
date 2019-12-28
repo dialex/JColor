@@ -80,7 +80,6 @@ public class TestHumanEye {
 
         // ACT
         cp.println("Should have YELLOW foreground");
-        cp.clear();
 
         // ASSERT
         assertThat("This test is for humans only, so it always passes on CI", true, is(true));

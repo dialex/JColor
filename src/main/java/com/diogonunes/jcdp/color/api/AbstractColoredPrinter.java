@@ -75,15 +75,6 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
 
     @Override
     @Deprecated
-    public void clear() {
-        setAttribute(Attribute.CLEAR);
-        setForegroundColor(FColor.NONE);
-        setBackgroundColor(BColor.NONE);
-        print(""); // refresh terminal line, so that the changes take immediate effect
-    }
-
-    @Override
-    @Deprecated
     public String generateCode() {
         Attribute attr = getAttribute();
         FColor fColor = getForegroundColor();

@@ -11,7 +11,6 @@ import com.diogonunes.jcdp.color.api.IColoredPrinter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//TODO remove all author and version tags from comments
 /**
  * If you want to create a ColoredPrinter this is the class you should use. This class lets
  * you define a format once and print all messages using that format.

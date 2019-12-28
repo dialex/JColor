@@ -18,9 +18,6 @@ import static org.hamcrest.Matchers.*;
 
 /**
  * Tests for TerminalPrinter class.
- *
- * @author Diogo Nunes
- * @version 2.0
  */
 public class TestTerminalPrinter {
 

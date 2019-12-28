@@ -10,9 +10,6 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * common to each Colored Printer implementation offered by the library. Each
  * Colored Printer of this package should extend this class and thus implement
  * {@link IColoredPrinter} interface.
- *
- * @author Diogo Nunes
- * @version 1.2 beta
  */
 public abstract class AbstractColoredPrinter extends AbstractPrinter implements IColoredPrinter {
 

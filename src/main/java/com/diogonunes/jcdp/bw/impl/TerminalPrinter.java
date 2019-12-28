@@ -9,9 +9,6 @@ import java.text.SimpleDateFormat;
  * This class is a Terminal implementation of the Printer interface, hence all
  * output is sent to standard output. It implements all abstract methods
  * inherited from the {@link AbstractPrinter} class.
- *
- * @author Diogo Nunes
- * @version 2.0
  */
 public class TerminalPrinter extends AbstractPrinter {
 

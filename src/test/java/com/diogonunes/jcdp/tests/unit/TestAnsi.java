@@ -9,9 +9,6 @@ import static org.junit.Assert.assertThat;
 
 /**
  * Tests for Ansi class.
- *
- * @author Diogo Nunes
- * @version 3.1
  */
 public class TestAnsi {
 

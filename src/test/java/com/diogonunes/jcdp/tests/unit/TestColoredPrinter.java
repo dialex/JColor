@@ -22,9 +22,6 @@ import static org.hamcrest.Matchers.*;
 
 /**
  * Tests for ColoredPrinter class.
- *
- * @author Diogo Nunes
- * @version 4.0.0
  */
 public class TestColoredPrinter {
 

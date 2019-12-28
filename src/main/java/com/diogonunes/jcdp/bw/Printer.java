@@ -16,9 +16,6 @@ import java.util.Date;
  * an implementation {@link Printer.Types} offered by the library. If you
  * use the dynamic constructor you must pass as argument an instance of any
  * class that implements {@link IPrinter} interface.
- *
- * @author Diogo Nunes
- * @version 2.0
  */
 public class Printer implements IPrinter {
 

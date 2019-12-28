@@ -13,9 +13,6 @@ import java.util.Date;
  * i.e. the Printer must have a level of debug equal of greater than the level
  * of the message. By convention, if the Printer has a level of debug of zero
  * than all debug messages should be printed.
- *
- * @author Diogo Nunes
- * @version 2.0
  */
 public interface IPrinter {
 

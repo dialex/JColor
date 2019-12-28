@@ -7,9 +7,6 @@ import java.util.Date;
  * This class is a template of a Printer, hence it contains what is common to
  * each Printer implementation offered by the library. Each Printer of this
  * package should extend this class and thus implement Printer interface.
- *
- * @author Diogo Nunes
- * @version 1.15 beta
  */
 public abstract class AbstractPrinter implements IPrinter {
 

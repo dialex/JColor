@@ -1,7 +1,6 @@
 package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.color.ColoredPrinter;
-import com.diogonunes.jcdp.color.api.Ansi;
 import com.diogonunes.jcdp.color.api.Ansi.Attribute;
 import com.diogonunes.jcdp.color.api.Ansi.BColor;
 import com.diogonunes.jcdp.color.api.Ansi.FColor;
@@ -336,118 +335,8 @@ public class TestColoredPrinter {
         assertThat(outContent.toString(), not(containsString(msg)));
     }
 
-    //TODO Move to TestAnsi and refactor
     @Test
-    public void ColoredPrint_AnsiCode_DelimitCodeWithAnsiTokens() {
-        // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
-        Attribute attr = Attribute.UNDERLINE;
-        FColor fColor = FColor.BLACK;
-        BColor bColor = BColor.YELLOW;
-
-        // ACT
-        String ansiCode = printer.generateCode(attr, fColor, bColor);
-        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
-
-        // ASSERT
-        assertThat("Code starts with Ansi Prefix", codeTokens[0], containsString(Ansi.PREFIX));
-        assertThat("Code ends with Ansi Postfix", codeTokens[codeTokens.length - 1], containsString(Ansi.POSTFIX));
-    }
-
-    //TODO Move to TestAnsi and refactor
-    @Test
-    public void ColoredPrint_AnsiCode_GenerateForAllProperties() {
-        // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
-        Attribute attr = Attribute.DARK;
-        FColor fColor = FColor.GREEN;
-        BColor bColor = BColor.BLACK;
-
-        // ACT
-        String ansiCode = printer.generateCode(attr, fColor, bColor);
-        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
-
-        // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(3));
-        assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
-        assertThat("Code contains foreground color", codeTokens[1], containsString(fColor.toString()));
-        assertThat("Code contains background color", codeTokens[2], containsString(bColor.toString()));
-    }
-
-    //TODO Move to TestAnsi and refactor
-    @Test
-    public void ColoredPrint_AnsiCode_GenerateForAttributeOnly() {
-        // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
-        Attribute attr = Attribute.LIGHT;
-        FColor fColor = FColor.NONE;
-        BColor bColor = BColor.NONE;
-
-        // ACT
-        String ansiCode = printer.generateCode(attr, fColor, bColor);
-        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
-
-        // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
-        assertThat("Code contains attribute", codeTokens[0], containsString(attr.toString()));
-    }
-
-    //TODO Move to TestAnsi and refactor
-    @Test
-    public void ColoredPrint_AnsiCode_GenerateForForegroundColorOnly() {
-        // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
-        Attribute attr = Attribute.NONE;
-        FColor fColor = FColor.RED;
-        BColor bColor = BColor.NONE;
-
-        // ACT
-        String ansiCode = printer.generateCode(attr, fColor, bColor);
-        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
-
-        // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
-        assertThat("Code contain foreground color", codeTokens[0], containsString(fColor.toString()));
-    }
-
-    //TODO Move to TestAnsi and refactor
-    @Test
-    public void ColoredPrint_AnsiCode_GenerateForBackgroundColorOnly() {
-        // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
-        Attribute attr = Attribute.NONE;
-        FColor fColor = FColor.NONE;
-        BColor bColor = BColor.MAGENTA;
-
-        // ACT
-        String ansiCode = printer.generateCode(attr, fColor, bColor);
-        String[] codeTokens = ansiCode.split(Pattern.quote(Ansi.SEPARATOR));
-
-        // ASSERT
-        assertThat("Code contains all attributes", codeTokens.length, equalTo(1));
-        assertThat("Code contains background color", codeTokens[0], containsString(bColor.toString()));
-    }
-
-    // TODO should be a unit test of Ansi class
-    @Test // Addresses https://github.com/dialex/JCDP/issues/6
-    public void ColoredPrint_AnsiCode_FColorIsPrintedWithoutBColor() {
-        // ARRANGE
-        String msg = DataGenerator.createText();
-        ColoredPrinter printer = new ColoredPrinter.Builder(1, true).
-                background(BColor.NONE).foreground(FColor.MAGENTA).
-                build();
-
-        // ACT
-        String ansiCode = printer.generateCode();
-        System.out.println(ansiCode);
-
-        // ASSERT
-        int suffixIndex = ansiCode.lastIndexOf(Ansi.POSTFIX);
-        assertThat("Code ending in semicolon does not show color", ansiCode.charAt(suffixIndex - 1), is(not(';')));
-    }
-
-    @Test
-    public void ColoredPrint_Message_GlobalFormatContainsAnsiCode() {
+    public void ColoredPrint_Message_ContainsAnsiCode() {
         // ARRANGE
         ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.LIGHT).

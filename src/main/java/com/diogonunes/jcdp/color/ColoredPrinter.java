@@ -11,7 +11,8 @@ import com.diogonunes.jcdp.color.api.IColoredPrinter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//TODO remove all author and version tags from comments
+import static com.diogonunes.jcdp.Constants.NEWLINE;
+
 /**
  * If you want to create a ColoredPrinter this is the class you should use. This class lets
  * you define a format once and print all messages using that format.
@@ -19,9 +20,6 @@ import java.text.SimpleDateFormat;
  * methods inherited from the {@link AbstractColoredPrinter} class.
  */
 public class ColoredPrinter extends AbstractColoredPrinter {
-
-    //TODO refactor: move shared constants to shared Constant class
-    private final String NEWLINE = System.getProperty("line.separator");
 
     /**
      * Constructor (using defaults): creates a Colored Printer with no format,

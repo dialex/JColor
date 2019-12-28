@@ -14,9 +14,6 @@ import com.diogonunes.jcdp.color.api.Ansi.FColor;
  * Every Colored Printer must store internally a current format. Every print
  * must reflect this format. It must also offer ways to print a message with a
  * format that momentously overrides the current format.
- *
- * @author Diogo Nunes
- * @version 1.2 beta
  */
 public interface IColoredPrinter extends IPrinter {
 

@@ -1,18 +1,17 @@
 package com.diogonunes.jcdp.color.api;
 
+import static com.diogonunes.jcdp.Constants.NEWLINE;
+
 /**
  * This class stores enums used to generate a Ansi escape code. There is one
  * enum for each component of the print format: Attribute, Foreground Color,
  * Background Color.
  *
- * @author Diogo Nunes
- * @version 1.2
  * @see <a href="http://ascii-table.com/ansi-escape-sequences.php">Ansi escape
  * codes</a>
  */
 public class Ansi {
 
-    private static final String NEWLINE = System.getProperty("line.separator");
     private static final char ESC = 27; // Escape character used to start an ANSI code
 
     /**

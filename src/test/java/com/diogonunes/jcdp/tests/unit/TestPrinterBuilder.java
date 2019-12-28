@@ -1,14 +1,13 @@
 package com.diogonunes.jcdp.tests.unit;
 
 import com.diogonunes.jcdp.bw.Printer;
-import com.diogonunes.jcdp.bw.api.IPrinter;
 import com.diogonunes.jcdp.bw.impl.TerminalPrinter;
-import com.diogonunes.jcdp.tests.helpers.DataGenerator;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import static com.diogonunes.jcdp.Constants.DATE_FORMAT_ISO8601;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -58,7 +57,7 @@ public class TestPrinterBuilder {
     public void Printer_Creation_BuilderChaining() {
         // ARRANGE
         Printer.Builder b = new Printer.Builder(Printer.Types.TERM);
-        DateFormat df = new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601);
+        DateFormat df = new SimpleDateFormat(DATE_FORMAT_ISO8601);
         int number = 3;
 
         // ACT

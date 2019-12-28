@@ -428,9 +428,7 @@ public class TestColoredPrinter {
     }
 
     // TODO should be a unit test of Ansi class
-    // Addresses https://github.com/dialex/JCDP/issues/6
-    //TODO Move to TestAnsi and refactor
-    @Test
+    @Test // Addresses https://github.com/dialex/JCDP/issues/6
     public void ColoredPrint_AnsiCode_FColorIsPrintedWithoutBColor() {
         // ARRANGE
         String msg = DataGenerator.createText();
@@ -546,26 +544,6 @@ public class TestColoredPrinter {
         assertThat("Messages were displayed with separator between", messages.length, equalTo(2));
         assertThat("First message is formatted with ansi code", messages[0], containsString(ansiCode1));
         assertThat("Second message has different ansi code", messages[1], containsString(ansiCode2));
-    }
-
-    // TODO refactor: still needed?
-    @Test
-    public void ColoredPrint_Message_FontIsColoredEvenWithoutBColor() {
-        // ARRANGE
-        String msg = DataGenerator.createText();
-        FColor fColor = FColor.GREEN;
-        BColor bColor = BColor.NONE;
-        Attribute attr = Attribute.NONE;
-
-        ColoredPrinter printer = new ColoredPrinter.Builder(1, false).build();
-        printer.setForegroundColor(fColor);
-
-        // ACT
-        printer.println(msg);
-
-        // ASSERT
-        String expectedAnsiCode = printer.generateCode(attr, fColor, bColor);
-        assertThat("Message is colored, even without a bkg color", outContent.toString(), containsString(expectedAnsiCode));
     }
 
     @Test

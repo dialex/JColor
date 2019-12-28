@@ -82,7 +82,6 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         print(""); // refresh terminal line, so that the changes take immediate effect
     }
 
-    //TODO should be Ansi.generateCode(), not a printer's responsibility
     @Override
     @Deprecated
     public String generateCode() {
@@ -93,7 +92,6 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         return generateCode(attr, fColor, bColor);
     }
 
-    //TODO should be Ansi.generateCode(), not a printer's responsibility
     @Override
     @Deprecated
     public String generateCode(Attribute attr, FColor fg, BColor bg) {

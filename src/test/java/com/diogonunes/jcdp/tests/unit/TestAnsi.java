@@ -108,7 +108,7 @@ public class TestAnsi {
     public void FormatMessage_MsgWithLineEnd() {
         // ARRANGE
         Object[] options = new Object[]{Ansi.BColor.BLUE};
-        String msg = createMsgLine();
+        String msg = createTextLine();
 
         // ACT
         String code = Ansi.generateCode(options);
@@ -124,7 +124,7 @@ public class TestAnsi {
     public void FormatMessage_MsgMultiplesLines() {
         // ARRANGE
         Object[] options = new Object[]{Ansi.BColor.BLUE};
-        String msg1 = createMsgWithId(1), msg2 = createMsgWithId(2);
+        String msg1 = createTextWithId(1), msg2 = createTextWithId(2);
         String fullMsg = msg1 + NEWLINE + msg2 + NEWLINE;
 
         // ACT

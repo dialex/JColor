@@ -114,7 +114,7 @@ public class TestTerminalPrinter {
     public void Print_Message_DisplayOnSysOut() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
-        String msg = DataGenerator.createMsg();
+        String msg = DataGenerator.createText();
 
         // ACT
         printer.println(msg);
@@ -127,7 +127,7 @@ public class TestTerminalPrinter {
     public void Print_Message_DisplayTimestamp() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, true).build();
-        String msg = DataGenerator.createMsg();
+        String msg = DataGenerator.createText();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
@@ -143,7 +143,7 @@ public class TestTerminalPrinter {
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msg = DataGenerator.createMsg();
+        String msg = DataGenerator.createText();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DataGenerator.DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
 
@@ -164,7 +164,7 @@ public class TestTerminalPrinter {
         // ARRANGE
         DateFormat timestampFormat = new SimpleDateFormat("yy.MM.dd");
         TerminalPrinter printer = new TerminalPrinter.Builder(2, true).withFormat(timestampFormat).build();
-        String msg = DataGenerator.createMsg();
+        String msg = DataGenerator.createText();
         String timestamp = DataGenerator.getCurrentDate(timestampFormat);
 
         // ACT
@@ -179,7 +179,7 @@ public class TestTerminalPrinter {
     public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
-        String msg = DataGenerator.createErrorMsg();
+        String msg = DataGenerator.createText();
 
         // ACT
         printer.errorPrintln(msg);
@@ -192,7 +192,7 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(0, false).build();
-        String msg = DataGenerator.createMsgWithId(0);
+        String msg = DataGenerator.createTextWithId(0);
 
         // ACT
         printer.debugPrintln(msg);
@@ -205,7 +205,7 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_DisplayAfterEnablingDebug() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msg = DataGenerator.createMsgWithId(2);
+        String msg = DataGenerator.createTextWithId(2);
 
         // ACT
         printer.setDebugging(false);
@@ -221,8 +221,8 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_DisplayWithoutLevel() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(1, false).build();
-        String msgNoLevel = DataGenerator.createMsg();
-        String msgLevelTwo = DataGenerator.createMsgWithId(2);
+        String msgNoLevel = DataGenerator.createText();
+        String msgLevelTwo = DataGenerator.createTextWithId(2);
 
         // ACT
         printer.debugPrint(msgNoLevel);
@@ -237,9 +237,9 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_DisplayIfEnoughLevel() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msgLevelZero = DataGenerator.createMsgWithId(0);
-        String msgLevelOne = DataGenerator.createMsgWithId(1);
-        String msgLevelTwo = DataGenerator.createMsgWithId(2);
+        String msgLevelZero = DataGenerator.createTextWithId(0);
+        String msgLevelOne = DataGenerator.createTextWithId(1);
+        String msgLevelTwo = DataGenerator.createTextWithId(2);
 
         // ACT
         printer.debugPrint(msgLevelZero, 0);
@@ -256,7 +256,7 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msg = DataGenerator.createMsgWithId(3);
+        String msg = DataGenerator.createTextWithId(3);
 
         // ACT
         printer.debugPrint(msg, 3);
@@ -271,8 +271,8 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_IgnoreIfLevelAbove() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msgLevelTwo = DataGenerator.createMsgWithId(2);
-        String msgLevelThree = DataGenerator.createMsgWithId(3);
+        String msgLevelTwo = DataGenerator.createTextWithId(2);
+        String msgLevelThree = DataGenerator.createTextWithId(3);
 
         // ACT
         printer.debugPrint(msgLevelTwo, 2);
@@ -287,7 +287,7 @@ public class TestTerminalPrinter {
     public void Print_DebugMessage_IgnoreDebugIfDisabled() {
         // ARRANGE
         TerminalPrinter printer = new TerminalPrinter.Builder(2, false).build();
-        String msg = DataGenerator.createMsg();
+        String msg = DataGenerator.createText();
 
         // ACT
         printer.setDebugging(false);

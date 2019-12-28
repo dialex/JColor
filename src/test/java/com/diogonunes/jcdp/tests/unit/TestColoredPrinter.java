@@ -289,20 +289,21 @@ public class TestColoredPrinter {
         assertThat(outContent.toString(), containsString(msgLevelTwo));
     }
 
-    // TODO refactor how it asserts formatting
     @Test
     public void Print_DebugMessage_DisplayAfterChangingLevel() {
         // ARRANGE
         ColoredPrinter printer = new ColoredPrinter.Builder(2, false).build();
-        String msg = DataGenerator.createTextWithId(3);
+        String msgA = DataGenerator.createTextWithId(1);
+        String msgB = DataGenerator.createTextWithId(2);
 
         // ACT
-        printer.debugPrint(msg, 3);
+        printer.debugPrint(msgA, 3);
         printer.setLevel(3);
-        printer.debugPrint(msg, 3);
+        printer.debugPrint(msgB, 3);
 
         // ASSERT
-        assertThat("After changing level message is printed", outContent.toString(), containsString(msg));
+        assertThat(outContent.toString(), not(containsString(msgA)));
+        assertThat("After changing level message is printed", outContent.toString(), containsString(msgB));
     }
 
     @Test
@@ -459,12 +460,12 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is formatted with ansi code", outContent.toString(), startsWith(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
     }
 
     @Test
-    public void ColoredPrint_ErrorMessage_GlobalFormatContainsAnsiCode() {
+    public void ColoredPrint_ErrorMessage_ContainsAnsiCode() {
         // ARRANGE
         ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.BOLD).
@@ -477,12 +478,12 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", errContent.toString(), containsString(ansiCode));
+        assertThat("Message is formatted with ansi code", errContent.toString(), startsWith(ansiCode));
         assertThat("Message is printed", errContent.toString(), containsString(msg));
     }
 
     @Test
-    public void ColoredPrint_DebugMessage_GlobalFormatContainsAnsiCode() {
+    public void ColoredPrint_DebugMessage_ContainsAnsiCode() {
         // ARRANGE
         ColoredPrinter printer = new ColoredPrinter.Builder(0, false).
                 attribute(Attribute.LIGHT).
@@ -495,10 +496,11 @@ public class TestColoredPrinter {
 
         // ASSERT
         String ansiCode = printer.generateCode();
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is formatted with ansi code", outContent.toString(), startsWith(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
     }
 
+    //TODO refactor: make test more precise, using "startsWith" assertion
     @Test
     public void ColoredPrint_Message_SingleMessageFormat() {
         // ARRANGE
@@ -515,10 +517,11 @@ public class TestColoredPrinter {
         // ASSERT
         String ansiCode = printer.generateCode(attr1, fColor1, bColor1);
         assertThat("Message is not formatted with ansi code", errContent.toString(), not(containsString(ansiCode)));
-        assertThat("Message is formatted with ansi code", outContent.toString(), containsString(ansiCode));
+        assertThat("Message is formatted with ansi code", outContent.toString(), startsWith(ansiCode));
         assertThat("Message is printed", outContent.toString(), containsString(msg));
     }
 
+    //TODO refactor: make test more precise, using "startsWith" assertion
     @Test
     public void ColoredPrint_Message_SingleMessageWithTwoFormats() {
         // ARRANGE
@@ -551,15 +554,14 @@ public class TestColoredPrinter {
         // ARRANGE
         String msg = DataGenerator.createText();
         ColoredPrinter printer = new ColoredPrinter.Builder(1, true).build();
-        Attribute attr = Attribute.NONE;
-        BColor bColor = BColor.NONE;
 
         // ACT
         FColor fColor1 = FColor.GREEN;
         printer.setForegroundColor(fColor1);
         printer.println(msg);
+
         // ASSERT
-        String expectedAnsiCode = printer.generateCode(attr, fColor1, bColor);
+        String expectedAnsiCode = printer.generateCode(Attribute.NONE, fColor1, BColor.NONE);
         assertThat("Message is colored with printer's internal config", outContent.toString(), containsString(expectedAnsiCode));
     }
 

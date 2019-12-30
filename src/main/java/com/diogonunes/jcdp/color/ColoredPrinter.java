@@ -47,8 +47,15 @@ public class ColoredPrinter extends AbstractColoredPrinter {
         setForegroundColor(builder._foregroundColor);
         setBackgroundColor(builder._backgroundColor);
 
-        if (System.getProperty("os.name").startsWith("Windows"))
-            enableWindows10AnsiSupport();
+        String currentOS = System.getProperty("os.name");
+        if (currentOS.startsWith("Windows")) {
+            if (currentOS.endsWith("10"))
+                enableWindows10AnsiSupport();
+            else {
+                String why = "Your version of JCDP (v4.*) requires Windows 10 -- if you cannot upgrade, then use JCDP v3.*";
+                throw new UnsupportedOperationException(why);
+            }
+        }
     }
 
     // =========

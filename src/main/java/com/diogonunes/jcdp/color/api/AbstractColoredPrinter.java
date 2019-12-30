@@ -80,12 +80,6 @@ public abstract class AbstractColoredPrinter extends AbstractPrinter implements 
         FColor fColor = getForegroundColor();
         BColor bColor = getBackgroundColor();
 
-        return generateCode(attr, fColor, bColor);
-    }
-
-    @Override
-    @Deprecated
-    public String generateCode(Attribute attr, FColor fg, BColor bg) {
-        return Ansi.generateCode(attr, fg, bg);
+        return Ansi.generateCode(attr, fColor, bColor);
     }
 }

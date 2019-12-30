@@ -41,15 +41,6 @@ public interface IColoredPrinter extends IPrinter {
     String generateCode();
 
     /**
-     * @param attr       specifies the overriding attribute
-     * @param foreground specifies the foreground color
-     * @param background specifies the background color
-     * @return the ansi code which contains all three components' codes
-     */
-    @Deprecated
-    String generateCode(Attribute attr, FColor foreground, BColor background);
-
-    /**
      * Usual System.out.print overriding current format.
      *
      * @param msg  Message to display

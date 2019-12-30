@@ -83,7 +83,7 @@ public class TestColoredPrinter {
     @Test
     public void ToString_Description_DisplayName() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
 
         // ACT
         String description = printer.toString();
@@ -141,7 +141,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_Message_DisplayOnSysOut() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String msg = DataGenerator.createText();
 
         // ACT
@@ -172,7 +172,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_Message_DisplayTimestampAfterEnablingIt() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String msg = DataGenerator.createText();
         String timestamp = DataGenerator.getCurrentDate(new SimpleDateFormat(DATE_FORMAT_ISO8601));
         timestamp = timestamp.substring(0, timestamp.lastIndexOf(":")); // ignore seconds
@@ -213,7 +213,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_ErrorMessage_DisplayOnSysErr() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String msg = DataGenerator.createText();
 
         // ACT
@@ -229,7 +229,7 @@ public class TestColoredPrinter {
     @Test
     public void Print_DebugMessage_DisplayOnSysOut() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String msg = DataGenerator.createText();
 
         // ACT
@@ -406,7 +406,7 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_Message_SingleMessageFormat() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String msg = DataGenerator.createText();
         Attribute attr1 = Attribute.LIGHT;
         FColor fColor1 = FColor.MAGENTA;
@@ -427,14 +427,14 @@ public class TestColoredPrinter {
     @Test
     public void ColoredPrint_Message_SingleMessageWithTwoFormats() {
         // ARRANGE
-        ColoredPrinter printer = new ColoredPrinter.Builder(0, false).build();
+        ColoredPrinter printer = new ColoredPrinter();
         String separator = DataGenerator.createSeparator();
         String msg = DataGenerator.createText();
         Attribute attr1 = Attribute.LIGHT;
-        FColor fColor1 = FColor.MAGENTA;
-        BColor bColor1 = BColor.CYAN;
         Attribute attr2 = Attribute.LIGHT;
+        FColor fColor1 = FColor.MAGENTA;
         FColor fColor2 = FColor.RED;
+        BColor bColor1 = BColor.CYAN;
         BColor bColor2 = BColor.BLUE;
 
         // ACT

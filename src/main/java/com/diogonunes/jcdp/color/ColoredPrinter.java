@@ -143,7 +143,8 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg) {
-        formattedPrint(msg, generateCode(), false, false);
+        String code = Ansi.generateCode(getAttribute(), getForegroundColor(), getBackgroundColor());
+        formattedPrint(msg, code, false, false);
     }
 
     /**
@@ -160,7 +161,8 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        formattedPrint(msg, generateCode(), true, false);
+        String code = Ansi.generateCode(getAttribute(), getForegroundColor(), getBackgroundColor());
+        formattedPrint(msg, code, true, false);
     }
 
     /**
@@ -177,7 +179,8 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        formattedPrint(msg, generateCode(), false, true);
+        String code = Ansi.generateCode(getAttribute(), getForegroundColor(), getBackgroundColor());
+        formattedPrint(msg, code, false, true);
     }
 
     /**
@@ -194,7 +197,8 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        formattedPrint(msg, generateCode(), true, true);
+        String code = Ansi.generateCode(getAttribute(), getForegroundColor(), getBackgroundColor());
+        formattedPrint(msg, code, true, true);
     }
 
     /**

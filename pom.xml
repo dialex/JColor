@@ -3,7 +3,7 @@
 
     <groupId>com.diogonunes</groupId>
     <artifactId>JCDP</artifactId>
-    <version>4.0.0.4-SNAPSHOT</version>
+    <version>4.0.1</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Library for printing colored or debug messages on a terminal.</description>
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com/dialex/jcdp.git</connection>
         <developerConnection>scm:git:git@github.com:dialex/jcdp.git</developerConnection>
         <url>git@github.com/dialex/jcdp/tree/master</url>
-        <tag>v4.0.0.3</tag>
+        <tag>v4.0.1</tag>
     </scm>
 
     <distributionManagement>

@@ -5,6 +5,8 @@ import com.diogonunes.jcdp.bw.api.AbstractPrinter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import static com.diogonunes.jcdp.Constants.NEWLINE;
+
 /**
  * This class is a Terminal implementation of the Printer interface, hence all
  * output is sent to standard output. It implements all abstract methods
@@ -87,26 +89,8 @@ public class TerminalPrinter extends AbstractPrinter {
      * {@inheritDoc}
      */
     @Override
-    public void printTimestamp() {
-        System.out.print(getDateFormatted() + " ");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void printErrorTimestamp() {
-        System.err.print(getDateFormatted() + " ");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void print(Object msg) {
-        if (isLoggingTimestamps())
-            printTimestamp();
-        System.out.print(msg);
+        terminalPrint(msg, false, false);
     }
 
     /**
@@ -114,9 +98,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void println(Object msg) {
-        if (isLoggingTimestamps())
-            printTimestamp();
-        System.out.println(msg);
+        terminalPrint(msg, true, false);
     }
 
     /**
@@ -124,9 +106,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        if (isLoggingTimestamps())
-            printErrorTimestamp();
-        System.err.print(msg);
+        terminalPrint(msg, false, true);
     }
 
     /**
@@ -134,9 +114,7 @@ public class TerminalPrinter extends AbstractPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        if (isLoggingTimestamps())
-            printTimestamp();
-        System.err.println(msg);
+        terminalPrint(msg, true, true);
     }
 
     /**
@@ -181,4 +159,17 @@ public class TerminalPrinter extends AbstractPrinter {
     public String toString() {
         return getClass().getSimpleName() + " | level: " + getLevel() + " | timestamping: " + isLoggingTimestamps();
     }
+
+    private void terminalPrint(Object msg, boolean appendNewline, boolean isError) {
+        StringBuilder output = new StringBuilder();
+        output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
+        output.append(msg);
+        output.append(appendNewline ? NEWLINE : "");
+
+        if (isError)
+            System.err.print(output.toString());
+        else
+            System.out.print(output.toString());
+    }
+
 }

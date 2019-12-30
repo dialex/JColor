@@ -142,24 +142,8 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      * {@inheritDoc}
      */
     @Override
-    public void printTimestamp() {
-        System.out.print(generateCode() + getDateFormatted() + " ");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void printErrorTimestamp() {
-        System.err.print(generateCode() + getDateFormatted() + " ");
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void print(Object msg) {
-        formattedPrint(msg, generateCode(), false);
+        formattedPrint(msg, generateCode(), false, false);
     }
 
     /**
@@ -167,7 +151,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void print(Object msg, Attribute attr, FColor fg, BColor bg) {
-        formattedPrint(msg, generateCode(attr, fg, bg), false);
+        formattedPrint(msg, generateCode(attr, fg, bg), false, false);
     }
 
     /**
@@ -175,7 +159,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg) {
-        formattedPrint(msg, generateCode(), true);
+        formattedPrint(msg, generateCode(), true, false);
     }
 
     /**
@@ -183,7 +167,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void println(Object msg, Attribute attr, FColor fg, BColor bg) {
-        formattedPrint(msg, generateCode(attr, fg, bg), true);
+        formattedPrint(msg, generateCode(attr, fg, bg), true, false);
     }
 
     /**
@@ -191,12 +175,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrint(Object msg) {
-        if (isLoggingTimestamps()) {
-            printErrorTimestamp();
-        } else {
-            System.err.print(generateCode());
-        }
-        System.err.print(msg);
+        formattedPrint(msg, generateCode(), false, true);
     }
 
     /**
@@ -204,12 +183,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrint(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            System.err.print(generateCode(attr, fg, bg));
-        }
-        System.err.print(msg);
+        formattedPrint(msg, generateCode(attr, fg, bg), false, true);
     }
 
     /**
@@ -217,12 +191,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrintln(Object msg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            System.err.print(generateCode());
-        }
-        System.err.println(msg);
+        formattedPrint(msg, generateCode(), true, true);
     }
 
     /**
@@ -230,12 +199,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
      */
     @Override
     public void errorPrintln(Object msg, Attribute attr, FColor fg, BColor bg) {
-        if (isLoggingTimestamps()) {
-            printTimestamp();
-        } else {
-            System.err.print(generateCode(attr, fg, bg));
-        }
-        System.err.println(msg);
+        formattedPrint(msg, generateCode(attr, fg, bg), true, true);
     }
 
     /**
@@ -319,14 +283,17 @@ public class ColoredPrinter extends AbstractColoredPrinter {
                 + getBackgroundColor().name();
     }
 
-    private void formattedPrint(Object msg, String ansiFormatCode, boolean appendNewline) {
+    private void formattedPrint(Object msg, String ansiFormatCode, boolean appendNewline, boolean isError) {
         StringBuilder output = new StringBuilder();
         output.append(isLoggingTimestamps() ? getDateFormatted() + " " : "");
         output.append(msg);
         output.append(appendNewline ? NEWLINE : "");
-
         String formattedMsg = Ansi.formatMessage(output.toString(), ansiFormatCode);
-        System.out.print(formattedMsg);
+
+        if (isError)
+            System.err.print(formattedMsg);
+        else
+            System.out.print(formattedMsg);
     }
 
     /* Windows 10 supports Ansi codes. However, it's still experimental and not enabled by default.

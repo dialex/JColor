@@ -163,22 +163,6 @@ public class Printer implements IPrinter {
      * {@inheritDoc}
      */
     @Override
-    public void printTimestamp() {
-        getImpl().printTimestamp();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void printErrorTimestamp() {
-        getImpl().printErrorTimestamp();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void print(Object msg) {
         getImpl().print(msg);
     }

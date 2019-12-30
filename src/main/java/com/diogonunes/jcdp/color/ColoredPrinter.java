@@ -207,7 +207,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            System.out.print(generateCode(attr, fg, bg));
+            System.err.print(generateCode(attr, fg, bg));
         }
         System.err.print(msg);
     }
@@ -220,7 +220,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            System.out.print(generateCode());
+            System.err.print(generateCode());
         }
         System.err.println(msg);
     }
@@ -233,7 +233,7 @@ public class ColoredPrinter extends AbstractColoredPrinter {
         if (isLoggingTimestamps()) {
             printTimestamp();
         } else {
-            System.out.print(generateCode(attr, fg, bg));
+            System.err.print(generateCode(attr, fg, bg));
         }
         System.err.println(msg);
     }

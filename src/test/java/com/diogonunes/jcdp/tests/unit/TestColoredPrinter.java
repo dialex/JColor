@@ -147,6 +147,7 @@ public class TestColoredPrinter {
         printer.println(msg);
 
         // ASSERT
+        assertThat(errContent.toString(), equalTo(""));
         assertThat(outContent.toString(), containsString(msg));
         assertThat(outContent.toString(), endsWith(NEWLINE));
     }
@@ -218,7 +219,9 @@ public class TestColoredPrinter {
         printer.errorPrintln(msg);
 
         // ASSERT
-        assertThat(errContent.toString(), equalTo(msg + NEWLINE));
+        assertThat(outContent.toString(), equalTo(""));
+        assertThat(errContent.toString(), containsString(msg));
+        assertThat(errContent.toString(), endsWith(NEWLINE));
     }
 
     // TODO refactor how it asserts formatting

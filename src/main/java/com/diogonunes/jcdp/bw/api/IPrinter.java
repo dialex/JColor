@@ -41,16 +41,6 @@ public interface IPrinter {
     Date getDate();
 
     /**
-     * Prints current Time and Date to System.out.
-     */
-    void printTimestamp();
-
-    /**
-     * Prints current Time and Date to System.err.
-     */
-    void printErrorTimestamp();
-
-    /**
      * Usual System.out.print.
      *
      * @param msg Message to display

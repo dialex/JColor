@@ -34,22 +34,6 @@ public interface IColoredPrinter extends IPrinter {
     void setBackgroundColor(BColor background);
 
     /**
-     * @return the ansi code which contains all three components' codes. This is
-     * the code used to tell the terminal the format of the message.
-     */
-    @Deprecated
-    String generateCode();
-
-    /**
-     * @param attr       specifies the overriding attribute
-     * @param foreground specifies the foreground color
-     * @param background specifies the background color
-     * @return the ansi code which contains all three components' codes
-     */
-    @Deprecated
-    String generateCode(Attribute attr, FColor foreground, BColor background);
-
-    /**
      * Usual System.out.print overriding current format.
      *
      * @param msg  Message to display

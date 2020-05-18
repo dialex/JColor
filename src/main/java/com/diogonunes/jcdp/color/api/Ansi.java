@@ -104,7 +104,7 @@ public class Ansi {
      */
     public enum Attribute {
 
-        CLEAR("0"), BOLD("1"), LIGHT("1"), DARK("2"), UNDERLINE("4"), REVERSE("7"), HIDDEN("8"), NONE("");
+        CLEAR("0"), BOLD("1"), LIGHT("1"), DARK("2"), UNDERLINE("4"), BLINK("5"), REVERSE("7"), HIDDEN("8"), NONE("");
 
         private final String _code; // Ansi escape code
 

@@ -45,7 +45,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JCDP/issues/6
     public void GenerateCode_OneAttribute() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{DIM};
+        Attribute[] attributes = new Attribute[]{STRIKETHROUGH};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -58,7 +58,7 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{ITALIC, CYAN_TEXT};
+        Attribute[] attributes = new Attribute[]{DIM, CYAN_TEXT};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -113,7 +113,7 @@ public class TestAnsi {
     @Test
     public void Colorize_TextWithoutLines() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        Attribute[] attributes = new Attribute[]{YELLOW_BACK};
         String text = createText();
 
         // ACT

@@ -12,6 +12,36 @@ import static org.hamcrest.Matchers.*;
 public class TestUsage {
 
     @Test
+    public void CanFormatWithOneAttribute() {
+        // ARRANGE
+        AnsiFormat fInfo = new AnsiFormat(CYAN_BACK);
+
+        // ACT
+        String formattedText = fInfo.format("This text will have a cyan back");
+        //System.out.println(formattedText);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(fInfo);
+        assertThat(formattedText, startsWith(expectedCode));
+        assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test
+    public void CanFormatWithMultipleAttributes() {
+        // ARRANGE
+        AnsiFormat fWarning = new AnsiFormat(RED_TEXT, YELLOW_BACK, BOLD);
+
+        // ACT
+        String formattedText = fWarning.format("This bold text will be red on yellow");
+        //System.out.println(formattedText);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(fWarning);
+        assertThat(formattedText, startsWith(expectedCode));
+        assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test
     public void CanFormatInline() {
         // ARRANGE
 
@@ -35,6 +65,22 @@ public class TestUsage {
 
         // ASSERT
         assertThat(formattedText, equalTo(colorize(text, MAGENTA_TEXT)));
+    }
+
+    @Test
+    public void CanUseAnsiFormatOrArray() {
+        // ARRANGE
+        AnsiFormat formatNotation = new AnsiFormat(BLACK_TEXT, BLACK_BACK);
+        Attribute[] arrayNotation = new Attribute[]{BLACK_TEXT, BLACK_BACK};
+        String text = "This text will be black on black";
+
+        // ACT
+        String formatNotationOutput = formatNotation.format(text);
+        String arrayNotationOutput = Ansi.colorize(text, arrayNotation);
+
+        // ASSERT
+        assertThat(formatNotationOutput, equalTo(arrayNotationOutput));
+        assertThat(formatNotationOutput.compareTo(arrayNotationOutput), equalTo(0));
     }
 
 }

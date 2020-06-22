@@ -109,7 +109,15 @@ public class Ansi {
     }
 
     /**
-     * @param text     String to format
+     * @param attributes Object containing format attributes.
+     * @return The ANSI code that describes all those attributes together.
+     */
+    public static String generateCode(AnsiFormat attributes) {
+        return generateCode(attributes.toArray());
+    }
+
+    /**
+     * @param text     String to format.
      * @param ansiCode Ansi code to format each message's lines
      * @return The formatted string, ready to be printed.
      */
@@ -144,6 +152,15 @@ public class Ansi {
     public static String colorize(String text, Attribute... attributes) {
         String ansiCode = generateCode(attributes);
         return colorize(text, ansiCode);
+    }
+
+    /**
+     * @param text       String to format.
+     * @param attributes Object containing format attributes.
+     * @return The formatted string, ready to be printed.
+     */
+    public static String colorize(String text, AnsiFormat attributes) {
+        return colorize(text, attributes.toArray());
     }
 
     /**

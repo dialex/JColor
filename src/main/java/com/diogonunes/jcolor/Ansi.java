@@ -1,14 +1,14 @@
 package com.diogonunes.jcolor;
 
-import static com.diogonunes.jcdp.Constants.NEWLINE;
-
 /**
  * Provides a fluent API to generate
  * <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a>
  * by specifying {@link Attribute}s of your text.
  */
 public class Ansi {
+
     private static final char ESC = 27; // Escape character used to start an ANSI code
+    private static final String NEWLINE = System.getProperty("line.separator");
 
     /**
      * Every Ansi escape code begins with this PREFIX.

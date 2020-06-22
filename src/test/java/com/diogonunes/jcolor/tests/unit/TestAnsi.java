@@ -118,6 +118,7 @@ public class TestAnsi {
 
         // ACT
         String formattedText = Ansi.colorize(text, attributes);
+        //System.out.println(formattedText);
 
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
@@ -133,6 +134,7 @@ public class TestAnsi {
 
         // ACT
         String formattedText = Ansi.colorize(text, attributes);
+        //System.out.println(formattedText);
 
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
@@ -149,6 +151,7 @@ public class TestAnsi {
 
         // ACT
         String formattedText = Ansi.colorize(fullText, attributes);
+        //System.out.println(formattedText);
 
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);

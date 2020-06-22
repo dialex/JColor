@@ -1,10 +1,10 @@
 package com.diogonunes.jcolor.tests.acceptance;
 
-import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 
 public class TestHumanEye {
 
-    @Ignore
+    @Disabled
     public void ShouldLookGood() {
 
 //        // =============================

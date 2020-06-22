@@ -2,7 +2,7 @@ package com.diogonunes.jcolor.tests.unit;
 
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.AnsiFormat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
 import static com.diogonunes.jcolor.Ansi.Attribute.*;

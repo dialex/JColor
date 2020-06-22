@@ -45,7 +45,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JCDP/issues/6
     public void GenerateCode_OneAttribute() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BOLD};
+        Attribute[] attributes = new Attribute[]{DIM};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -58,7 +58,7 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BOLD, CYAN_TEXT};
+        Attribute[] attributes = new Attribute[]{ITALIC, CYAN_TEXT};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -71,8 +71,8 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributes_HandlesMultipleParams() {
         // ARRANGE
-        Attribute firstAttribute = BOLD;
-        Attribute secondAttribute = CYAN_TEXT;
+        Attribute firstAttribute = UNDERLINE;
+        Attribute secondAttribute = GREEN_TEXT;
 
         // ACT
         String code = Ansi.generateCode(firstAttribute, secondAttribute);
@@ -98,7 +98,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JCDP/issues/6
     public void GenerateCode_SomeAttributesWithValueNone() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{NONE, CYAN_TEXT, NONE};
+        Attribute[] attributes = new Attribute[]{NONE, BLUE_TEXT, NONE};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -129,7 +129,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JCDP/issues/38
     public void Colorize_TextWithSingleLine() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        Attribute[] attributes = new Attribute[]{GREEN_BACK};
         String text = createTextLine();
 
         // ACT
@@ -145,7 +145,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JCDP/issues/38
     public void Colorize_TextWithMultiplesLines() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        Attribute[] attributes = new Attribute[]{RED_BACK};
         String text1 = createTextWithId(1), text2 = createTextWithId(2);
         String fullText = text1 + NEWLINE + text2 + NEWLINE;
 

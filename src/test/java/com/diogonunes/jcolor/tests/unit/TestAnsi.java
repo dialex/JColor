@@ -1,10 +1,12 @@
 package com.diogonunes.jcolor.tests.unit;
 
 import com.diogonunes.jcolor.Ansi;
+import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
-import static org.hamcrest.Matchers.equalTo;
+import static com.diogonunes.jcolor.Ansi.Attribute.*;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -40,64 +42,64 @@ public class TestAnsi {
         assertThat(code, equalTo(expectedCode));
     }
 
-//    @Test // Covers https://github.com/dialex/JCDP/issues/6
-//    public void GenerateCode_OneOption() {
-//        // ARRANGE
-//        Object[] options = new Object[]{Attribute.BOLD};
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + options[0] + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//    }
-//
-//    @Test
-//    public void GenerateCode_MultipleOptions() {
-//        // ARRANGE
-//        Object[] options = new Object[]{Attribute.BOLD, FColor.CYAN};
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + options[0] + Ansi.SEPARATOR + options[1] + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//    }
-//
-//    @Test
-//    public void GenerateCode_MultipleOptionsWithValueNone() {
-//        // ARRANGE
-//        Object[] options = new Object[]{Attribute.NONE, FColor.NONE, BColor.NONE};
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//    }
-//
-//    @Test // Covers https://github.com/dialex/JCDP/issues/6
-//    public void GenerateCode_SomeOptionsWithValueNone() {
-//        // ARRANGE
-//        Object[] options = new Object[]{Attribute.NONE, FColor.CYAN, BColor.NONE};
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + options[1] + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//        int suffixIndex = code.lastIndexOf(POSTFIX);
-//        MatcherAssert.assertThat("Code ending in semicolon does not show color", code.charAt(suffixIndex - 1), is(not(';')));
-//    }
-//
+    @Test // Covers https://github.com/dialex/JCDP/issues/6
+    public void GenerateCode_OneAttribute() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BOLD};
+
+        // ACT
+        String code = Ansi.generateCode(attributes);
+
+        // ASSERT
+        String expectedCode = PREFIX + attributes[0] + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void GenerateCode_MultipleOptions() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BOLD, CYAN_TEXT};
+
+        // ACT
+        String code = Ansi.generateCode(attributes);
+
+        // ASSERT
+        String expectedCode = PREFIX + attributes[0] + SEPARATOR + attributes[1] + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void GenerateCode_MultipleOptionsWithValueNone() {
+        // ARRANGE
+        Object[] attributes = new Object[]{NONE, NONE, NONE};
+
+        // ACT
+        String code = Ansi.generateCode(attributes);
+
+        // ASSERT
+        String expectedCode = PREFIX + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test // Covers https://github.com/dialex/JCDP/issues/6
+    public void GenerateCode_SomeOptionsWithValueNone() {
+        // ARRANGE
+        Object[] attributes = new Object[]{NONE, CYAN_TEXT, NONE};
+
+        // ACT
+        String code = Ansi.generateCode(attributes);
+
+        // ASSERT
+        String expectedCode = PREFIX + attributes[1] + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+        int suffixIndex = code.lastIndexOf(POSTFIX);
+        MatcherAssert.assertThat("Code ending in semicolon does not show color", code.charAt(suffixIndex - 1), is(not(';')));
+    }
+
 //    @Test
 //    public void Colorize_MsgWithoutLine() {
 //        // ARRANGE
-//        Object[] options = new Object[]{BColor.BLUE};
+//        Object[] attributes = new Object[]{BColor.BLUE};
 //        String msg = "words without lines";
 //
 //        // ACT
@@ -112,7 +114,7 @@ public class TestAnsi {
 //    @Test // Covers https://github.com/dialex/JCDP/issues/38
 //    public void Colorize_MsgWithLineEnd() {
 //        // ARRANGE
-//        Object[] options = new Object[]{BColor.BLUE};
+//        Object[] attributes = new Object[]{BColor.BLUE};
 //        String msg = createTextLine();
 //
 //        // ACT
@@ -128,7 +130,7 @@ public class TestAnsi {
 //    @Test // Covers https://github.com/dialex/JCDP/issues/38
 //    public void Colorize_MsgMultiplesLines() {
 //        // ARRANGE
-//        Object[] options = new Object[]{BColor.BLUE};
+//        Object[] attributes = new Object[]{BColor.BLUE};
 //        String msg1 = createTextWithId(1), msg2 = createTextWithId(2);
 //        String fullMsg = msg1 + NEWLINE + msg2 + NEWLINE;
 //

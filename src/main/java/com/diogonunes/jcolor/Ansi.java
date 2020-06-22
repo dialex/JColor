@@ -20,7 +20,63 @@ public class Ansi {
     /**
      * Shorthand for the Ansi code that resets to the terminal's default format.
      */
-    public static final String RESET = PREFIX + com.diogonunes.jcdp.color.api.Ansi.Attribute.CLEAR + POSTFIX;
+    public static final String RESET = PREFIX + Attribute.CLEAR + POSTFIX;
+
+    public enum Attribute {
+        NONE(""),
+        CLEAR("0"),
+        BOLD("1"),
+        LIGHT("1"),
+        DARK("2"),
+        UNDERLINE("4"),
+        BLINK("5"),
+        REVERSE("7"),
+        HIDDEN("8"),
+
+        BLACK_TEXT("30"),
+        RED_TEXT("31"),
+        GREEN_TEXT("32"),
+        YELLOW_TEXT("33"),
+        BLUE_TEXT("34"),
+        MAGENTA_TEXT("35"),
+        CYAN_TEXT("36"),
+        WHITE_TEXT("37"),
+
+        BLACK_BACK("40"),
+        RED_BACK("41"),
+        GREEN_BACK("42"),
+        YELLOW_BACK("43"),
+        BLUE_BACK("44"),
+        MAGENTA_BACK("45"),
+        CYAN_BACK("46"),
+        WHITE_BACK("47");
+
+        private final String _code; // Ansi escape code
+
+        /**
+         * Constructor. Maps an attribute to an Ansi code.
+         *
+         * @param code Ansi code that represents the attribute.
+         */
+        Attribute(String code) {
+            _code = code;
+        }
+
+        /**
+         * @return Ansi escape code for that attribute.
+         */
+        public String getCode() {
+            return _code;
+        }
+
+        /**
+         * @return The text representation of the enum (its code).
+         */
+        @Override
+        public String toString() {
+            return getCode();
+        }
+    }
 
     /**
      * @param attributes One or more ANSI attributes.

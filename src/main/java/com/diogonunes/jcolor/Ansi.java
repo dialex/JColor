@@ -141,4 +141,15 @@ public class Ansi {
         String ansiCode = generateCode(attributes);
         return colorize(text, ansiCode);
     }
+
+    /**
+     * Easter egg. Just an alias of method "colorize".
+     *
+     * @param text       String to format
+     * @param attributes One or more ANSI attributes.
+     * @return The formatted string, ready to be printed
+     */
+    public static String makeItFabulous(String text, Attribute... attributes) {
+        return colorize(text, attributes);
+    }
 }

@@ -31,12 +31,16 @@ public class Ansi {
         NONE(""),
         CLEAR("0"),
         BOLD("1"),
-        LIGHT("1"),
-        DARK("2"),
+        SATURATED("1"),     // alias
+        DIM("2"),
+        DESATURATED("2"),   // alias
+        ITALIC("3"),
         UNDERLINE("4"),
-        BLINK("5"),
+        SLOW_BLINK("5"),
+        RAPID_BLINK("6"),
         REVERSE("7"),
         HIDDEN("8"),
+        STRIKETHROUGH("9"),
 
         BLACK_TEXT("30"),
         RED_TEXT("31"),

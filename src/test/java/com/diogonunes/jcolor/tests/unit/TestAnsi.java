@@ -107,55 +107,53 @@ public class TestAnsi {
         String expectedCode = PREFIX + attributes[1] + POSTFIX;
         assertThat(code, equalTo(expectedCode));
         int suffixIndex = code.lastIndexOf(POSTFIX);
-        MatcherAssert.assertThat("Code ending in semicolon does not show color", code.charAt(suffixIndex - 1), is(not(';')));
+        assertThat("Code ending in semicolon does not show color", code.charAt(suffixIndex - 1), is(not(';')));
     }
 
-//    @Test
-//    public void Colorize_MsgWithoutLine() {
-//        // ARRANGE
-//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
-//        String msg = "words without lines";
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//        String formattedMsg = Ansi.formatMessage(msg, code);
-//
-//        // ASSERT
-//        assertThat(formattedMsg, startsWith(code));
-//        assertThat("Message should clear its format", formattedMsg, endsWith(Ansi.RESET));
-//    }
-//
-//    @Test // Covers https://github.com/dialex/JCDP/issues/38
-//    public void Colorize_MsgWithLineEnd() {
-//        // ARRANGE
-//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
-//        String msg = createTextLine();
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//        String formattedMsg = Ansi.formatMessage(msg, code);
-//
-//        // ASSERT
-//        assertThat(formattedMsg, startsWith(code));
-//        assertThat("Format must be cleared before changing line, to avoid format spillage",
-//                formattedMsg, endsWith(Ansi.RESET + NEWLINE));
-//    }
-//
-//    @Test // Covers https://github.com/dialex/JCDP/issues/38
-//    public void Colorize_MsgMultiplesLines() {
-//        // ARRANGE
-//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
-//        String msg1 = createTextWithId(1), msg2 = createTextWithId(2);
-//        String fullMsg = msg1 + NEWLINE + msg2 + NEWLINE;
-//
-//        // ACT
-//        String code = Ansi.generateCode(options);
-//        String formattedMsg = Ansi.formatMessage(fullMsg, code);
-//
-//        // ASSERT
-//        assertThat(formattedMsg, startsWith(code));
-//        assertThat("Middle lines preserve format", formattedMsg, containsString(code + msg2 + Ansi.RESET));
-//        assertThat(formattedMsg, endsWith(Ansi.RESET + NEWLINE));
-//    }
+    @Test
+    public void Colorize_TextWithoutLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        String text = createText();
+
+        // ACT
+        String formattedText = Ansi.colorize(text, attributes);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(attributes);
+        assertThat(formattedText, startsWith(expectedCode));
+        assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test // Covers https://github.com/dialex/JCDP/issues/38
+    public void Colorize_TextWithSingleLine() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        String text = createTextLine();
+
+        // ACT
+        String formattedText = Ansi.colorize(text, attributes);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(attributes);
+        assertThat("Format must be cleared before changing line, to avoid format spillage",
+                formattedText, endsWith(Ansi.RESET + NEWLINE));
+    }
+
+    @Test // Covers https://github.com/dialex/JCDP/issues/38
+    public void Colorize_TextWithMultiplesLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BLUE_BACK};
+        String text1 = createTextWithId(1), text2 = createTextWithId(2);
+        String fullText = text1 + NEWLINE + text2 + NEWLINE;
+
+        // ACT
+        String formattedText = Ansi.colorize(fullText, attributes);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(attributes);
+        assertThat("Middle lines preserve format", formattedText, containsString(expectedCode + text2 + Ansi.RESET));
+        assertThat(formattedText, endsWith(Ansi.RESET + NEWLINE));
+    }
 
 }

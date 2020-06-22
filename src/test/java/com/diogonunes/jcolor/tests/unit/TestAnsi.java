@@ -159,4 +159,20 @@ public class TestAnsi {
         assertThat(formattedText, endsWith(Ansi.RESET + NEWLINE));
     }
 
+    @Test
+    public void Colorize_ConflictingAttributes_UsesTheLast() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{BLACK_BACK, WHITE_BACK, BLUE_BACK};
+        String text = "This text will have a blue back";
+
+        // ACT
+        String formattedText = Ansi.colorize(text, attributes);
+        //System.out.println(formattedText);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(attributes);
+        assertThat(formattedText, startsWith(expectedCode));
+        assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
 }

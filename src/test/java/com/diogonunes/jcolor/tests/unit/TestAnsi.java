@@ -32,10 +32,10 @@ public class TestAnsi {
     @Test
     public void GenerateCode_ZeroAttributes() {
         // ARRANGE
-        String msg = "";
+        Attribute[] attributes = new Attribute[]{};
 
         // ACT
-        String code = Ansi.generateCode();
+        String code = Ansi.generateCode(attributes);
 
         // ASSERT
         String expectedCode = PREFIX + POSTFIX;

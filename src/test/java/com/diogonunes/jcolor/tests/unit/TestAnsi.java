@@ -42,7 +42,7 @@ public class TestAnsi {
         assertThat(code, equalTo(expectedCode));
     }
 
-    @Test // Covers https://github.com/dialex/JCDP/issues/6
+    @Test // Covers https://github.com/dialex/JColor/issues/6
     public void GenerateCode_OneAttribute() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{STRIKETHROUGH};
@@ -95,7 +95,7 @@ public class TestAnsi {
         assertThat(code, equalTo(expectedCode));
     }
 
-    @Test // Covers https://github.com/dialex/JCDP/issues/6
+    @Test // Covers https://github.com/dialex/JColor/issues/6
     public void GenerateCode_SomeAttributesWithValueNone() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{NONE, BLUE_TEXT, NONE};
@@ -126,7 +126,7 @@ public class TestAnsi {
         assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
     }
 
-    @Test // Covers https://github.com/dialex/JCDP/issues/38
+    @Test // Covers https://github.com/dialex/JColor/issues/38
     public void Colorize_TextWithSingleLine() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{GREEN_BACK};
@@ -142,7 +142,7 @@ public class TestAnsi {
                 formattedText, endsWith(Ansi.RESET + NEWLINE));
     }
 
-    @Test // Covers https://github.com/dialex/JCDP/issues/38
+    @Test // Covers https://github.com/dialex/JColor/issues/38
     public void Colorize_TextWithMultiplesLines() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{RED_BACK};

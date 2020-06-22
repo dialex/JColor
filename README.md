@@ -1,14 +1,14 @@
-# <img src="https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/JCDP-logo.png" width="150">
+# <img src="https://raw.githubusercontent.com/dialex/JColor/master/.github/img/JColor-logo.png" width="150">
 
-[![Travis build](https://img.shields.io/travis/dialex/jcdp)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JCDP)](https://mvnrepository.com/artifact/com.diogonunes/JCDP) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/app/dialex-nunes/JCDP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dialex/JCDP&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JCDP.svg)](https://github.com/dialex/JCDP/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
+[![Travis build](https://img.shields.io/travis/dialex/JColor)](https://travis-ci.org/dialex/JColor) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/app/dialex-nunes/JColor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dialex/JColor&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
-**Java Colored Debug Printer** (JCDP) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
+**Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
 
 ### Screenshots
 
-![JCDP running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-mac-iterm-304-fancy.png)
+![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-mac-iterm-304-fancy.png)
 
-How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JCDP/master/.github/img/example-IntelliJ-304.png)
+How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-IntelliJ-304.png)
 
 ### Usage
 
@@ -62,7 +62,7 @@ cpInfo.println("And this printer can be used for info messages.");
 //overriding format per message
 cp = new ColoredPrinter.Builder(1, false)
         .build();
-cp.print("This example used JCDP 4.0.0   ");
+cp.print("This example used JColor 4.0.0   ");
 cp.print("\tMADE ", Attribute.BOLD, FColor.YELLOW, BColor.GREEN);
 cp.println("IN PORTUGAL", Attribute.BOLD, FColor.YELLOW, BColor.RED);
 cp.println("I hope you find it useful ;)");
@@ -70,24 +70,25 @@ cp.println("I hope you find it useful ;)");
 
 ### Installation
 
-You can import this dependency through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JCDP).
+You can import this dependency through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JColor).
 
 #### Requirements
 
+- JColor `v5.*` supports Java +8, Linux, macOS, Windows 10
 - JCDP `v4.*` supports Java +8, Linux, macOS, Windows 10
 - JCDP `v3.*` supports Java +8, Linux, macOS, Windows
 - JCDP `v2.*` supports Java +6, Linux, macOS, Windows
 
 #### Useful links
 
-- [Javadoc](https://dialex.github.io/JCDP/)
-- [Changelog](https://github.com/dialex/JCDP/releases/)
+- [Javadoc](https://dialex.github.io/JColor/)
+- [Changelog](https://github.com/dialex/JColor/releases/)
 
 ### License
 
-JCDP  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
+JColor, former JCDP  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
 ### Credits
 
-A big thanks to all [contributors](https://github.com/dialex/JCDP/graphs/contributors), namely [@xafero](https://github.com/xafero) who _maven-ized_ this project.
+A big thanks to all [contributors](https://github.com/dialex/JColor/graphs/contributors), namely [@xafero](https://github.com/xafero) who _maven-ized_ this project.

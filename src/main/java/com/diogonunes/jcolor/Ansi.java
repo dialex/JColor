@@ -58,7 +58,25 @@ public class Ansi {
         BLUE_BACK("44"),
         MAGENTA_BACK("45"),
         CYAN_BACK("46"),
-        WHITE_BACK("47");
+        WHITE_BACK("47"),
+
+        BRIGHT_BLACK_TEXT("90"),
+        BRIGHT_RED_TEXT("91"),
+        BRIGHT_GREEN_TEXT("92"),
+        BRIGHT_YELLOW_TEXT("93"),
+        BRIGHT_BLUE_TEXT("94"),
+        BRIGHT_MAGENTA_TEXT("95"),
+        BRIGHT_CYAN_TEXT("96"),
+        BRIGHT_WHITE_TEXT("97"),
+
+        BRIGHT_BLACK_BACK("100"),
+        BRIGHT_RED_BACK("101"),
+        BRIGHT_GREEN_BACK("102"),
+        BRIGHT_YELLOW_BACK("103"),
+        BRIGHT_BLUE_BACK("104"),
+        BRIGHT_MAGENTA_BACK("105"),
+        BRIGHT_CYAN_BACK("106"),
+        BRIGHT_WHITE_BACK("107");
 
         private final String _code; // Ansi escape code
 

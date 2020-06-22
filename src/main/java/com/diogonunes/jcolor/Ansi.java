@@ -88,7 +88,7 @@ public class Ansi {
     }
 
     /**
-     * @param attributes One or more ANSI attributes.
+     * @param attributes ANSI attributes to format a text.
      * @return The ANSI code that describes all those attributes together.
      */
     public static String generateCode(Attribute... attributes) {
@@ -111,7 +111,7 @@ public class Ansi {
     /**
      * @param text     String to format
      * @param ansiCode Ansi code to format each message's lines
-     * @return The formatted string, ready to be printed
+     * @return The formatted string, ready to be printed.
      */
     public static String colorize(String text, String ansiCode) {
         StringBuilder output = new StringBuilder();
@@ -137,9 +137,9 @@ public class Ansi {
     }
 
     /**
-     * @param text       String to format
-     * @param attributes One or more ANSI attributes.
-     * @return The formatted string, ready to be printed
+     * @param text       String to format.
+     * @param attributes ANSI attributes to format a text.
+     * @return The formatted string, ready to be printed.
      */
     public static String colorize(String text, Attribute... attributes) {
         String ansiCode = generateCode(attributes);
@@ -149,9 +149,9 @@ public class Ansi {
     /**
      * Easter egg. Just an alias of method "colorize".
      *
-     * @param text       String to format
-     * @param attributes One or more ANSI attributes.
-     * @return The formatted string, ready to be printed
+     * @param text       String to format.
+     * @param attributes ANSI attributes to format a text.
+     * @return The formatted string, ready to be printed.
      */
     public static String makeItFabulous(String text, Attribute... attributes) {
         return colorize(text, attributes);

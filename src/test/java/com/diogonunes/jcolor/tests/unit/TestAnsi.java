@@ -56,7 +56,7 @@ public class TestAnsi {
     }
 
     @Test
-    public void GenerateCode_MultipleOptions() {
+    public void GenerateCode_MultipleAttributes_HandlesArray() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{BOLD, CYAN_TEXT};
 
@@ -69,9 +69,23 @@ public class TestAnsi {
     }
 
     @Test
-    public void GenerateCode_MultipleOptionsWithValueNone() {
+    public void GenerateCode_MultipleAttributes_HandlesMultipleParams() {
         // ARRANGE
-        Object[] attributes = new Object[]{NONE, NONE, NONE};
+        Attribute firstAttribute = BOLD;
+        Attribute secondAttribute = CYAN_TEXT;
+
+        // ACT
+        String code = Ansi.generateCode(firstAttribute, secondAttribute);
+
+        // ASSERT
+        String expectedCode = PREFIX + firstAttribute + SEPARATOR + secondAttribute + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void GenerateCode_MultipleAttributesWithValueNone() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{NONE, NONE, NONE};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -82,9 +96,9 @@ public class TestAnsi {
     }
 
     @Test // Covers https://github.com/dialex/JCDP/issues/6
-    public void GenerateCode_SomeOptionsWithValueNone() {
+    public void GenerateCode_SomeAttributesWithValueNone() {
         // ARRANGE
-        Object[] attributes = new Object[]{NONE, CYAN_TEXT, NONE};
+        Attribute[] attributes = new Attribute[]{NONE, CYAN_TEXT, NONE};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -99,7 +113,7 @@ public class TestAnsi {
 //    @Test
 //    public void Colorize_MsgWithoutLine() {
 //        // ARRANGE
-//        Object[] attributes = new Object[]{BColor.BLUE};
+//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
 //        String msg = "words without lines";
 //
 //        // ACT
@@ -114,7 +128,7 @@ public class TestAnsi {
 //    @Test // Covers https://github.com/dialex/JCDP/issues/38
 //    public void Colorize_MsgWithLineEnd() {
 //        // ARRANGE
-//        Object[] attributes = new Object[]{BColor.BLUE};
+//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
 //        String msg = createTextLine();
 //
 //        // ACT
@@ -130,7 +144,7 @@ public class TestAnsi {
 //    @Test // Covers https://github.com/dialex/JCDP/issues/38
 //    public void Colorize_MsgMultiplesLines() {
 //        // ARRANGE
-//        Object[] attributes = new Object[]{BColor.BLUE};
+//        Attribute[] attributes = new Attribute[]{BColor.BLUE};
 //        String msg1 = createTextWithId(1), msg2 = createTextWithId(2);
 //        String fullMsg = msg1 + NEWLINE + msg2 + NEWLINE;
 //

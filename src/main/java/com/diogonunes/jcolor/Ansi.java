@@ -2,6 +2,11 @@ package com.diogonunes.jcolor;
 
 import static com.diogonunes.jcdp.Constants.NEWLINE;
 
+/**
+ * Provides a fluent API to generate
+ * <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a>
+ * by specifying {@link Attribute}s of your text.
+ */
 public class Ansi {
     private static final char ESC = 27; // Escape character used to start an ANSI code
 
@@ -82,7 +87,7 @@ public class Ansi {
      * @param attributes One or more ANSI attributes.
      * @return The ANSI code that describes all those attributes together.
      */
-    public static String generateCode(Object... attributes) {
+    public static String generateCode(Attribute... attributes) {
         StringBuilder builder = new StringBuilder();
 
         builder.append(PREFIX);
@@ -132,7 +137,7 @@ public class Ansi {
      * @param attributes One or more ANSI attributes.
      * @return The formatted string, ready to be printed
      */
-    public static String colorize(String text, Object... attributes) {
+    public static String colorize(String text, Attribute... attributes) {
         String ansiCode = generateCode(attributes);
         return colorize(text, ansiCode);
     }

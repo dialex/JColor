@@ -1,6 +1,7 @@
 package com.diogonunes.jcolor.tests.unit;
 
 import com.diogonunes.jcolor.Ansi;
+import com.diogonunes.jcolor.AnsiFormat;
 import org.junit.jupiter.api.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
@@ -68,6 +69,19 @@ public class TestAnsi {
         assertThat(code, equalTo(expectedCode));
     }
 
+    @Test
+    public void GenerateCode_MultipleAttributes_HandlesAnsiFormat() {
+        // ARRANGE
+        AnsiFormat attributes = new AnsiFormat(DIM, CYAN_TEXT);
+
+        // ACT
+        String code = Ansi.generateCode(attributes);
+
+        // ASSERT
+        String expectedCode = PREFIX + DIM + SEPARATOR + CYAN_TEXT + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+    
     @Test
     public void GenerateCode_MultipleAttributes_HandlesMultipleParams() {
         // ARRANGE

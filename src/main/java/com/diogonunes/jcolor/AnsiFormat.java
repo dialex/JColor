@@ -1,7 +1,5 @@
 package com.diogonunes.jcolor;
 
-import com.diogonunes.jcolor.Ansi.Attribute;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

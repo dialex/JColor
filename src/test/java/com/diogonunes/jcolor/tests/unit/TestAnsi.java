@@ -2,10 +2,11 @@ package com.diogonunes.jcolor.tests.unit;
 
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.AnsiFormat;
+import com.diogonunes.jcolor.Attribute;
 import org.junit.jupiter.api.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
-import static com.diogonunes.jcolor.Ansi.Attribute.*;
+import static com.diogonunes.jcolor.Attribute.*;
 import static com.diogonunes.jcolor.tests.unit.DataGenerator.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -46,7 +47,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JColor/issues/6
     public void GenerateCode_OneAttribute() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{STRIKETHROUGH};
+        Attribute[] attributes = new Attribute[]{STRIKETHROUGH()};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -59,7 +60,7 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{DIM, CYAN_TEXT};
+        Attribute[] attributes = new Attribute[]{DIM(), CYAN_TEXT()};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -72,21 +73,21 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributes_HandlesAnsiFormat() {
         // ARRANGE
-        AnsiFormat attributes = new AnsiFormat(DIM, CYAN_TEXT);
+        AnsiFormat attributes = new AnsiFormat(DIM(), CYAN_TEXT());
 
         // ACT
         String code = Ansi.generateCode(attributes);
 
         // ASSERT
-        String expectedCode = PREFIX + DIM + SEPARATOR + CYAN_TEXT + POSTFIX;
+        String expectedCode = PREFIX + DIM() + SEPARATOR + CYAN_TEXT() + POSTFIX;
         assertThat(code, equalTo(expectedCode));
     }
     
     @Test
     public void GenerateCode_MultipleAttributes_HandlesMultipleParams() {
         // ARRANGE
-        Attribute firstAttribute = UNDERLINE;
-        Attribute secondAttribute = GREEN_TEXT;
+        Attribute firstAttribute = UNDERLINE();
+        Attribute secondAttribute = GREEN_TEXT();
 
         // ACT
         String code = Ansi.generateCode(firstAttribute, secondAttribute);
@@ -99,7 +100,7 @@ public class TestAnsi {
     @Test
     public void GenerateCode_MultipleAttributesWithValueNone() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{NONE, NONE, NONE};
+        Attribute[] attributes = new Attribute[]{NONE(), NONE(), NONE()};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -112,7 +113,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JColor/issues/6
     public void GenerateCode_SomeAttributesWithValueNone() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{NONE, BLUE_TEXT, NONE};
+        Attribute[] attributes = new Attribute[]{NONE(), BLUE_TEXT(), NONE()};
 
         // ACT
         String code = Ansi.generateCode(attributes);
@@ -127,7 +128,7 @@ public class TestAnsi {
     @Test
     public void Colorize_TextWithoutLines() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{YELLOW_BACK};
+        Attribute[] attributes = new Attribute[]{YELLOW_BACK()};
         String text = createText();
 
         // ACT
@@ -143,7 +144,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JColor/issues/38
     public void Colorize_TextWithSingleLine() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{GREEN_BACK};
+        Attribute[] attributes = new Attribute[]{GREEN_BACK()};
         String text = createTextLine();
 
         // ACT
@@ -159,7 +160,7 @@ public class TestAnsi {
     @Test // Covers https://github.com/dialex/JColor/issues/38
     public void Colorize_TextWithMultiplesLines() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{RED_BACK};
+        Attribute[] attributes = new Attribute[]{RED_BACK()};
         String text1 = createTextWithId(1), text2 = createTextWithId(2);
         String fullText = text1 + NEWLINE + text2 + NEWLINE;
 
@@ -176,7 +177,7 @@ public class TestAnsi {
     @Test
     public void Colorize_ConflictingAttributes_UsesTheLast() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{BLACK_BACK, WHITE_BACK, BLUE_BACK};
+        Attribute[] attributes = new Attribute[]{BLACK_BACK(), WHITE_BACK(), BLUE_BACK()};
         String text = "This text will have a blue back";
 
         // ACT

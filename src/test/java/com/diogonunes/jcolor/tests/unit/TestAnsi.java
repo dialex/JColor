@@ -58,6 +58,66 @@ public class TestAnsi {
     }
 
     @Test
+    public void GenerateCode_OneAttribute_8bitTextColor() {
+        // ARRANGE
+        Attribute attribute = new TextColor(225);
+        String ansiCodeFor8bitForeColor = "38;5;";
+
+        // ACT
+        String code = Ansi.generateCode(attribute);
+
+        // ASSERT
+        String expectedCode = PREFIX + attribute + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+        assertThat(code, containsString(ansiCodeFor8bitForeColor));
+    }
+
+    @Test
+    public void GenerateCode_OneAttribute_8bitBackColor() {
+        // ARRANGE
+        Attribute attribute = new BackColor(225);
+        String ansiCodeFor8bitBackColor = "48;5;";
+
+        // ACT
+        String code = Ansi.generateCode(attribute);
+
+        // ASSERT
+        String expectedCode = PREFIX + attribute + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+        assertThat(code, containsString(ansiCodeFor8bitBackColor));
+    }
+
+    @Test
+    public void GenerateCode_OneAttribute_RGBTextColor() {
+        // ARRANGE
+        Attribute attribute = new TextColor(255, 160, 122);
+        String ansiCodeForRGBForeColor = "38;2;";
+
+        // ACT
+        String code = Ansi.generateCode(attribute);
+
+        // ASSERT
+        String expectedCode = PREFIX + attribute + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+        assertThat(code, containsString(ansiCodeForRGBForeColor));
+    }
+
+    @Test
+    public void GenerateCode_OneAttribute_RGBBackColor() {
+        // ARRANGE
+        Attribute attribute = new BackColor(160, 122, 255);
+        String ansiCodeForRGBBackColor = "48;2;";
+
+        // ACT
+        String code = Ansi.generateCode(attribute);
+
+        // ASSERT
+        String expectedCode = PREFIX + attribute + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+        assertThat(code, containsString(ansiCodeForRGBBackColor));
+    }
+
+    @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{DIM(), CYAN_TEXT()};
@@ -82,7 +142,7 @@ public class TestAnsi {
         String expectedCode = PREFIX + DIM() + SEPARATOR + CYAN_TEXT() + POSTFIX;
         assertThat(code, equalTo(expectedCode));
     }
-    
+
     @Test
     public void GenerateCode_MultipleAttributes_HandlesMultipleParams() {
         // ARRANGE
@@ -189,5 +249,4 @@ public class TestAnsi {
         assertThat(formattedText, startsWith(expectedCode));
         assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
     }
-
 }

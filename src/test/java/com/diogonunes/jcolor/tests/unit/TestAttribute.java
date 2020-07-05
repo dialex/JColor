@@ -5,26 +5,25 @@ import org.junit.jupiter.api.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * Tests for Attribute class.
+ * Assert that each Attribute outputs the correct Ansi code.
  */
 public class TestAttribute {
 
     @Test
-    public void GenerateCode_OneAttribute_Text8bitColor() {
+    public void Attribute_AnsiCode_Text8bitColor() {
         // ARRANGE
         int colorNumber = 225;
         Attribute attribute = Attribute.TextColor(colorNumber);
         String ansiCodeFor8bitForeColor = "38;5;";
 
         // ACT
-        String code = generateCode(attribute);
+        String code = attribute.toString();
 
         // ASSERT
-        String expectedCode = PREFIX + ansiCodeFor8bitForeColor + colorNumber + POSTFIX;
+        String expectedCode = ansiCodeFor8bitForeColor + colorNumber;
         assertThat(code, equalTo(expectedCode));
     }
 
@@ -44,7 +43,7 @@ public class TestAttribute {
 //    }
 
     @Test
-    public void GenerateCode_OneAttribute_TextTrueColor() {
+    public void Attribute_AnsiCode_TextTrueColor() {
         // ARRANGE
         int r = 255, g = 160, b = 122;
         Attribute attribute = Attribute.TextColor(r, g, b);
@@ -54,7 +53,7 @@ public class TestAttribute {
         String code = generateCode(attribute);
 
         // ASSERT
-        String expectedCode = PREFIX + ansiCodeForRGBForeColor + r + SEPARATOR + g + SEPARATOR + b + POSTFIX;
+        String expectedCode = ansiCodeForRGBBackColor + r + SEPARATOR + g + SEPARATOR + b;
         assertThat(code, equalTo(expectedCode));
     }
 

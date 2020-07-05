@@ -45,7 +45,7 @@ public class TestUsage {
     @Test
     public void CanFormatWithTrueColorAttributes() {
         // ARRANGE
-        AnsiFormat fWarning = new AnsiFormat(TextColor(202), BackColor(225, 255, 47), BOLD());
+        AnsiFormat fWarning = new AnsiFormat(TEXT_COLOR(202), BACK_COLOR(225, 255, 47), BOLD());
 
         // ACT
         String formattedText = fWarning.format("This bold text will be kinda-orange on greenish-yellow");

@@ -46,15 +46,15 @@ System.out.println(fNormal.format("You can use normal colors ") + fBright.format
 // Use Case 6: we support 8-bit colors
 System.out.println("Any 8-bit color (0-255), as long as your terminal supports it:");
 for (int i = 0; i <= 255; i++) {
-    Attribute textColor = TextColor(i);
-    System.out.print(colorize(String.format("%4d", i), textColor));
+    Attribute txtColor = TEXT_COLOR(i);
+    System.out.print(colorize(String.format("%4d", i), txtColor));
 }
 System.out.println("\n");
 
 // Use Case 7: we support true colors (RGB)
 System.out.println("Any TrueColor (RGB), as long as your terminal supports it:");
 for (int i = 0; i <= 300; i++) {
-    Attribute bkgColor = BackColor(randomInt(255), randomInt(255), randomInt(255));
+    Attribute bkgColor = BACK_COLOR(randomInt(255), randomInt(255), randomInt(255));
     System.out.print(colorize("   ", bkgColor));
 }
 System.out.println("\n");

@@ -222,7 +222,7 @@ public abstract class Attribute {
      * @param colorNumber A number (0-255) that represents an 8-bit color.
      * @return An Attribute that represents a foreground with an 8-bit color.
      */
-    public static Attribute TextColor(int colorNumber) {
+    public static Attribute TEXT_COLOR(int colorNumber) {
         return new TextColorAttribute(colorNumber);
     }
 
@@ -233,7 +233,7 @@ public abstract class Attribute {
      * @param b A number (0-255) that represents the blue component.
      * @return An Attribute that represents a foreground with a true color.
      */
-    public static Attribute TextColor(int r, int g, int b) {
+    public static Attribute TEXT_COLOR(int r, int g, int b) {
         return new TextColorAttribute(r, g, b);
     }
 
@@ -242,7 +242,7 @@ public abstract class Attribute {
      * @param colorNumber A number (0-255) that represents an 8-bit color.
      * @return An Attribute that represents a background with an 8-bit color.
      */
-    public static Attribute BackColor(int colorNumber) {
+    public static Attribute BACK_COLOR(int colorNumber) {
         return new BackColorAttribute(colorNumber);
     }
 
@@ -253,7 +253,7 @@ public abstract class Attribute {
      * @param b A number (0-255) that represents the blue component.
      * @return An Attribute that represents a background with a true color.
      */
-    public static Attribute BackColor(int r, int g, int b) {
+    public static Attribute BACK_COLOR(int r, int g, int b) {
         return new BackColorAttribute(r, g, b);
     }
 

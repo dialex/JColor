@@ -60,7 +60,7 @@ public class TestAnsi {
     @Test
     public void GenerateCode_OneAttribute_Color() {
         // ARRANGE
-        Attribute[] attributes = new Attribute[]{TextColor(225)};
+        Attribute[] attributes = new Attribute[]{TEXT_COLOR(225)};
 
         // ACT
         String code = Ansi.generateCode(attributes);

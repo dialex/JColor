@@ -613,7 +613,7 @@ public class TestAttribute {
     public void Attribute_AnsiCode_Text8bitColor() {
         // ARRANGE
         int colorNumber = 225;
-        Attribute attribute = Attribute.TextColor(colorNumber);
+        Attribute attribute = Attribute.TEXT_COLOR(colorNumber);
         String ansiCodeFor8bitForeColor = "38;5;";
 
         // ACT
@@ -628,7 +628,7 @@ public class TestAttribute {
     public void Attribute_AnsiCode_TextTrueColor() {
         // ARRANGE
         int r = 255, g = 160, b = 122;
-        Attribute attribute = Attribute.TextColor(r, g, b);
+        Attribute attribute = Attribute.TEXT_COLOR(r, g, b);
         String ansiCodeForRGBForeColor = "38;2;";
 
         // ACT
@@ -643,7 +643,7 @@ public class TestAttribute {
     public void Attribute_AnsiCode_Back8bitColor() {
         // ARRANGE
         int colorNumber = 225;
-        Attribute attribute = Attribute.BackColor(colorNumber);
+        Attribute attribute = Attribute.BACK_COLOR(colorNumber);
         String ansiCodeFor8bitBackColor = "48;5;";
 
         // ACT
@@ -658,7 +658,7 @@ public class TestAttribute {
     public void Attribute_AnsiCode_BackTrueColor() {
         // ARRANGE
         int r = 160, g = 122, b = 255;
-        Attribute attribute = Attribute.BackColor(r, g, b);
+        Attribute attribute = Attribute.BACK_COLOR(r, g, b);
         String ansiCodeForRGBBackColor = "48;2;";
 
         // ACT

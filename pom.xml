@@ -34,10 +34,10 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com/dialex/jcdp.git</connection>
-        <developerConnection>scm:git:git@github.com:dialex/jcdp.git</developerConnection>
-        <url>git@github.com/dialex/jcdp/tree/master</url>
-        <tag>v4.0.2</tag>
+        <connection>scm:git:git@github.com/dialex/jcolor.git</connection>
+        <developerConnection>scm:git:git@github.com:dialex/jcolor.git</developerConnection>
+        <url>git@github.com/dialex/jcolor/tree/master</url>
+        <tag>v5.0.0</tag>
     </scm>
 
     <distributionManagement>

@@ -45,7 +45,7 @@ public class TestAnsi {
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/6
-    public void GenerateCode_OneAttribute() {
+    public void GenerateCode_OneAttribute_Simple() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{STRIKETHROUGH()};
 
@@ -58,64 +58,30 @@ public class TestAnsi {
     }
 
     @Test
-    public void GenerateCode_OneAttribute_8bitTextColor() {
+    public void GenerateCode_OneAttribute_TextColor() {
         // ARRANGE
-        Attribute attribute = new TextColor(225);
-        String ansiCodeFor8bitForeColor = "38;5;";
+        Attribute[] attributes = new Attribute[]{TextColor(225)};
 
         // ACT
-        String code = Ansi.generateCode(attribute);
+        String code = Ansi.generateCode(attributes);
 
         // ASSERT
-        String expectedCode = PREFIX + attribute + POSTFIX;
+        String expectedCode = PREFIX + attributes[0] + POSTFIX;
         assertThat(code, equalTo(expectedCode));
-        assertThat(code, containsString(ansiCodeFor8bitForeColor));
     }
 
-    @Test
-    public void GenerateCode_OneAttribute_8bitBackColor() {
-        // ARRANGE
-        Attribute attribute = new BackColor(225);
-        String ansiCodeFor8bitBackColor = "48;5;";
-
-        // ACT
-        String code = Ansi.generateCode(attribute);
-
-        // ASSERT
-        String expectedCode = PREFIX + attribute + POSTFIX;
-        assertThat(code, equalTo(expectedCode));
-        assertThat(code, containsString(ansiCodeFor8bitBackColor));
-    }
-
-    @Test
-    public void GenerateCode_OneAttribute_RGBTextColor() {
-        // ARRANGE
-        Attribute attribute = new TextColor(255, 160, 122);
-        String ansiCodeForRGBForeColor = "38;2;";
-
-        // ACT
-        String code = Ansi.generateCode(attribute);
-
-        // ASSERT
-        String expectedCode = PREFIX + attribute + POSTFIX;
-        assertThat(code, equalTo(expectedCode));
-        assertThat(code, containsString(ansiCodeForRGBForeColor));
-    }
-
-    @Test
-    public void GenerateCode_OneAttribute_RGBBackColor() {
-        // ARRANGE
-        Attribute attribute = new BackColor(160, 122, 255);
-        String ansiCodeForRGBBackColor = "48;2;";
-
-        // ACT
-        String code = Ansi.generateCode(attribute);
-
-        // ASSERT
-        String expectedCode = PREFIX + attribute + POSTFIX;
-        assertThat(code, equalTo(expectedCode));
-        assertThat(code, containsString(ansiCodeForRGBBackColor));
-    }
+//    @Test
+//    public void GenerateCode_OneAttribute_BackColor() {
+//        // ARRANGE
+//        Attribute[] attributes = new Attribute[]{BackColor(225)};
+//
+//        // ACT
+//        String code = Ansi.generateCode(attributes);
+//
+//        // ASSERT
+//        String expectedCode = PREFIX + attributes[0] + POSTFIX;
+//        assertThat(code, equalTo(expectedCode));
+//    }
 
     @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {

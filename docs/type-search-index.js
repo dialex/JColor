@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.diogonunes.jcolor","l":"Ansi"},{"p":"com.diogonunes.jcolor","l":"AnsiFormat"},{"p":"com.diogonunes.jcolor","l":"Attribute"}]

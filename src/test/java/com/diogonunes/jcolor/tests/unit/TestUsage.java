@@ -43,6 +43,21 @@ public class TestUsage {
     }
 
     @Test
+    public void CanFormatWithTrueColorAttributes() {
+        // ARRANGE
+        AnsiFormat fWarning = new AnsiFormat(TextColor(202), BackColor(225, 255, 47), BOLD());
+
+        // ACT
+        String formattedText = fWarning.format("This bold text will be kinda-orange on greenish-yellow");
+        //System.out.println(formattedText);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(fWarning);
+        assertThat(formattedText, startsWith(expectedCode));
+        assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test
     public void CanFormatInline() {
         // ARRANGE
 

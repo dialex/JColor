@@ -210,7 +210,7 @@ public abstract class Attribute {
         return new SimpleAttribute("107");
     }
 
-    // Full colors
+    // Complex colors
 
     /**
      *

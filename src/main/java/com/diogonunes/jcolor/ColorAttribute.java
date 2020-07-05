@@ -4,9 +4,7 @@ import static java.lang.String.valueOf;
 
 public abstract class ColorAttribute extends Attribute {
 
-    //TODO: refactor into single field, array 1 or 3 elements
-    protected final String _simpleColor;
-    protected final String[] _rgbColor;
+    protected final String[] _color;
 
     /**
      * Constructor (8-bit color).
@@ -15,8 +13,7 @@ public abstract class ColorAttribute extends Attribute {
      */
     ColorAttribute(int colorNumber) {
         if (0 <= colorNumber && colorNumber <= 255) {
-            _simpleColor = valueOf(colorNumber);
-            _rgbColor = null;
+            _color = new String[]{valueOf(colorNumber)};
         } else
             throw new IllegalArgumentException("Color must be a number inside range [0-255]. Received: " + colorNumber);
     }
@@ -30,24 +27,23 @@ public abstract class ColorAttribute extends Attribute {
      */
     ColorAttribute(int r, int g, int b) {
         if ((0 <= r && r <= 255) && (0 <= g && g <= 255) && (0 <= b && b <= 255)) {
-            _rgbColor = new String[]{valueOf(r), valueOf(g), valueOf(b)};
-            _simpleColor = "";
+            _color = new String[]{valueOf(r), valueOf(g), valueOf(b)};
         } else
             throw new IllegalArgumentException(
                     String.format("Color components must be a number inside range [0-255]. Received: %d, %d, %d", r, g, b));
     }
 
     protected boolean isTrueColor() {
-        return (_rgbColor != null);
+        return (_color.length == 3 );
     }
 
     protected abstract String getColorAnsiPrefix();
 
     protected String getColorAnsiCode() {
         if (isTrueColor())
-            return _rgbColor[0] + Ansi.SEPARATOR + _rgbColor[1] + Ansi.SEPARATOR + _rgbColor[2];
+            return _color[0] + Ansi.SEPARATOR + _color[1] + Ansi.SEPARATOR + _color[2];
         else
-            return _simpleColor;
+            return _color[0];
     }
 
     @Override

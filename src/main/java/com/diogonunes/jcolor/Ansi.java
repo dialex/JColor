@@ -3,7 +3,7 @@ package com.diogonunes.jcolor;
 /**
  * Provides a fluent API to generate
  * <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI escape sequences</a>
- * by specifying {@link Attribute}s of your text.
+ * by specifying {@link Attribute}s of your format.
  */
 public class Ansi {
 

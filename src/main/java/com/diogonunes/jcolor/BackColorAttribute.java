@@ -1,6 +1,6 @@
 package com.diogonunes.jcolor;
 
-public class BackColorAttribute extends ColorAttribute {
+class BackColorAttribute extends ColorAttribute {
 
     /**
      * {@inheritDoc}

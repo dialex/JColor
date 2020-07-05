@@ -2,7 +2,7 @@ package com.diogonunes.jcolor;
 
 import static java.lang.String.valueOf;
 
-public abstract class ColorAttribute extends Attribute {
+abstract class ColorAttribute extends Attribute {
 
     protected final String[] _color;
 

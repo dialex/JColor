@@ -1,6 +1,6 @@
 package com.diogonunes.jcolor;
 
-public class TextColorAttribute extends ColorAttribute {
+class TextColorAttribute extends ColorAttribute {
 
     /**
      * {@inheritDoc}

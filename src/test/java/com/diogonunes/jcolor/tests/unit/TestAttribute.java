@@ -27,21 +27,6 @@ public class TestAttribute {
         assertThat(code, equalTo(expectedCode));
     }
 
-//    @Test
-//    public void GenerateCode_OneAttribute_8bitBackColor() {
-//        // ARRANGE
-//        Attribute attribute = new BackColor(225);
-//        String ansiCodeFor8bitBackColor = "48;5;";
-//
-//        // ACT
-//        String code = generateCode(attribute);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + attribute + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//        assertThat(code, containsString(ansiCodeFor8bitBackColor));
-//    }
-
     @Test
     public void Attribute_AnsiCode_TextTrueColor() {
         // ARRANGE
@@ -50,25 +35,41 @@ public class TestAttribute {
         String ansiCodeForRGBForeColor = "38;2;";
 
         // ACT
-        String code = generateCode(attribute);
+        String code = attribute.toString();
+
+        // ASSERT
+        String expectedCode = ansiCodeForRGBForeColor + r + SEPARATOR + g + SEPARATOR + b;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void Attribute_AnsiCode_Back8bitColor() {
+        // ARRANGE
+        int colorNumber = 225;
+        Attribute attribute = Attribute.BackColor(colorNumber);
+        String ansiCodeFor8bitBackColor = "48;5;";
+
+        // ACT
+        String code = attribute.toString();
+
+        // ASSERT
+        String expectedCode = ansiCodeFor8bitBackColor + colorNumber;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test
+    public void Attribute_AnsiCode_BackTrueColor() {
+        // ARRANGE
+        int r = 160, g = 122, b = 255;
+        Attribute attribute = Attribute.BackColor(r, g, b);
+        String ansiCodeForRGBBackColor = "48;2;";
+
+        // ACT
+        String code = attribute.toString();
 
         // ASSERT
         String expectedCode = ansiCodeForRGBBackColor + r + SEPARATOR + g + SEPARATOR + b;
         assertThat(code, equalTo(expectedCode));
     }
 
-//    @Test
-//    public void GenerateCode_OneAttribute_RGBBackColor() {
-//        // ARRANGE
-//        Attribute attribute = new BackColor(160, 122, 255);
-//        String ansiCodeForRGBBackColor = "48;2;";
-//
-//        // ACT
-//        String code = generateCode(attribute);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + attribute + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//        assertThat(code, containsString(ansiCodeForRGBBackColor));
-//    }
 }

@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/dialex/JColor/master/.github/img/JColor-logo.png" width="150">
 
-[![Travis build](https://img.shields.io/travis/dialex/JColor)](https://travis-ci.org/dialex/JColor) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/app/dialex-nunes/JColor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dialex/JColor&amp;utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
+[![Travis build](https://img.shields.io/travis/dialex/JColor)](https://travis-ci.org/dialex/JColor) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
 **Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
 
@@ -84,7 +84,7 @@ You can import this dependency through Maven or Gradle, just [pick a version](ht
 
 ### License
 
-JColor, former JCDP  Copyright (C) 2011-*  [Diogo Nunes](http://www.diogonunes.com/)
+JColor, former JCDP Copyright (C) 2011-\* [Diogo Nunes](http://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
 ### Credits

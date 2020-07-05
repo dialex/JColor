@@ -6,9 +6,9 @@
 
 ### Screenshots
 
-![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-mac-iterm-304-fancy.png)
+![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-mac-iterm-fancy.png)
 
-How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-IntelliJ-304.png)
+How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-IntelliJ.png)
 
 ### Usage
 

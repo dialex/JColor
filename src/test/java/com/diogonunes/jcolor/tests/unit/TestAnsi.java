@@ -58,7 +58,7 @@ public class TestAnsi {
     }
 
     @Test
-    public void GenerateCode_OneAttribute_TextColor() {
+    public void GenerateCode_OneAttribute_Color() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{TextColor(225)};
 
@@ -69,19 +69,6 @@ public class TestAnsi {
         String expectedCode = PREFIX + attributes[0] + POSTFIX;
         assertThat(code, equalTo(expectedCode));
     }
-
-//    @Test
-//    public void GenerateCode_OneAttribute_BackColor() {
-//        // ARRANGE
-//        Attribute[] attributes = new Attribute[]{BackColor(225)};
-//
-//        // ACT
-//        String code = Ansi.generateCode(attributes);
-//
-//        // ASSERT
-//        String expectedCode = PREFIX + attributes[0] + POSTFIX;
-//        assertThat(code, equalTo(expectedCode));
-//    }
 
     @Test
     public void GenerateCode_MultipleAttributes_HandlesArray() {
@@ -124,7 +111,7 @@ public class TestAnsi {
     }
 
     @Test
-    public void GenerateCode_MultipleAttributesWithValueNone() {
+    public void GenerateCode_MultipleAttributes_HandlesAttributesWithoutCode() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{NONE(), NONE(), NONE()};
 
@@ -137,7 +124,7 @@ public class TestAnsi {
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/6
-    public void GenerateCode_SomeAttributesWithValueNone() {
+    public void GenerateCode_MultiplesAttributes_HandlesAttributesMixedWithNone() {
         // ARRANGE
         Attribute[] attributes = new Attribute[]{NONE(), BLUE_TEXT(), NONE()};
 

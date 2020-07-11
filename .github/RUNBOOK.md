@@ -9,7 +9,7 @@ How to do stuff
   - Wait for CI results
   - Merge PR
 - Locally,
-  - Checkout master
+  - Checkout `main`
   - Edit `pom.xml`
     - Breaking changes, increase major (`X.*.*`)
     - Upgrading dependencies, increase minor (`*.Y.*`)
@@ -34,4 +34,3 @@ How to do stuff
   - Delete the contents of folder `docs`
   - Paste your clipboard inside that folder
   - Run `git add .; git commit -m "doc: update to version X.Y.Z"`
- 

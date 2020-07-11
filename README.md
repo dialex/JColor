@@ -1,14 +1,14 @@
-# <img src="https://raw.githubusercontent.com/dialex/JColor/master/.github/img/JColor-logo.png" width="150">
+# <img src="https://raw.githubusercontent.com/dialex/JColor/main/.github/img/JColor-logo.png" width="150">
 
-[![Travis build](https://img.shields.io/travis/dialex/JCDP)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
+[![Travis build](https://img.shields.io/travis/dialex/JCDP)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/main/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
 **Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
 
 ### Screenshots
 
-![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-mac-iterm-fancy.png)
+![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-mac-iterm-fancy.png)
 
-How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/master/.github/img/example-IntelliJ.png)
+How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-IntelliJ.png)
 
 ### Usage
 

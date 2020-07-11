@@ -1,6 +1,6 @@
 # <img src="https://raw.githubusercontent.com/dialex/JColor/master/.github/img/JColor-logo.png" width="150">
 
-[![Travis build](https://img.shields.io/travis/dialex/JCDP)](https://travis-ci.org/dialex/JColor) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JCDP)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JCDP.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
+[![Travis build](https://img.shields.io/travis/dialex/JCDP)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/master/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
 **Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
 
@@ -68,12 +68,10 @@ System.out.println("I hope you find it useful ;)");
 
 ### Installation
 
-You can import this dependency through Maven or Gradle, just [pick a version](https://mvnrepository.com/artifact/com.diogonunes/JColor).
+You can import this dependency through Maven or Gradle:
 
-#### Requirements
-
-- JColor `v5.*` supports Java +8, Linux, macOS, Windows 10
-- JCDP `v4.*` supports Java +8, Linux, macOS, Windows 10
+- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows 10
+- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows 10
 - JCDP `v3.*` supports Java +8, Linux, macOS, Windows
 - JCDP `v2.*` supports Java +6, Linux, macOS, Windows
 
@@ -84,7 +82,7 @@ You can import this dependency through Maven or Gradle, just [pick a version](ht
 
 ### License
 
-JColor, former JCDP Copyright (C) 2011-\* [Diogo Nunes](http://www.diogonunes.com/)
+JColor, former JCDP Copyright (C) 2011-\* [Diogo Nunes](https://www.diogonunes.com/)
 This program is licensed under the terms of the MIT License and it comes with ABSOLUTELY NO WARRANTY. For more details check LICENSE.
 
 ### Credits

@@ -187,6 +187,36 @@ public class TestAnsi {
         assertThat(formattedText, endsWith(Ansi.RESET + NEWLINE));
     }
 
+    @Test // Covers https://github.com/dialex/JColor/issues/51
+    public void Colorize_TextWithMultipleEmptyLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{(CYAN_BACK())};
+        String emptyLines = NEWLINE + NEWLINE + NEWLINE;
+        String fullText = createText() + emptyLines;
+
+        // ACT
+        String formattedText = Ansi.colorize(fullText, attributes);
+        //System.out.println(formattedText);
+
+        // ASSERT
+        assertThat("Empty lines are not deleted", formattedText, containsString(emptyLines));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/51
+    public void Colorize_TextWithMiddleEmptyLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{(CYAN_BACK())};
+        String text1 = createTextWithId(1), text2 = createTextWithId(2);
+        String fullText = text1 + NEWLINE + NEWLINE + text2;
+
+        // ACT
+        String formattedText = Ansi.colorize(fullText, attributes);
+        //System.out.println(formattedText);
+
+        // ASSERT
+        assertThat("Middle empty lines are not deleted", formattedText, containsString(NEWLINE + NEWLINE));
+    }
+
     @Test
     public void Colorize_ConflictingAttributes_UsesTheLast() {
         // ARRANGE

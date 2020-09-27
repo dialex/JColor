@@ -167,7 +167,7 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
         assertThat("Format must be cleared before changing line, to avoid format spillage",
-                formattedText, endsWith(Ansi.RESET + NEWLINE));
+                formattedText, endsWith(Ansi.RESET));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/38
@@ -184,7 +184,40 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
         assertThat("Middle lines preserve format", formattedText, containsString(expectedCode + text2 + Ansi.RESET));
-        assertThat(formattedText, endsWith(Ansi.RESET + NEWLINE));
+        assertThat(formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/51
+    public void Colorize_TextWithMultipleEmptyLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{(CYAN_BACK())};
+        String emptyLines = NEWLINE + NEWLINE + NEWLINE;
+        String fullText = createText() + emptyLines;
+
+        // ACT
+        String formattedText = Ansi.colorize(fullText, attributes);
+        //System.out.println(formattedText);
+
+        // ASSERT
+
+        assertThat("Empty lines are not deleted", countLines(formattedText), equalTo(countLines(emptyLines)));
+        assertThat(formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/51
+    public void Colorize_TextWithMiddleEmptyLines() {
+        // ARRANGE
+        Attribute[] attributes = new Attribute[]{(CYAN_BACK())};
+        String text1 = createTextWithId(1), text2 = createTextWithId(2);
+        String fullText = text1 + NEWLINE + NEWLINE + text2;
+
+        // ACT
+        String formattedText = Ansi.colorize(fullText, attributes);
+        System.out.println(formattedText);
+
+        // ASSERT
+        assertThat("Middle empty lines are not deleted", countLines(formattedText), equalTo(countLines(fullText)));
+        assertThat(formattedText, endsWith(Ansi.RESET));
     }
 
     @Test

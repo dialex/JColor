@@ -167,7 +167,7 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
         assertThat("Format must be cleared before changing line, to avoid format spillage",
-                formattedText, endsWith(Ansi.RESET + NEWLINE));
+                formattedText, endsWith(Ansi.RESET));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/38
@@ -184,7 +184,7 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = Ansi.generateCode(attributes);
         assertThat("Middle lines preserve format", formattedText, containsString(expectedCode + text2 + Ansi.RESET));
-        assertThat(formattedText, endsWith(Ansi.RESET + NEWLINE));
+        assertThat(formattedText, endsWith(Ansi.RESET));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/51
@@ -199,7 +199,9 @@ public class TestAnsi {
         //System.out.println(formattedText);
 
         // ASSERT
-        assertThat("Empty lines are not deleted", formattedText, containsString(emptyLines));
+
+        assertThat("Empty lines are not deleted", countLines(formattedText), equalTo(countLines(emptyLines)));
+        assertThat(formattedText, endsWith(Ansi.RESET));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/51
@@ -211,10 +213,11 @@ public class TestAnsi {
 
         // ACT
         String formattedText = Ansi.colorize(fullText, attributes);
-        //System.out.println(formattedText);
+        System.out.println(formattedText);
 
         // ASSERT
-        assertThat("Middle empty lines are not deleted", formattedText, containsString(NEWLINE + NEWLINE));
+        assertThat("Middle empty lines are not deleted", countLines(formattedText), equalTo(countLines(fullText)));
+        assertThat(formattedText, endsWith(Ansi.RESET));
     }
 
     @Test

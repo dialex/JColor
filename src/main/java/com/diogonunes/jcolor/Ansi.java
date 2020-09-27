@@ -63,24 +63,21 @@ public class Ansi {
      */
     public static String colorize(String text, String ansiCode) {
         StringBuilder output = new StringBuilder();
-        boolean endsWithLine = text.endsWith(NEWLINE);
 
-        String[] lines = text.split(NEWLINE);
         /*
          * Every formatted line should:
          * 1) start with a code that sets the format
          * 2) end with a code that resets the format
          * This prevents "spilling" the format to other independent prints, which
-         * is noticeable when the background is colored. This method enforces those
-         * two rules, even when the original message contains newlines.
+         * is noticeable when the background is colored.
          */
-        for (String line : lines) {
-            output.append(ansiCode);
-            output.append(line);
-            output.append(RESET);
-            if (endsWithLine)
-                output.append(NEWLINE);
-        }
+
+        output.append(ansiCode);
+        // Each line needs to end the current format (RESET) and start it on the next line.
+        // This avoids spilling, ie. a long line without text but formatted background
+        String enclosedFormatting = text.replace(NEWLINE, RESET + NEWLINE + ansiCode);
+        output.append(enclosedFormatting);
+        output.append(RESET);
         return output.toString();
     }
 

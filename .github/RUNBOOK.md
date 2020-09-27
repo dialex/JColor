@@ -20,7 +20,7 @@ How to do stuff
   - Run `git push`
 - On GitHub,
   - Create new release
-  - Select tag that created by maven
+  - Select tag created by maven
   - Describe changes
 
 ## Generate Javadoc

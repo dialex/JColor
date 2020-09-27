@@ -71,7 +71,7 @@ public class Ansi {
          * 1) start with a code that sets the format
          * 2) end with a code that resets the format
          * This prevents "spilling" the format to other independent prints, which
-         * is noticeable when the background is colored. This method ensures those
+         * is noticeable when the background is colored. This method enforces those
          * two rules, even when the original message contains newlines.
          */
         for (String line : lines) {

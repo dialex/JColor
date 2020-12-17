@@ -2,7 +2,7 @@
 
 [![Travis build](https://img.shields.io/travis/dialex/JCDP)](https://travis-ci.org/dialex/JCDP) [![Maven Central](https://img.shields.io/maven-central/v/com.diogonunes/JColor)](https://mvnrepository.com/artifact/com.diogonunes/JColor) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/faaed58a577d4c3099cf8d6d4d572fb8)](https://www.codacy.com/manual/dialex-nunes/JColor?utm_source=github.com&utm_medium=referral&utm_content=dialex/JColor&utm_campaign=Badge_Grade) [![License](https://img.shields.io/github/license/dialex/JColor.svg)](https://github.com/dialex/JColor/blob/main/LICENSE) [![Donate](https://img.shields.io/badge/donate-%E2%99%A5%20-E91E63.svg)](https://www.paypal.me/dialexnunes/)
 
-**Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal. It also provides custom levels of debug logging.
+**Java Colored Debug Printer** (JColor) offers you an easy syntax to print messages with a colored font or background on a terminal.
 
 ### Screenshots
 

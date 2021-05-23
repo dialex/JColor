@@ -13,18 +13,15 @@ public abstract class Attribute {
     @Override
     public abstract String toString();
 
-    /*
-    =========================
-    API for simple attributes
-    =========================
-    */
-
     // Effects
 
     public static Attribute NONE() {
         return new SimpleAttribute("");
     }
 
+    /**
+     * @return Clears any format. Restores the terminal's default format.
+     */
     public static Attribute CLEAR() {
         return new SimpleAttribute("0");
     }
@@ -256,11 +253,5 @@ public abstract class Attribute {
     public static Attribute BACK_COLOR(int r, int g, int b) {
         return new BackColorAttribute(r, g, b);
     }
-
-    /*
-    ==========
-    End of API
-    ==========
-    */
 }
 

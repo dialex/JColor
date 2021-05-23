@@ -57,8 +57,24 @@ public class Ansi {
     }
 
     /**
+     * @param command ANSI command to apply to terminal.
+     * @return The ANSI code that describes that command.
+     */
+    public static String generateCode(Command command) {
+        return PREFIX + command;
+    }
+
+    /**
+     * @param command Ansi command to apply to terminal.
+     * @return The formatted string, ready to be printed.
+     */
+    public static String colorize(Command command) {
+        return generateCode(command);
+    }
+
+    /**
      * @param text     String to format.
-     * @param ansiCode Ansi code to format each message's lines
+     * @param ansiCode Ansi code to format each message's lines.
      * @return The formatted string, ready to be printed.
      */
     public static String colorize(String text, String ansiCode) {
@@ -110,4 +126,5 @@ public class Ansi {
     public static String makeItFabulous(String text, Attribute... attributes) {
         return colorize(text, attributes);
     }
+
 }

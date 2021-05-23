@@ -3,6 +3,7 @@ package com.diogonunes.jcolor.tests.unit;
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.AnsiFormat;
 import com.diogonunes.jcolor.Attribute;
+import com.diogonunes.jcolor.Command;
 import org.junit.jupiter.api.Test;
 
 import static com.diogonunes.jcolor.Ansi.*;
@@ -41,6 +42,19 @@ public class TestAnsi {
 
         // ASSERT
         String expectedCode = PREFIX + POSTFIX;
+        assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/56
+    public void GenerateCode_OneCommand() {
+        // ARRANGE
+        Command command = Command.CLEAR_SCREEN();
+
+        // ACT
+        String code = Ansi.generateCode(command);
+
+        // ASSERT
+        String expectedCode = PREFIX + command;
         assertThat(code, equalTo(expectedCode));
     }
 
@@ -152,6 +166,21 @@ public class TestAnsi {
         String expectedCode = Ansi.generateCode(attributes);
         assertThat(formattedText, startsWith(expectedCode));
         assertThat("Message should clear its format", formattedText, endsWith(Ansi.RESET));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/56
+    public void Colorize_SingleCommand() {
+        // ARRANGE
+        Command command = Command.CLEAR_SCREEN();
+        String text = createTextLine();
+
+        // ACT
+        String formattedCommand = Ansi.colorize(command);
+        //System.out.println(formattedText);
+
+        // ASSERT
+        String expectedCode = Ansi.generateCode(command);
+        assertThat(formattedCommand, equalTo(expectedCode));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/38

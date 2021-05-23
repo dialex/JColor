@@ -64,7 +64,7 @@ public class TestHumanEye {
         System.out.println("\n");
 
         // Credits
-        System.out.print("This example used JColor 5.0.0   ");
+        System.out.print("This example used JColor 5.1.0   ");
         System.out.print(colorize("\tMADE ", BOLD(), BRIGHT_YELLOW_TEXT(), GREEN_BACK()));
         System.out.println(colorize("IN PORTUGAL\t", BOLD(), BRIGHT_YELLOW_TEXT(), RED_BACK()));
         System.out.println("I hope you find it useful ;)");

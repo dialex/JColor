@@ -114,6 +114,11 @@
                         </goals>
                         <configuration>
                             <keyname>9C402311006A9D015297D9B37E877133A50D7F7A</keyname>
+                            <!-- Prevent `gpg` from using pinentry programs -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
                         </configuration>
                     </execution>
                 </executions>

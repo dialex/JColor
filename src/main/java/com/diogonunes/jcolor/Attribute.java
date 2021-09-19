@@ -30,6 +30,7 @@ public abstract class Attribute {
         return new SimpleAttribute("1");
     }
 
+    
     /**
      * @return Alias of BOLD().
      */
@@ -75,6 +76,19 @@ public abstract class Attribute {
     public static Attribute STRIKETHROUGH() {
         return new SimpleAttribute("9");
     }
+    
+    public static Attribute FRAMED() {
+        return new SimpleAttribute("51");
+    }
+ 
+    public static Attribute ENCIRCLED() {
+        return new SimpleAttribute("52");
+    }
+
+    public static Attribute OVERLINED() {
+        return new SimpleAttribute("53");
+    }
+
 
     // Colors (foreground)
 

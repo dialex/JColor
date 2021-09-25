@@ -183,6 +183,45 @@ public class TestAttribute {
         assertThat(code, equalTo(expectedAnsiCode));
     }
 
+    @Test
+    public void Attribute_AnsiCode_Framed() {
+        // ARRANGE
+        Attribute attribute = Attribute.FRAMED();
+
+        // ACT
+        String code = attribute.toString();
+
+        // ASSERT
+        String expectedAnsiCode = "51";
+        assertThat(code, equalTo(expectedAnsiCode));
+    }
+
+    @Test
+    public void Attribute_AnsiCode_Encircled() {
+        // ARRANGE
+        Attribute attribute = Attribute.ENCIRCLED();
+
+        // ACT
+        String code = attribute.toString();
+
+        // ASSERT
+        String expectedAnsiCode = "52";
+        assertThat(code, equalTo(expectedAnsiCode));
+    }
+
+    @Test
+    public void Attribute_AnsiCode_Overlined() {
+        // ARRANGE
+        Attribute attribute = Attribute.OVERLINED();
+
+        // ACT
+        String code = attribute.toString();
+
+        // ASSERT
+        String expectedAnsiCode = "53";
+        assertThat(code, equalTo(expectedAnsiCode));
+    }
+
     // Colors (foreground)
 
     @Test

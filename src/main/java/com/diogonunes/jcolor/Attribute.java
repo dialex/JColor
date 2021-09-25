@@ -30,7 +30,6 @@ public abstract class Attribute {
         return new SimpleAttribute("1");
     }
 
-    
     /**
      * @return Alias of BOLD().
      */
@@ -88,7 +87,6 @@ public abstract class Attribute {
     public static Attribute OVERLINED() {
         return new SimpleAttribute("53");
     }
-
 
     // Colors (foreground)
 

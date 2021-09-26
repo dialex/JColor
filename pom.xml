@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.diogonunes</groupId>
@@ -164,6 +165,16 @@
     </build>
 
     <dependencies>
+        <!--
+          TODO:
+            Remove after OSSRH-66257, NEXUS-26993 are fixed,
+            possibly via https://github.com/sonatype/nexus-maven-plugins/pull/91
+        -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.15</version>
+        </dependency>
         <!-- Necessary for Windows 10 Ansi support -->
         <dependency>
             <groupId>net.java.dev.jna</groupId>

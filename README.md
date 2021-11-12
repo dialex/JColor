@@ -8,7 +8,7 @@
 
 ![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-mac-iterm-fancy.png)
 
-How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-IntelliJ.png)
+How it looks on different platforms: macOS iTerm (above), [Windows PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-ps6.png), [Windows Terminal](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-IntelliJ.png)
 
 ### Usage
 
@@ -70,8 +70,8 @@ System.out.println("I hope you find it useful ;)");
 
 You can import this dependency through Maven or Gradle:
 
-- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows 10
-- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows 10
+- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows +10
+- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows +10
 - JCDP `v3.*` supports Java +8, Linux, macOS, Windows
 - JCDP `v2.*` supports Java +6, Linux, macOS, Windows
 

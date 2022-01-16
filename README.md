@@ -12,7 +12,7 @@ How it looks on different platforms: [macOS iTerm](https://raw.githubusercontent
 
 ### Usage
 
-The screenshot was the result of running this demo code:
+The screenshot was the result of running this [demo code](./src/test/java/com/diogonunes/jcolor/tests/acceptance/TestHumanEye.java):
 
 ```java
 // Use Case 1: use Ansi.colorize() to format inline

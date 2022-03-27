@@ -39,3 +39,10 @@ How to do stuff
 - Check what is outdated: `mvn versions:display-dependency-updates`
 - Update all of them: `mvn versions:use-latest-releases`
 - Check that tests still pass: `mvn test`
+
+## Generate GPG
+
+- `gpg --gen-key`
+- `gpg --list-keys`
+- `gpg -ab README.md` (you can delete the generated file, it's just to test the key)
+- `gpg --keyserver keyserver.ubuntu.com --send-keys <PUBKEY>`

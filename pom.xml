@@ -177,17 +177,6 @@
     </build>
 
     <dependencies>
-        <!--
-          TODO:
-            Remove after OSSRH-66257, NEXUS-26993 are fixed,
-            possibly via https://github.com/sonatype/nexus-maven-plugins/pull/91
-          TODO: Try this workaround instead https://issues.sonatype.org/browse/OSSRH-66257?focusedCommentId=1036973&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1036973
-        -->
-        <dependency>
-            <groupId>com.thoughtworks.xstream</groupId>
-            <artifactId>xstream</artifactId>
-            <version>1.4.19</version>
-        </dependency>
         <!-- Necessary for OSGi support -->
         <dependency>
             <groupId>org.apache.felix</groupId>

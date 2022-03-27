@@ -33,3 +33,9 @@ How to do stuff
   - Delete the contents of folder `docs`
   - Paste your clipboard inside that folder
   - Run `git add .; git commit -m "doc: update to version X.Y.Z"`
+
+## Update dependencies
+
+- Check what is outdated: `mvn versions:display-dependency-updates`
+- Update all of them: `mvn versions:use-latest-releases`
+- Check that tests still pass: `mvn test`

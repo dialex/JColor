@@ -24,6 +24,14 @@ How to do stuff
 
 ## Generate Javadoc
 
+```sh
+jenv shell 17
+mvn javadoc:javadoc
+rm -r docs
+cp -R target/site/apidocs docs
+git add .; git commit -m "doc: update to version X.Y.Z"
+```
+
 - Locally,
   - If after you prepared a new release...
     - Copy the contents of folder `target/apidocs`

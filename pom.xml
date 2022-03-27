@@ -4,7 +4,7 @@
     <groupId>com.diogonunes</groupId>
     <artifactId>JColor</artifactId>
     <version>5.3.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>An easy syntax to format your strings with colored fonts and backgrounds.</description>
     <url>https://github.com/dialex/JColor</url>
@@ -187,6 +187,13 @@
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
             <version>1.4.19</version>
+        </dependency>
+        <!-- Necessary for OSGi support -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>5.1.4</version>
+            <type>maven-plugin</type>
         </dependency>
         <!-- Necessary for Windows 10 Ansi support -->
         <!-- TODO: remove these -->

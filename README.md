@@ -8,11 +8,11 @@
 
 ![JColor running on iTerm (macOS)](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-mac-iterm-fancy.png)
 
-How it looks on different platforms: macOS iTerm (above), [Windows 10 PowerShell 6](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-ps6.png), [Windows 10 Console](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-IntelliJ.png)
+How it looks on different platforms: [macOS iTerm](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-mac-iterm-fancy.png), [Windows Terminal](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-win-console.png), [IntelliJ](https://raw.githubusercontent.com/dialex/JColor/main/.github/img/example-IntelliJ.png)
 
 ### Usage
 
-The screenshot was the result of running this demo code:
+The screenshot was the result of running this [demo code](./src/test/java/com/diogonunes/jcolor/tests/acceptance/TestHumanEye.java):
 
 ```java
 // Use Case 1: use Ansi.colorize() to format inline
@@ -66,14 +66,18 @@ System.out.println(colorize("IN PORTUGAL\t", BOLD(), BRIGHT_YELLOW_TEXT(), RED_B
 System.out.println("I hope you find it useful ;)");
 ```
 
-### Installation
+#### Installation
 
 You can import this dependency through Maven or Gradle:
 
-- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows 10
-- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows 10
+- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows* +10
+- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows* +10
 - JCDP `v3.*` supports Java +8, Linux, macOS, Windows
 - JCDP `v2.*` supports Java +6, Linux, macOS, Windows
+
+> ⚠️ *Windows users, attention!
+>
+> Even though Windows 10 has support for ANSI escape sequences, it is [disabled by default](https://stackoverflow.com/questions/51680709/colored-text-output-in-powershell-console-using-ansi-vt100-codes/51681675#51681675). The easiest way to fix this is to use [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701), otherwise pick one of these [workarounds](https://github.com/dialex/JColor/issues/62#issuecomment-967010670).
 
 #### Useful links
 

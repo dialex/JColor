@@ -114,7 +114,7 @@
                             <goal>sign</goal>
                         </goals>
                         <configuration>
-                            <keyname>530907D8638D416108FB0C48FA38A6C0D2E79F04</keyname>
+                            <keyname>70AC2DCF410F446BD81C82D603AEFF59C2E5C034</keyname>
                             <!-- Prevent `gpg` from using pinentry programs -->
                             <gpgArguments>
                                 <arg>--pinentry-mode</arg>

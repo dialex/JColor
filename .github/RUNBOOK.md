@@ -30,6 +30,7 @@ mvn javadoc:javadoc
 rm -r docs
 cp -R target/site/apidocs docs
 git add .; git commit -m "doc: update to version X.Y.Z"
+jenv shell 1.8
 ```
 
 - Locally,

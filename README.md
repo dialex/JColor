@@ -70,10 +70,10 @@ System.out.println("I hope you find it useful ;)");
 
 You can import this dependency through Maven or Gradle:
 
-- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java +8, Linux, macOS, Windows* +10
-- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java +8, Linux, macOS, Windows* +10
-- JCDP `v3.*` supports Java +8, Linux, macOS, Windows
-- JCDP `v2.*` supports Java +6, Linux, macOS, Windows
+- [JColor](https://mvnrepository.com/artifact/com.diogonunes/JColor) `v5.*` supports Java 8+, Linux, macOS, Windows* 10+
+- [JCDP](https://mvnrepository.com/artifact/com.diogonunes/JCDP) `v4.*` supports Java 8+, Linux, macOS, Windows* 10+
+- JCDP `v3.*` supports Java 8+, Linux, macOS, Windows
+- JCDP `v2.*` supports Java 6+, Linux, macOS, Windows
 
 > ⚠️ *Windows users, attention!
 >

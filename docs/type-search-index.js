@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.diogonunes.jcolor","l":"Ansi"},{"p":"com.diogonunes.jcolor","l":"AnsiFormat"},{"p":"com.diogonunes.jcolor","l":"Attribute"},{"p":"com.diogonunes.jcolor","l":"Command"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"com.diogonunes.jcolor","l":"Ansi"},{"p":"com.diogonunes.jcolor","l":"AnsiFormat"},{"p":"com.diogonunes.jcolor","l":"Attribute"},{"p":"com.diogonunes.jcolor","l":"Command"}];updateSearchResults();

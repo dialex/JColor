@@ -25,11 +25,12 @@ How to do stuff
 ## Generate Javadoc
 
 ```sh
-jenv shell 17
+jenv shell 16
 mvn javadoc:javadoc
 rm -r docs
 cp -R target/site/apidocs docs
-git add .; git commit -m "doc: update to version X.Y.Z"
+git add .
+git commit -m "doc: update javadoc to latest version"
 jenv shell 1.8
 ```
 

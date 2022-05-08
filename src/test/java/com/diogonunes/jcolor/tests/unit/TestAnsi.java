@@ -6,6 +6,9 @@ import com.diogonunes.jcolor.Attribute;
 import com.diogonunes.jcolor.Command;
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static com.diogonunes.jcolor.Ansi.*;
 import static com.diogonunes.jcolor.Attribute.*;
 import static com.diogonunes.jcolor.tests.unit.DataGenerator.*;
@@ -56,6 +59,22 @@ public class TestAnsi {
         // ASSERT
         String expectedCode = PREFIX + command;
         assertThat(code, equalTo(expectedCode));
+    }
+
+    @Test // Covers https://github.com/dialex/JColor/issues/68
+    public void GenerateCode_ComplexCommand() {
+        // ARRANGE
+        int totalCommands = 0;
+        Command command = Command.CLEAR_SCREEN();
+
+        // ACT
+        String code = generateCode(command);
+
+        // ASSERT
+        Matcher prefix = (Pattern.compile("\\[")).matcher(code);
+        while (prefix.find())
+            totalCommands++;
+        assertThat(totalCommands, equalTo(2));
     }
 
     @Test // Covers https://github.com/dialex/JColor/issues/6

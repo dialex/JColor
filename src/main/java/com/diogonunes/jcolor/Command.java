@@ -20,7 +20,8 @@ public class Command {
      * @return Clears the terminal's text, e.g. just like the command-line `clear`.
      */
     public static Command CLEAR_SCREEN() {
-        return new Command("2J");
+        // Covers https://github.com/dialex/JColor/issues/68
+        return new Command("H\\033[2J\"");
     }
 
     @Override

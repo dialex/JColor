@@ -20,7 +20,7 @@ public class TestCommand {
         String code = command.toString();
 
         // ASSERT
-        String expectedAnsiCode = "2J";
+        String expectedAnsiCode = "H\\033[2J\"";
         assertThat(code, equalTo(expectedAnsiCode));
     }
 

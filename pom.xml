@@ -12,8 +12,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- code needs to be compatible with this version of Java -->
         <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- code is executed using this version of Java -->
+        <maven.compiler.target>18</maven.compiler.target>
     </properties>
 
     <licenses>

@@ -75,6 +75,8 @@ You can import this dependency through Maven or Gradle:
 - JCDP `v3.*` supports Java 8+, Linux, macOS, Windows
 - JCDP `v2.*` supports Java 6+, Linux, macOS, Windows
 
+##### Troubleshoot
+
 > ⚠️ *Windows users, attention!
 >
 > Even though Windows 10 has support for ANSI escape sequences, it is [disabled by default](https://stackoverflow.com/questions/51680709/colored-text-output-in-powershell-console-using-ansi-vt100-codes/51681675#51681675). The easiest way to fix this is to use [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701), otherwise pick one of these [workarounds](https://github.com/dialex/JColor/issues/62#issuecomment-967010670).

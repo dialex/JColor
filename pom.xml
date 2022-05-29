@@ -185,6 +185,7 @@
             <artifactId>maven-bundle-plugin</artifactId>
             <version>5.1.6</version>
             <type>maven-plugin</type>
+            <scope>test</scope>
         </dependency>
         <!-- Dependencies of test framework -->
         <dependency>

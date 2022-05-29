@@ -25,13 +25,9 @@ How to do stuff
 ## Generate Javadoc
 
 ```sh
-jenv shell 16
-mvn javadoc:javadoc
-rm -r docs
-cp -R target/site/apidocs docs
+./.github/update-javadoc.sh
 git add .
 git commit -m "doc: update javadoc to latest version"
-jenv shell 1.8
 ```
 
 - Locally,

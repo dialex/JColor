@@ -25,7 +25,9 @@ How to do stuff
 ## Generate Javadoc
 
 ```sh
+jenv shell 18
 ./.github/update-javadoc.sh
+jenv shell 1.8
 git add .
 git commit -m "doc: update javadoc to latest version"
 ```

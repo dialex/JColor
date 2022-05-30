@@ -10,11 +10,11 @@ How to do stuff
   - Merge PR
 - Locally,
   - Checkout `main`
+  - (See [Generate Javadoc](#Generate-Javadoc)
   - Run `mvn release:clean release:prepare`
     - Breaking changes, increase major (`X.*.*`)
     - New features or upgraded dependencies, increase minor (`*.Y.*`)
     - Fixing issues, increase patch (`*.*.Z`)
-  - (See [Generate Javadoc](#Generate-Javadoc)
   - Run `mvn release:perform`
   - Run `git push`
 - On GitHub,

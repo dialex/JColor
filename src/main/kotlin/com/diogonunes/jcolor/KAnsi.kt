@@ -1,4 +1,4 @@
-import com.diogonunes.jcolor.*
+package com.diogonunes.jcolor
 
 fun Command.colorize(): String = Ansi.colorize(this)
 

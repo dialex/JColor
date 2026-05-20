@@ -3,7 +3,7 @@
 
     <groupId>com.diogonunes</groupId>
     <artifactId>JColor</artifactId>
-    <version>5.5.3-SNAPSHOT</version>
+    <version>5.5.2-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>An easy syntax to format your strings with colored fonts and backgrounds.</description>

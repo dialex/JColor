@@ -3,7 +3,7 @@
 
     <groupId>com.diogonunes</groupId>
     <artifactId>JColor</artifactId>
-    <version>6.0.2</version>
+    <version>6.0.3-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>An easy syntax to format your strings with colored fonts and backgrounds.</description>
@@ -36,7 +36,7 @@
         <connection>scm:git:git@github.com:dialex/jcolor.git</connection>
         <developerConnection>scm:git:git@github.com:dialex/jcolor.git</developerConnection>
         <url>https://github.com/dialex/JColor/tree/main</url>
-        <tag>v6.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
